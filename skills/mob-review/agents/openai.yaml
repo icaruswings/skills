@@ -1,0 +1,3 @@
+interface:
+  display_name: "Mob Review"
+  short_description: "Assemble reviewer lenses that match the change, run each as its own pass"

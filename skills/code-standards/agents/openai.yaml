@@ -1,0 +1,3 @@
+interface:
+  display_name: "Code Standards"
+  short_description: "SOLID, ports-and-adapters, security defaults, and backwards-compatible wire changes"
