@@ -29,6 +29,7 @@ The agent can select any of these on its own. You can also type the name of one.
 - **[code-standards](./skills/code-standards/SKILL.md)**. Design rules from SOLID and Sandi Metz, ports and adapters patterns, security defaults, and wire changes that stay backwards compatible.
 - **[mob-review](./skills/mob-review/SKILL.md)**. Selects the review passes that match the change. Each pass runs on its own. The findings come back in order of risk, not in the order of discovery.
 - **[react-native-architecture](./skills/react-native-architecture/SKILL.md)**. A feature-first layered architecture for React Native apps. It includes a decision table that shows where new code belongs.
+- **[unslop](./skills/unslop/SKILL.md)**. Cuts the AI tells from any draft. This repo carries a copy from PStack under the MIT licence, so `writing-for-humans` runs its first pass with no download.
 - **[writing-for-humans](./skills/writing-for-humans/SKILL.md)**. Cuts the AI tells from any text that a person reads, then holds seven Simplified Technical English limits. It includes a checker script that reports each breach with a line number.
 
 ## Layout
