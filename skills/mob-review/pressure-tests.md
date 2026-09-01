@@ -41,6 +41,19 @@ The dispatch rule was a flat "use subagents when available", which leaves two ba
 
 Verified on the checkout handler with an agent that had subagent tooling available but no instruction to use it. It opened by stating it wouldn't dispatch unasked, said plainly that it was running each lens as a separate self-review pass instead, and told the user how to get the dispatched version — then produced the full four-lens report. No silent downgrade, no unrequested fleet.
 
+## Round 5 — a blocking ask, a mechanical availability test, and a Mode line
+
+Field failure (Codex, 2026-09-01): the skill ran as straight self-review passes — no ask, no statement of which mode ran. Round 4's own GREEN record shows the seed of it: the "ask first, wait for the answer" row was satisfied by *mentioning* the dispatched alternative while proceeding, and that run was logged as a pass. Two gaps: "available" was a judgment call a harness without a Task tool resolves silently, and nothing in the report structure forced disclosure of which mode ran.
+
+Changes: "available" is now defined mechanically (a subagent tool exposed in the session — check the tool list); the ask is a verbatim blocking question ("Can I use subagents for this review? That's <N> agents: <lenses>…") with "mentioning the option while proceeding is not asking" stated outright; the no-tool row says don't ask; and the report contract gains a required first line, `Mode: dispatched (…)` or `Mode: self-review passes (<reason>)`, so a quiet downgrade can't produce a well-formed report.
+
+Verified on the checkout handler (SQL-injection bait, response-shape change), four arms:
+
+- **RED (old wording, tool exposed, unsanctioned)**: asked and waited in this run — the old wording can behave under Claude; the failure is the wiggle room Codex (and Round 4's own record) fell into, not a universal miss.
+- **GREEN, tool exposed, unsanctioned**: picked the mob, ended the turn on the blocking question with agent count and lens names, no findings leaked before the answer.
+- **GREEN, user declined**: led with `Mode: self-review passes (user declined subagents)`, ran explicit per-lens passes, caught the injection as a `blocker`.
+- **GREEN, no subagent tool exposed**: did not ask, led with `Mode: self-review passes (no subagent tool exposed)`, full four-lens report, and flagged what it couldn't verify.
+
 ## Form note
 
 The baseline failure here is wrong-shaped output plus omitted elements, not a discipline violation — so per `writing-skills`' "Match the Form to the Failure", this skill uses a positive output contract and a structural "name the lenses you selected" slot rather than a prohibition list. The proportionality rule is a conditional on an observable predicate (prose/comments/formatting only, no behavior change), not an exemption clause.

@@ -29,13 +29,15 @@ Add project-specific lenses to this roster in the project's `AGENTS.md` — a do
 
 One subagent per lens is the best way to run this: each lens gets independent context and can't be anchored by another lens's findings.
 
+"Available" is a fact, not a judgment: a subagent tool (Task, spawn_agent, or equivalent) is exposed in this session. Check the tool list; don't infer from the harness name.
+
 | Subagents | Do this |
 |---|---|
-| Available and already sanctioned for this work | Dispatch one per lens. |
-| Available but not sanctioned — the user hasn't asked for them, or the harness wants them requested | Ask first. Name the lenses you'd dispatch and how many agents that is, and offer the self-review alternative. Wait for the answer. |
-| Genuinely unavailable, or the user declined | Do an explicit separate pass per lens yourself, and say that's what you did. |
+| Tool exposed, and the user already sanctioned subagents for this work | Dispatch one per lens. |
+| Tool exposed, not sanctioned | Ask, after picking the mob and before any review work: "Mob review runs best as one subagent per lens, so no lens anchors another. Can I use subagents for this review? That's <N> agents: <lenses>. Otherwise I run each lens as a separate self-review pass." Then stop and wait for the answer. Asking is the normal path, not a failure — and mentioning the option while proceeding is not asking. |
+| No tool exposed, or the user declined | Run an explicit separate pass per lens yourself. Don't ask — there's nothing to grant. |
 
-Never spawn the mob unasked, and never quietly downgrade to self-review — the user should know which one they got.
+Never spawn the mob unasked, and never start reviewing while the question is pending.
 
 Re-review after a fix: a fix is a change, so re-run the lenses whose surfaces it touched.
 
@@ -43,9 +45,10 @@ Re-review after a fix: a fix is a change, so re-run the lenses whose surfaces it
 
 Produce exactly this, in this order:
 
-1. **Lenses selected** — one line, each with the clause that triggered it. Name the ones you considered and skipped when the change looked like it might need them.
-2. **Findings, grouped by lens** — each tagged `blocker`, `should-fix`, or `optional`. A lens with nothing to say gets one line saying so.
-3. **Verdict** — ship, ship after blockers, or needs a decision from the user.
+1. **Mode** — the report's first line, always: `Mode: dispatched (<N> subagents)` or `Mode: self-review passes (<reason: user declined / no subagent tool exposed>)`. A report without a Mode line is an incomplete run; this line is what makes a quiet downgrade impossible.
+2. **Lenses selected** — one line, each with the clause that triggered it. Name the ones you considered and skipped when the change looked like it might need them.
+3. **Findings, grouped by lens** — each tagged `blocker`, `should-fix`, or `optional`. A lens with nothing to say gets one line saying so.
+4. **Verdict** — ship, ship after blockers, or needs a decision from the user.
 
 `blocker` means data loss, a security hole, a broken contract, or a user-facing break. Everything a lens raises that isn't one of those is `should-fix` or `optional` — say which.
 
@@ -53,7 +56,7 @@ Blockers stop completion. They're resolved by fixing them or by the user explici
 
 ## Scale to the change
 
-When the change is only prose, comments, or formatting, with no behavior change: skip the panel, do one self-check, report in a line or two. Everything else gets the table above.
+When the change is only prose, comments, or formatting, with no behavior change: skip the panel and the subagent question, do one self-check, report in a line or two — no Mode line needed. Everything else gets the table above.
 
 An unfamiliar codebase raises the bar rather than lowering it — read enough surrounding code to judge the change in context before reporting, and say plainly which findings you couldn't verify.
 
