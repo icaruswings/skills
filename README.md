@@ -14,7 +14,7 @@ cd skills
 scripts/link-skills.sh
 ```
 
-The script makes a symlink to each skill in `~/.claude/skills` and `~/.agents/skills`. A `git pull` then updates every skill that you linked. Run the script again after you add or rename a skill.
+The script makes a symlink to each skill in `~/.claude/skills` and `~/.agents/skills`. A `git pull` then updates every skill that you linked. Run the script again after you add, remove, or rename a skill: it adds the new links and clears out the stale ones. It never deletes your own files, so move anything of yours out of the way first if it reports a clash.
 
 To take one skill only, copy its folder:
 

@@ -9,9 +9,52 @@ set -euo pipefail
 #   - ~/.agents/skills  — Codex and other Agent Skills-compatible harnesses
 # Each entry is a symlink into this repo, so a `git pull` keeps the installed
 # skills current. Re-run after adding, removing, or renaming a skill.
+#
+# It never deletes your files or directories. Two things it does remove: a
+# symlink at a name it needs (that is the idempotent re-link path), and a
+# symlink it owns — one pointing into this repo's skills/ tree for a skill that
+# no longer exists, which is how a rename or removal gets cleaned up.
+#
+# Every destination is validated before anything is written: it must resolve
+# outside this repo, hold no files of yours at the names we need, and be
+# writable. So a predictable failure stops the run instead of linking one
+# harness and abandoning the other.
 
-REPO="$(cd "$(dirname "$0")/.." && pwd)"
+# /bin/pwd -P calls getcwd() and returns the canonical path, including its real
+# case. The bash builtin resolves symlinks textually from $PWD, so on a
+# case-insensitive filesystem it keeps whatever case a symlink was written in,
+# and two spellings of one directory then compare unequal — which is enough to
+# walk a destination straight past the repo guard below.
+PWD_BIN=/bin/pwd
+[ -x "$PWD_BIN" ] || PWD_BIN=pwd
+
+# Canonical path of an existing directory, or empty if it is not one. Callers
+# must absorb its exit status (`|| var=""`): under `set -e` a bare assignment
+# from a failing command substitution takes the whole script down, which would
+# skip the error message the caller is about to print.
+canonical() {
+  (cd "$1" 2>/dev/null && "$PWD_BIN" -P) 2>/dev/null
+}
+
+REPO="$(cd "$(dirname "$0")/.." && "$PWD_BIN" -P)"
 DESTS=("$HOME/.claude/skills" "$HOME/.agents/skills")
+
+inside_repo() {
+  case "$1" in
+    "$REPO"|"$REPO"/*) return 0 ;;
+  esac
+  return 1
+}
+
+if [ ! -d "$REPO/skills" ]; then
+  echo "no skills found under $REPO/skills — nothing to link"
+  exit 0
+fi
+REPO_SKILLS="$(canonical "$REPO/skills")" || REPO_SKILLS=""
+if [ -z "$REPO_SKILLS" ]; then
+  echo "error: cannot resolve $REPO/skills" >&2
+  exit 1
+fi
 
 names=()
 srcs=()
@@ -19,39 +62,130 @@ while IFS= read -r -d '' skill_md; do
   src="$(dirname "$skill_md")"
   names+=("$(basename "$src")")
   srcs+=("$src")
-done < <(find "$REPO/skills" -name SKILL.md -print0)
+done < <(find "$REPO_SKILLS" -name SKILL.md -print0)
 
 if [ ${#names[@]} -eq 0 ]; then
-  echo "no skills found under $REPO/skills — nothing to link"
+  echo "no skills found under $REPO_SKILLS — nothing to link"
   exit 0
 fi
 
+# Pass 1: validate every destination. Nothing is linked until all of this passes.
+targets=()
+conflicts=()
 for DEST in "${DESTS[@]}"; do
-  # If $DEST is a symlink resolving into this repo, the per-skill symlinks would
-  # be written back into the repo's own skills/ tree. Bail out instead.
-  if [ -L "$DEST" ]; then
-    resolved="$(readlink "$DEST")"
-    case "$resolved" in
-      "$REPO"|"$REPO"/*)
-        echo "error: $DEST is a symlink into this repo ($resolved)." >&2
-        echo "Remove it (rm \"$DEST\") and re-run; the script will recreate it as a real dir." >&2
-        exit 1
-        ;;
-    esac
+  # A destination that does not exist yet still needs the repo guard, because a
+  # parent of it may be a symlink into the repo and mkdir -p would then create
+  # it in there. So resolve the nearest thing that does exist and check that.
+  probe="$DEST"
+  while [ ! -e "$probe" ] && [ ! -L "$probe" ] && [ "$probe" != "/" ]; do
+    probe="$(dirname "$probe")"
+  done
+
+  probe_resolved="$(canonical "$probe")" || probe_resolved=""
+  if [ -z "$probe_resolved" ]; then
+    echo "error: $probe exists but is not a usable directory." >&2
+    echo "It may be a dangling symlink or a file. Inspect it (ls -ld \"$probe\"), remove it, and re-run." >&2
+    exit 1
+  fi
+  if inside_repo "$probe_resolved"; then
+    echo "error: $DEST resolves into this repo (via $probe -> $probe_resolved)." >&2
+    echo "Linking there would point the repo's own skills/ tree at itself." >&2
+    echo "Repoint or remove that path and re-run. Do not move anything out of $REPO." >&2
+    exit 1
   fi
 
   mkdir -p "$DEST"
 
+  # Re-resolve now that it exists, so the checks below and the writes later both
+  # use one canonical path.
+  resolved="$(canonical "$DEST")" || resolved=""
+  if [ -z "$resolved" ] || inside_repo "$resolved"; then
+    echo "error: $DEST does not resolve to a usable directory outside this repo." >&2
+    exit 1
+  fi
+
+  canary="$resolved/.link-skills-write-probe.$$"
+  if ! ln -sfn /dev/null "$canary" 2>/dev/null; then
+    echo "error: cannot write to $DEST (resolved: $resolved)." >&2
+    echo "Fix its permissions and re-run; nothing has been linked." >&2
+    exit 1
+  fi
+  rm -f "$canary"
+
+  for name in "${names[@]}"; do
+    target="$resolved/$name"
+    # A symlink here is ours to replace. Anything else is your content, and this
+    # script does not delete it.
+    if [ -e "$target" ] && [ ! -L "$target" ]; then
+      conflicts+=("$target")
+    fi
+  done
+
+  targets+=("$resolved")
+done
+
+if [ ${#conflicts[@]} -ne 0 ]; then
+  echo "error: refusing to link — real files or directories are in the way:" >&2
+  for conflict in "${conflicts[@]}"; do
+    echo "  $conflict" >&2
+  done
+  echo >&2
+  echo "These are not symlinks, so they may hold your own work (for example a skill" >&2
+  echo "folder copied by hand). This script will not delete them. Move or remove each" >&2
+  echo "one yourself, then re-run:" >&2
+  echo "  mv \"${conflicts[0]}\" \"${conflicts[0]}.bak\"" >&2
+  exit 1
+fi
+
+# Pass 2: link.
+for DEST in "${targets[@]}"; do
   for i in "${!names[@]}"; do
     name="${names[$i]}"
     src="${srcs[$i]}"
-    target="$DEST/$name"
 
-    if [ -e "$target" ] && [ ! -L "$target" ]; then
-      rm -rf "$target"
+    ln -sfn "$src" "$DEST/$name"
+    echo "linked $name -> $src ($DEST)"
+  done
+done
+
+# Pass 3: prune. A renamed or removed skill leaves its old symlink behind, and
+# harnesses still enumerate it. Remove only links that point into this repo's
+# skills/ tree and no longer match a skill — anything else is yours.
+for DEST in "${targets[@]}"; do
+  for entry in "$DEST"/*; do
+    [ -L "$entry" ] || continue
+
+    name="$(basename "$entry")"
+    current=0
+    for known in "${names[@]}"; do
+      if [ "$known" = "$name" ]; then
+        current=1
+        break
+      fi
+    done
+    if [ "$current" -eq 1 ]; then
+      continue
     fi
 
-    ln -sfn "$src" "$target"
-    echo "linked $name -> $src ($DEST)"
+    link="$(readlink "$entry")"
+    case "$link" in
+      /*) abs="$link" ;;
+      *) abs="$DEST/$link" ;;
+    esac
+
+    # Canonicalize the parent, which works for a dangling link too — its own
+    # path cannot be resolved, but the directory holding it usually can.
+    parent="$(canonical "$(dirname "$abs")")" || parent=""
+    if [ -n "$parent" ]; then
+      abs="$parent/$(basename "$abs")"
+    fi
+
+    # Unprovable ownership means leave it alone.
+    case "$abs" in
+      "$REPO_SKILLS"/*)
+        rm "$entry"
+        echo "pruned $name (stale link -> $link)"
+        ;;
+    esac
   done
 done
