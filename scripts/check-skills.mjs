@@ -8,10 +8,10 @@
 //     policy.allow_implicit_invocation agrees with SKILL.md's disable-model-invocation
 //   - the top-level README.md links to the SKILL.md
 //
-// Discovery matches link-skills.sh (which finds SKILL.md at any depth), so a
-// skill the linker would install can never slip past this checker unvalidated.
+// Discovery matches link-skills.sh: both read SKILL.md at any depth and neither
+// follows a symlink, so a skill the linker installs cannot slip past unvalidated.
 
-import { readFileSync, readdirSync, existsSync, statSync } from "node:fs";
+import { readFileSync, readdirSync, existsSync, lstatSync } from "node:fs";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 
@@ -22,10 +22,17 @@ const fail = (msg) => errors.push(msg);
 
 // A BOM before `---` would otherwise read as "no frontmatter".
 const read = (p) => readFileSync(join(repo, p), "utf8").replace(/^﻿/, "");
-const isDir = (p) => statSync(join(repo, p)).isDirectory();
+const isDir = (p) => {
+  try {
+    return lstatSync(join(repo, p)).isDirectory();
+  } catch {
+    return false;
+  }
+};
 
 const unquote = (raw) => {
   const v = raw.trim();
+  if (v === "null" || v === "Null" || v === "NULL" || v === "~") return "";
   if (v.length > 1 && ((v.startsWith('"') && v.endsWith('"')) || (v.startsWith("'") && v.endsWith("'")))) {
     return v.slice(1, -1);
   }
@@ -45,6 +52,15 @@ const parseYaml = (text) => {
   const lines = text.split(/\r?\n/);
   const fields = {};
   const nested = {};
+  const raw = {};
+  const deeper = {};
+
+  // A tab in the indent makes the whole document invalid YAML, and the harness
+  // then loads no policy at all. Scan every line here rather than inside the
+  // loop below, which skips the lines a nested key consumes.
+  const tabIndent = lines.some(
+    (l) => l.trim() && !/^\s*#/.test(l) && /^[ \t]*\t/.test(l),
+  );
 
   for (let i = 0; i < lines.length; i++) {
     const line = lines[i];
@@ -56,7 +72,9 @@ const parseYaml = (text) => {
     const key = top[1];
     const rest = top[2].trim();
 
-    if (/^[|>][+-]?\d*$/.test(rest)) {
+    // YAML allows the indentation and chomping indicators in either order, so
+    // both `>2-` and `>-2` are headers rather than values.
+    if (/^[|>](?:[+-]\d*|\d+[+-]?)?$/.test(rest)) {
       const block = [];
       while (i + 1 < lines.length) {
         const next = lines[i + 1];
@@ -70,22 +88,41 @@ const parseYaml = (text) => {
 
     if (rest === "") {
       const children = {};
+      const childRaw = {};
+      const grandchildren = new Set();
+      let childIndent = null;
+
       while (i + 1 < lines.length) {
         const next = lines[i + 1];
         if (next.trim() && !/^[ \t]/.test(next)) break;
-        const kv = next.match(/^[ \t]+([A-Za-z0-9_.-]+):[ \t]*(.*)$/);
-        if (kv) children[kv[1]] = unquote(kv[2]);
+        const kv = next.match(/^([ \t]+)([A-Za-z0-9_.-]+):[ \t]*(.*)$/);
+        if (kv) {
+          const [, indent, childKey, childValue] = kv;
+          if (childIndent === null) childIndent = indent;
+          if (indent === childIndent) {
+            children[childKey] = unquote(childValue);
+            // The raw text keeps its quotes, which a boolean check needs: the
+            // string "false" is not the boolean false.
+            childRaw[childKey] = childValue.trim();
+          } else if (indent.length > childIndent.length) {
+            // A key one level deeper belongs to a child map, not to this key.
+            grandchildren.add(childKey);
+          }
+        }
         i++;
       }
+
       fields[key] = "";
       nested[key] = children;
+      raw[key] = childRaw;
+      deeper[key] = grandchildren;
       continue;
     }
 
     fields[key] = unquote(rest);
   }
 
-  return { fields, nested };
+  return { fields, nested, raw, deeper, tabIndent };
 };
 
 const frontmatter = (source) => {
@@ -142,16 +179,25 @@ for (const skillPath of skillMds) {
   } else {
     const doc = parseYaml(read(yamlPath));
 
-    // The key only takes effect under policy:. Anywhere else Codex ignores it,
-    // so a misplaced key must fail rather than satisfy the pairing check.
+    if (doc.tabIndent) fail(`${yamlPath}: indented with a tab, which is not valid YAML`);
+
+    // The key only takes effect directly under policy:. Anywhere else Codex
+    // ignores it, so a misplaced key must fail rather than satisfy the pairing
+    // check below.
     if ("allow_implicit_invocation" in doc.fields)
       fail(`${yamlPath}: allow_implicit_invocation sits at the top level — it must be nested under policy:`);
     for (const [parent, children] of Object.entries(doc.nested)) {
       if (parent !== "policy" && "allow_implicit_invocation" in children)
         fail(`${yamlPath}: allow_implicit_invocation is nested under "${parent}:" — it must sit under policy:`);
     }
+    for (const [parent, keys] of Object.entries(doc.deeper)) {
+      if (keys.has("allow_implicit_invocation"))
+        fail(`${yamlPath}: allow_implicit_invocation is nested too deeply under "${parent}:" — it must be a direct child of policy:`);
+    }
 
-    const blocksImplicit = /^false$/i.test((doc.nested.policy?.allow_implicit_invocation ?? "").trim());
+    // Read the raw text, so a quoted "false" (a string to any real parser) does
+    // not read as the boolean.
+    const blocksImplicit = /^false$/i.test((doc.raw.policy?.allow_implicit_invocation ?? "").trim());
     if (userInvoked && !blocksImplicit)
       fail(`${yamlPath}: skill is user-invoked, so it needs policy.allow_implicit_invocation: false`);
     if (!userInvoked && blocksImplicit)

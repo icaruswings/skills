@@ -10,15 +10,18 @@ set -euo pipefail
 # Each entry is a symlink into this repo, so a `git pull` keeps the installed
 # skills current. Re-run after adding, removing, or renaming a skill.
 #
-# It never deletes your files or directories. Two things it does remove: a
-# symlink at a name it needs (that is the idempotent re-link path), and a
-# symlink it owns — one pointing into this repo's skills/ tree for a skill that
-# no longer exists, which is how a rename or removal gets cleaned up.
+# It never deletes your files or directories. It removes symlinks in two cases
+# only: one sitting at a name it needs (that is the idempotent re-link path),
+# and one with the exact shape it writes, <dest>/<name> pointing at
+# <repo>/skills/<name>, whose skill no longer exists. That second case is how a
+# rename or a removal gets cleaned up. A link of your own under a different
+# name, or one pointing at a file inside a skill, does not match either case.
 #
-# Every destination is validated before anything is written: it must resolve
+# Every destination is validated before any link is written: it must resolve
 # outside this repo, hold no files of yours at the names we need, and be
 # writable. So a predictable failure stops the run instead of linking one
-# harness and abandoning the other.
+# destination and abandoning the other. Validation itself may create an empty
+# destination directory, which is the one thing a refused run leaves behind.
 
 # /bin/pwd -P calls getcwd() and returns the canonical path, including its real
 # case. The bash builtin resolves symlinks textually from $PWD, so on a
@@ -69,7 +72,7 @@ if [ ${#names[@]} -eq 0 ]; then
   exit 0
 fi
 
-# Pass 1: validate every destination. Nothing is linked until all of this passes.
+# Pass 1: validate every destination. No skill is linked until all of this passes.
 targets=()
 conflicts=()
 for DEST in "${DESTS[@]}"; do
@@ -180,12 +183,12 @@ for DEST in "${targets[@]}"; do
       abs="$parent/$(basename "$abs")"
     fi
 
-    # Unprovable ownership means leave it alone.
-    case "$abs" in
-      "$REPO_SKILLS"/*)
-        rm "$entry"
-        echo "pruned $name (stale link -> $link)"
-        ;;
-    esac
+    # Prune only the exact shape this script writes: <dest>/<name> pointing at
+    # <repo>/skills/<name>. Your own alias under a different name, and your own
+    # link to a file inside a skill, both fail this test and stay.
+    if [ "$abs" = "$REPO_SKILLS/$name" ]; then
+      rm "$entry"
+      echo "pruned $name (stale link -> $link)"
+    fi
   done
 done
