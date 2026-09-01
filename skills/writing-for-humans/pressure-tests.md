@@ -95,6 +95,12 @@ Read that as noise, not as a result. Three single samples of one prompt cannot s
 
 The same probe reported up to 11 noun clusters in an artifact the main checker called clean. That detector counts any run of content words, verbs included, so `The client clock decided whether a token was still valid` scores as a cluster. I wrote no rule on the back of it.
 
+## Install consent
+
+Two review lenses read the old pass one wording as a consent fault. It told the agent to install unslop without asking. A user who wanted a PR body then got a network fetch and a write into their home directory. The rule now names the question to ask, in the words the user chose, and it tells the agent to stop and wait. A decline falls through to the same path as a failed install: hold the limits, and say that pass one did not run.
+
+This round changed the wording on request rather than on evidence from a failing arm. The behaviour is unverified. Run an arm that asks for a commit message on a machine without unslop, and check that the agent asks and then waits.
+
 ## Dogfood
 
 The skill and its README entry both run clean through `check-prose.py`.

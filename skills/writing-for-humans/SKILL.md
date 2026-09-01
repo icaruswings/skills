@@ -30,7 +30,15 @@ Chat replies still get pass one. They skip the limits, because clipped sentences
 
 Run the `unslop` skill. It owns that list, so this skill does not repeat it.
 
-Not installed? Install it yourself, then continue. Do not ask first, and do not skip pass one.
+Not installed? Ask the user before you install it, in these words:
+
+> The `writing-for-humans` skill uses unslop from PStack to remove AI tells. Can I install it now?
+
+Then stop and wait for the answer. The install reaches the network and writes into the user's home directory, so the user decides, not you. Do not install it and report the install afterwards.
+
+They agreed? Run the install below, then continue with pass one.
+
+They declined? Hold the limits below, and tell the user that pass one did not run. Never deliver half the rule in silence.
 
 ```bash
 # refuse to link into a real directory that is already there
