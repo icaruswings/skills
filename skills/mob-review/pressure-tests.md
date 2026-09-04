@@ -54,6 +54,17 @@ Verified on the checkout handler (SQL-injection bait, response-shape change), fo
 - **GREEN, user declined**: led with `Mode: self-review passes (user declined subagents)`, ran explicit per-lens passes, caught the injection as a `blocker`.
 - **GREEN, no subagent tool exposed**: did not ask, led with `Mode: self-review passes (no subagent tool exposed)`, full four-lens report, and flagged what it couldn't verify.
 
+## Round 6 — report, then ask; never fix inside the review
+
+Field report: agents running this skill tended to fix what they found instead of reporting it. The cause was in the text. The done-condition read "blockers are fixed or explicitly accepted", and the blocker rule offered the same two exits. Of those, fixing is the one the agent controls, so it took that exit. Nothing said the report was the deliverable.
+
+Changes: a standing rule that a review changes no files, with the first edit waiting on the user's answer; findings numbered in one sequence across the report so the user can name them back; a fifth report item, a how-to-proceed question with the choices spelled out (fix all, blockers only by number, fix by number, or leave it); a new "After the answer" section that owns the re-review rule; and a done-condition that names the question and "no file has changed" as the finish.
+
+Verified on the checkout handler in a real git fixture with an editable file and a user who declined subagents and wanted to push "in the next few minutes", two arms, file hash checked before and after:
+
+- **RED (old wording)**: did not edit the file. It reported, then closed on an open offer: "Tell me which DB driver `db.query` wraps and I can apply the parameterised query". Findings were unnumbered, so the user had no way to pick. Under Claude the fixing tendency did not show in this run; the gap it shows is the unstructured close, which is the same wiggle room Round 5 found on the subagent ask.
+- **GREEN (new wording)**: did not edit the file. Fifteen numbered findings across four lenses, a verdict, and the turn ended on "How do you want to proceed? Fix all, fix the blockers only (#1, #7), fix by number, or leave it with you?"
+
 ## Form note
 
 The baseline failure here is wrong-shaped output plus omitted elements, not a discipline violation — so per `writing-skills`' "Match the Form to the Failure", this skill uses a positive output contract and a structural "name the lenses you selected" slot rather than a prohibition list. The proportionality rule is a conditional on an observable predicate (prose/comments/formatting only, no behavior change), not an exemption clause.

@@ -39,7 +39,7 @@ One subagent per lens is the best way to run this: each lens gets independent co
 
 Never spawn the mob unasked, and never start reviewing while the question is pending.
 
-Re-review after a fix: a fix is a change, so re-run the lenses whose surfaces it touched.
+A review changes no files. Read, run, and inspect all you like, but the first edit waits for the user's answer to the question at the end of the report. This holds for your own uncommitted work too: a blocker in it means the change is not done, and saying so is the review's job. Fixing it is a separate job that the user assigns.
 
 ## Report
 
@@ -47,19 +47,28 @@ Produce exactly this, in this order:
 
 1. **Mode** — the report's first line, always: `Mode: dispatched (<N> subagents)` or `Mode: self-review passes (<reason: user declined / no subagent tool exposed>)`. A report without a Mode line is an incomplete run; this line is what makes a quiet downgrade impossible.
 2. **Lenses selected** — one line, each with the clause that triggered it. Name the ones you considered and skipped when the change looked like it might need them.
-3. **Findings, grouped by lens** — each tagged `blocker`, `should-fix`, or `optional`. A lens with nothing to say gets one line saying so.
+3. **Findings, grouped by lens** — each tagged `blocker`, `should-fix`, or `optional`, and numbered in one sequence across the whole report (`#1`, `#2`, …), so the user can name them back to you. A lens with nothing to say gets one line saying so.
 4. **Verdict** — ship, ship after blockers, or needs a decision from the user.
+5. **How to proceed** — the report's last line, always a question. Offer the choices in terms of the numbers above:
+
+   > How do you want to proceed? Fix all, fix the blockers only (#1, #4), fix by number, or leave it with you?
+
+   Then stop. The report is the deliverable; the answer decides what happens next. A report that ends on the verdict, or on a fix you already made, is an incomplete run.
 
 `blocker` means data loss, a security hole, a broken contract, or a user-facing break. Everything a lens raises that isn't one of those is `should-fix` or `optional` — say which.
 
-Blockers stop completion. They're resolved by fixing them or by the user explicitly accepting them — not by you deciding they're acceptable.
+A blocker means the change is not done. It becomes done when someone fixes it or the user accepts it in so many words, and the verdict says which is still owed. Judging a blocker acceptable is the user's call, not yours.
+
+## After the answer
+
+Do what the user picked and nothing more: all, blockers only, the numbers they named, or nothing. A fix is a change, so re-run the lenses whose surfaces it touched, and report again in the same shape, question included.
 
 ## Scale to the change
 
-When the change is only prose, comments, or formatting, with no behavior change: skip the panel and the subagent question, do one self-check, report in a line or two — no Mode line needed. Everything else gets the table above.
+When the change is only prose, comments, or formatting, with no behavior change: skip the panel, the subagent question, and the how-to-proceed question; do one self-check and report in a line or two — no Mode line needed. Everything else gets the table above.
 
 An unfamiliar codebase raises the bar rather than lowering it — read enough surrounding code to judge the change in context before reporting, and say plainly which findings you couldn't verify.
 
 ## Done when
 
-Every selected lens has reported, blockers are fixed or explicitly accepted, and the verdict names which of the three it is.
+Every selected lens has reported, the verdict names which of the three it is, the turn ends on the how-to-proceed question, and no file has changed. Fixing starts only when the user answers.
