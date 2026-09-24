@@ -28,11 +28,11 @@ Chat replies still get pass one. They skip the limits, because clipped sentences
 
 ## Pass one: cut the tells
 
-Run the `unslop` skill. It owns that list, so this skill does not repeat it.
+Run the `/unslop` skill. This repo vendors it under `skills/unslop/`. It owns that list, so this skill does not repeat it.
 
 Not installed? Ask the user before you install it, in these words:
 
-> The `writing-for-humans` skill uses unslop from PStack to remove AI tells. Can I install it now?
+> The `writing-for-humans` skill uses this repo's vendored unslop to remove AI tells. Can I install it now?
 
 Then stop and wait for the answer. The install reaches the network and writes into the user's home directory, so the user decides, not you. Do not install it and report the install afterwards.
 
@@ -45,15 +45,17 @@ They declined? Hold the limits below, and tell the user that pass one did not ru
 if [ -e ~/.claude/skills/unslop ] && [ ! -L ~/.claude/skills/unslop ]; then
   echo "~/.claude/skills/unslop is a real directory. Move it aside, then re-run."
 else
-  mkdir -p ~/.agents/skills/unslop ~/.claude/skills
-  curl -fsSL https://raw.githubusercontent.com/cursor/plugins/main/pstack/skills/unslop/SKILL.md \
-    -o ~/.agents/skills/unslop/SKILL.md
-  ln -sfn ../../.agents/skills/unslop ~/.claude/skills/unslop
+  mkdir -p ~/.agents/skills/unslop ~/.claude/skills &&
+  curl -fsSL https://raw.githubusercontent.com/icaruswings/skills/main/skills/unslop/LICENSE \
+    -o ~/.agents/skills/unslop/LICENSE &&
+  curl -fsSL https://raw.githubusercontent.com/icaruswings/skills/main/skills/unslop/SKILL.md \
+    -o ~/.agents/skills/unslop/SKILL.md &&
+  ln -sfn ../../.agents/skills/unslop ~/.claude/skills/unslop &&
   head -3 ~/.agents/skills/unslop/SKILL.md   # expect a name: unslop line
 fi
 ```
 
-The real directory goes under `~/.agents/skills/`, which every Agent Skills runtime reads. The symlink into `~/.claude/skills/` covers Claude Code. Read the `head` output before you continue, because `curl` writes an error page to that path just as happily as it writes the skill.
+The real directory goes under `~/.agents/skills/`, which every Agent Skills runtime reads. The symlink into `~/.claude/skills/` covers Claude Code. Keep `LICENSE` beside `SKILL.md`. Read the `head` output before you continue and check for `name: unslop`.
 
 Cannot reach the network, or the install fails? Hold the limits below anyway, and tell the user that pass one did not run. Never deliver half the rule in silence.
 
