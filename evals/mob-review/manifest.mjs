@@ -7,7 +7,8 @@ import { runProcess } from './process.mjs';
 
 const here = fileURLToPath(new URL('.', import.meta.url));
 export async function frozenInputs() {
-  const execution = ['adapters', 'invoke', 'metadata', 'process', 'policy', 'prompts', 'runner-state', 'manifest', 'panel', 'run', 'corpus', 'budget-ledger'];
+  const execution = ['adapters', 'invoke', 'metadata', 'process', 'policy', 'prompts', 'runner-state', 'manifest', 'panel', 'run', 'corpus', 'budget-ledger',
+    'queue', 'ownership', 'shutdown', 'grading-state'];
   const entries = [...(await readdir(join(here, 'cases'))).filter(name => name.endsWith('.mjs')).map(name => `cases/${name}`),
     ...execution.map(name => `${name}.mjs`), '../../skills/mob-review/SKILL.md', '../../skills/mob-review/model-selection.md'];
   const files = Object.fromEntries(await Promise.all(entries.map(async name => [name, hash(await readFile(join(here, name), 'utf8'))])));

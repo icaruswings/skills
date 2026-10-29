@@ -7,6 +7,8 @@ export const callIdentity = input => hash(input);
 
 export function makeMatrix(cases, repetitions, providers = ['claude', 'codex']) {
   if (!Number.isInteger(repetitions) || repetitions < 1) throw new Error('Invalid repetition count');
+  if (!Array.isArray(providers) || !providers.length || new Set(providers).size !== providers.length
+    || providers.some(provider => !['claude', 'codex'].includes(provider))) throw new Error('Invalid or duplicate providers');
   const arms = providers.flatMap(provider => ['tiered', 'strong'].map(scheme => ({ provider, scheme })));
   const matrix = cases.flatMap(fixture => arms.flatMap(arm => Array.from({ length: repetitions }, (_, i) => ({
     caseId: fixture.id, split: fixture.split, ...arm, repetition: i + 1,

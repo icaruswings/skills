@@ -8,7 +8,7 @@ Native app subagent fanout needs a separate smoke test. These CLI results do not
 
 ## Check the harness and cases
 
-Run commands from the repository root with Node.js available:
+Run commands from the repository root with Node.js 24 or later available:
 
 ```sh
 node --test evals/mob-review/tests/*.test.mjs
@@ -84,24 +84,31 @@ node evals/mob-review/grade.mjs --dir .eval-work/2026-10-29-cli --jobs 2
 The grader receives opaque panel IDs without provider, model, scheme, or repetition labels.
 It provisionally matches raw and final findings to expected defects. Grading records stay under the run's `grading/` directory.
 Incomplete panels cannot become complete evidence through grading.
+Watch mode waits for complete, verified panels, even when an earlier interrupted run left partial results.
+For permanent errors, interrupt the watcher and grade without `--watch` to report the partial evidence.
+Runner and grader interruptions stop new work and drain active calls before releasing ownership.
 
 Generate the report after the run and grading finish. Set `EVALUATED_SOURCE_COMMIT` to the exact commit that supplied the evaluated execution inputs:
+Set `GRADING_SOURCE_COMMIT` to the exact commit that supplied the grader code. Commit both versions before their live runs.
 
 ```sh
 node evals/mob-review/report.mjs \
   --dir .eval-work/2026-10-29-cli \
   --budget-root .eval-work \
   --out OUTPUT \
-  --source-commit "$EVALUATED_SOURCE_COMMIT"
+  --source-commit "$EVALUATED_SOURCE_COMMIT" \
+  --grading-source-commit "$GRADING_SOURCE_COMMIT"
 ```
 
 Report sections cover matrix completeness, resources, provisional defect matches, paired comparisons, and a blinded human queue.
 The CLI checks the supplied commit against the frozen manifest and current evidence sources before writing output.
-Use a separate output directory from the raw run data. The 2026-10-29 run evaluated commit `ffd3ce4`; future runs need their own exact source commit.
+Use a separate output directory from the raw run data.
+The 2026-10-29 run evaluated commit `ffd3ce4` and used grader commit `345fe08`. Future runs need their own exact source commits.
 
 Missing comparison arms must remain explicitly incomplete. Resource totals include failed attempts and distinguish known amounts from unknown usage or cost.
 Observed totals with missing measurements are lower bounds. Summed process time does not measure elapsed run time when jobs overlap.
 
 Human adjudication remains pending. An unmatched claim may identify a real defect beyond the oracle; it is not automatically a false positive.
 Machine matches, zero added missed blockers, and a passing machine gate do not establish human approval or quality parity.
-This README records the procedure. It contains no completed benchmark result or claim of savings.
+Read the [completed pilot report](results/2026-10-29/REPORT.md) for actual results and limits.
+Separate [native launch evidence](native-launch-validation.json) records the Claude and Codex app subagent checks.

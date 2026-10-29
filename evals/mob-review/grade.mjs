@@ -7,6 +7,10 @@ import { invokeModel } from './invoke.mjs';
 import { chooseModel } from './policy.mjs';
 import { hash } from './runner-state.mjs';
 import { frozenInputs } from './manifest.mjs';
+import { acquireOwnership } from './ownership.mjs';
+import { drainQueue } from './queue.mjs';
+import { stopController } from './shutdown.mjs';
+import { canGrade } from './grading-state.mjs';
 
 const { values } = parseArgs({ options: { dir: { type: 'string', default: '.eval-work/2026-10-29-cli' },
   jobs: { type: 'string', default: '2' }, watch: { type: 'boolean', default: false } } });
@@ -14,6 +18,9 @@ const jobs = Number(values.jobs);
 if (!Number.isInteger(jobs) || jobs < 1 || jobs > 4) throw new Error('Jobs must be 1..4');
 const directory = resolve(values.dir), gradeDirectory = join(directory, 'grading');
 await mkdir(join(gradeDirectory, 'cases'), { recursive: true });
+const release = await acquireOwnership(gradeDirectory, 'Grading run');
+const stop = stopController();
+try {
 const manifest = JSON.parse(await readFile(join(directory, 'manifest.json'), 'utf8'));
 const source = await Promise.all(['grading.mjs', 'grade.mjs', 'scoring.mjs'].map(name => readFile(new URL(name, import.meta.url), 'utf8')));
 const gradingRuntime = await frozenInputs();
@@ -31,7 +38,7 @@ async function readyCases() {
     const planned = manifest.matrix.filter(row => row.caseId === fixture.id);
     if (!planned.length) return [];
     const rows = panels.filter(panel => panel.caseId === fixture.id);
-    return sealed || rows.length === planned.length ? [{ fixture, panels: rows }] : [];
+    return canGrade(planned, rows, { watch: values.watch, sealed }) ? [{ fixture, panels: rows }] : [];
   });
 }
 
@@ -57,13 +64,11 @@ async function gradeCase({ fixture, panels }) {
 }
 
 const totalCases = new Set(manifest.matrix.map(row => row.caseId)).size;
-while (done.size < totalCases) {
+while (!stop.requested && done.size < totalCases) {
   const ready = await readyCases();
-  let cursor = 0;
-  await Promise.all(Array.from({ length: Math.min(jobs, ready.length) }, async () => {
-    while (cursor < ready.length) await gradeCase(ready[cursor++]);
-  }));
+  await drainQueue(ready, { jobs, shouldStop: async () => stop.requested, run: gradeCase });
   if (!values.watch) break;
-  if (done.size < totalCases) await new Promise(resolve => setTimeout(resolve, 10000));
+  if (!stop.requested && done.size < totalCases) await new Promise(resolve => setTimeout(resolve, 10000));
 }
-console.log(JSON.stringify({ gradedCases: done.size, totalCases, humanSignoff: false }));
+console.log(JSON.stringify({ gradedCases: done.size, totalCases, interrupted: stop.requested, humanSignoff: false }));
+} finally { stop.dispose(); await release(); }

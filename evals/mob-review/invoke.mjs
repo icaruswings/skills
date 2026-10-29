@@ -7,6 +7,7 @@ import { runProcess } from './process.mjs';
 import { codexModelMetadata } from './metadata.mjs';
 import { callIdentity, opaqueId, assertResume } from './runner-state.mjs';
 import { reviewSchema } from './prompts.mjs';
+import { acquireOwnership } from './ownership.mjs';
 
 const readJson = async path => JSON.parse(await readFile(path, 'utf8'));
 async function writeRecord(path, record) {
@@ -15,7 +16,15 @@ async function writeRecord(path, record) {
   await rename(temporary, path);
 }
 export async function invokeModel(options) {
-  const { provider, config, prompt, key, workDir, budget, schema = reviewSchema, executionHash, outputParser, retryKnownFailures = false } = options;
+  const claim = join(options.workDir, '.call-claims', opaqueId(options.key));
+  const release = await acquireOwnership(claim, 'Model call');
+  try { return await invokeOwned(options); }
+  finally { await release(); }
+}
+
+async function invokeOwned(options) {
+  const { provider, config, prompt, key, workDir, budget, schema = reviewSchema, executionHash, outputParser,
+    retryKnownFailures = false, removeIsolated = rm } = options;
   const input = { key, provider, config, prompt, schema, executionHash };
   const identity = callIdentity(input), id = opaqueId(key);
   const directory = join(workDir, 'calls', id);
@@ -23,22 +32,23 @@ export async function invokeModel(options) {
   const existing = await readJson(recordPath).catch(error => { if (error.code !== 'ENOENT') throw error; return null; });
   if (existing?.status === 'error' && existing.identity === identity && retryKnownFailures) {
     if (provider === 'claude' && !Number.isFinite(existing.costUsd)) throw new Error('Unknown previous spending; reconcile before retrying');
-    return invokeModel({ ...options, key: `${key}:retry1`, retryKnownFailures: false });
+    return await invokeModel({ ...options, key: `${key}:retry1`, retryKnownFailures: false });
   }
   if (existing) { assertResume(existing, identity); return existing; }
   const allowance = provider === 'claude' ? await budget.reserveWhenAvailable() : undefined;
-  await mkdir(directory, { recursive: true });
   const record = { id, key, identity, provider, requestedModel: config.model, requestedEffort: config.effort ?? null,
     status: 'started', startedAt: new Date().toISOString(), promptHash: callIdentity({ prompt }), costUsd: null };
-  await writeRecord(recordPath, record);
-  await writeFile(join(directory, 'prompt.txt'), prompt);
-  const schemaPath = join(directory, 'schema.json');
-  await writeFile(schemaPath, JSON.stringify(schema));
-  const cwd = await mkdtemp(join(tmpdir(), 'mob-review-isolated-'));
   const started = Date.now();
-  let output;
+  let output, cwd, executionAttempted = false;
   try {
+    await mkdir(directory, { recursive: true });
+    await writeRecord(recordPath, record);
+    await writeFile(join(directory, 'prompt.txt'), prompt);
+    const schemaPath = join(directory, 'schema.json');
+    await writeFile(schemaPath, JSON.stringify(schema));
+    cwd = await mkdtemp(join(tmpdir(), 'mob-review-isolated-'));
     const args = cliArguments(provider, config, { schema: provider === 'claude' ? JSON.stringify(schema) : schemaPath, allowance });
+    executionAttempted = true;
     output = await runProcess(provider, args, { cwd, input: prompt });
     await writeFile(join(directory, 'stdout'), output.stdout);
     await writeFile(join(directory, 'stderr'), output.stderr);
@@ -51,11 +61,18 @@ export async function invokeModel(options) {
   } catch (error) {
     record.status = 'error';
     record.error = error.message;
-    if (provider === 'claude') record.costUsd = knownClaudeCost(output?.stdout);
+    if (provider === 'claude') record.costUsd = executionAttempted ? knownClaudeCost(output?.stdout) : 0;
+  } finally {
+    record.elapsedMs = Date.now() - started;
+    try {
+      if (cwd) await removeIsolated(cwd, { recursive: true, force: true });
+    } catch (error) {
+      record.status = 'error';
+      record.error = [record.error, `Isolated directory cleanup failed: ${error.message}`].filter(Boolean).join('; ');
+    } finally {
+      if (provider === 'claude') budget.settle(allowance, record.costUsd);
+    }
   }
-  record.elapsedMs = Date.now() - started;
-  await rm(cwd, { recursive: true, force: true });
-  if (provider === 'claude') budget.settle(allowance, record.costUsd);
   await writeRecord(recordPath, record);
   return record;
 }

@@ -19,11 +19,11 @@ export function parseClaude(stdout, parser = parseReview) {
   const value = JSON.parse(stdout);
   if (value.is_error) throw new Error(`Claude failed: ${value.result ?? value.subtype}`);
   const models = Object.keys(value.modelUsage ?? {});
-  const tokens = Object.values(value.modelUsage ?? {}).reduce((sum, usage) => ({
-    input: sum.input + (usage.inputTokens ?? 0) + (usage.cacheCreationInputTokens ?? 0) + (usage.cacheReadInputTokens ?? 0),
-    cached: sum.cached + (usage.cacheReadInputTokens ?? 0),
-    output: sum.output + (usage.outputTokens ?? 0),
-  }), { input: 0, cached: 0, output: 0 });
+  const usage = Object.values(value.modelUsage ?? {});
+  const sum = fields => usage.length && usage.every(row => fields.every(field => Number.isFinite(row[field]) && row[field] >= 0))
+    ? usage.reduce((total, row) => total + fields.reduce((value, field) => value + row[field], 0), 0) : null;
+  const tokens = { input: sum(['inputTokens', 'cacheCreationInputTokens', 'cacheReadInputTokens']),
+    cached: sum(['cacheReadInputTokens']), output: sum(['outputTokens']) };
   return { review: parser(value.structured_output ?? value.result), effectiveModel: models.length === 1 ? models[0] : null,
     observedModels: models, costUsd: value.total_cost_usd ?? null, tokens };
 }

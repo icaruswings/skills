@@ -32,3 +32,12 @@ test('tool calls contaminate a review and providers receive isolated read-only a
   assert.ok(codex.includes('agents.enabled=false'));
   assert.ok(!codex.includes('--dangerously-bypass-approvals-and-sandbox'));
 });
+
+test('missing Claude token measurements stay unknown instead of becoming zero', () => {
+  const partial = parseClaude(JSON.stringify({ structured_output: answer, total_cost_usd: .01,
+    modelUsage: { 'claude-opus-test': { inputTokens: 12 } } }));
+  assert.deepEqual(partial.tokens, { input: null, cached: null, output: null });
+  const complete = parseClaude(JSON.stringify({ structured_output: answer, total_cost_usd: .01,
+    modelUsage: { 'claude-opus-test': { inputTokens: 12, cacheCreationInputTokens: 3, cacheReadInputTokens: 5, outputTokens: 4 } } }));
+  assert.deepEqual(complete.tokens, { input: 20, cached: 5, output: 4 });
+});

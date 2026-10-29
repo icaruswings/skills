@@ -6,6 +6,9 @@ import { Budget, makeMatrix } from './runner-state.mjs';
 import { frozenInputs, spentClaude } from './manifest.mjs';
 import { budgetCalls, acquireBudgetLock } from './budget-ledger.mjs';
 import { runPanel } from './panel.mjs';
+import { acquireOwnership } from './ownership.mjs';
+import { drainQueue } from './queue.mjs';
+import { stopController } from './shutdown.mjs';
 
 const { values } = parseArgs({ options: {
   dir: { type: 'string', default: '.eval-work/2026-10-29' }, providers: { type: 'string', default: 'claude,codex' },
@@ -27,6 +30,9 @@ if (!fixtures.length) throw new Error('No cases selected');
 verifyCorpus(fixtures);
 const matrix = makeMatrix(fixtures, Number(values.repetitions), providers), frozen = await frozenInputs();
 await mkdir(workDir, { recursive: true });
+const releaseRun = await acquireOwnership(workDir, 'Review run');
+const stop = stopController();
+try {
 const manifestPath = join(workDir, 'manifest.json');
 const previous = await readFile(manifestPath, 'utf8').then(JSON.parse).catch(error => { if (error.code !== 'ENOENT') throw error; return null; });
 if (previous && previous.inputHash !== frozen.inputHash) throw new Error('Frozen evaluation inputs changed');
@@ -36,20 +42,17 @@ const manifest = { ...frozen, createdAt: previous?.createdAt ?? new Date().toISO
   semantics: 'Independent tool-free CLI reviewers plus Strong CLI triage; native subagent launch behavior is tested separately.', humanAdjudication: 'pending' };
 await writeFile(manifestPath, JSON.stringify(manifest, null, 2));
 const release = providers.includes('claude') ? await acquireBudgetLock(budgetRoot) : async () => {};
-let stopRequested = false;
-process.once('SIGINT', () => { stopRequested = true; });
-process.once('SIGTERM', () => { stopRequested = true; });
 try {
 const budget = new Budget(manifest.claudeCapUsd, .2, spentClaude(await budgetCalls(budgetRoot)));
 const results = [];
 for (const split of ['pilot', 'holdout']) {
-  const queue = matrix.filter(row => row.split === split);
-  let cursor = 0;
-  await Promise.all(Array.from({ length: Math.min(jobs, queue.length) }, async () => {
-    while (cursor < queue.length) {
+  await drainQueue(matrix.filter(row => row.split === split), { jobs,
+    shouldStop: async () => {
       const stopFile = await readFile(join(workDir, 'STOP')).then(() => true).catch(error => { if (error.code !== 'ENOENT') throw error; return false; });
-      if (stopRequested || stopFile) { stopRequested = true; break; }
-      const row = queue[cursor++], fixture = fixtures.find(fixture => fixture.id === row.caseId);
+      if (stopFile) stop.request();
+      return stop.requested;
+    }, run: async row => {
+      const fixture = fixtures.find(fixture => fixture.id === row.caseId);
       const panel = await runPanel({ row, fixture, workDir, budget, runHash: frozen.inputHash,
         retryKnownFailures: values['retry-known-failures'] });
       results.push(panel);
@@ -57,12 +60,14 @@ for (const split of ['pilot', 'holdout']) {
         key: row.key, status: panel.status, error: panel.error, claudeSpentUsd: budget.spent };
       await appendFile(join(workDir, 'progress.ndjson'), JSON.stringify(progress) + '\n');
       console.log(JSON.stringify(progress));
+      return panel;
     }
-  }));
+  });
 }
 const current = await frozenInputs();
 if (current.inputHash !== frozen.inputHash) throw new Error('Inputs changed during execution; results require a separate run');
 await writeFile(join(workDir, 'reviews.json'), JSON.stringify(results.sort((a, b) => a.id.localeCompare(b.id)), null, 2));
 console.log(JSON.stringify({ panels: results.length, failures: results.filter(panel => panel.status !== 'complete').length,
-  claudeSpentUsd: budget.spent, interrupted: stopRequested, humanAdjudication: 'pending' }));
+  claudeSpentUsd: budget.spent, interrupted: stop.requested, humanAdjudication: 'pending' }));
 } finally { await release(); }
+} finally { stop.dispose(); await releaseRun(); }

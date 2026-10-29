@@ -30,3 +30,10 @@ test('concurrent call reservations prevent overspend and missing usage blocks la
   budget.settle(.25, null);
   assert.throws(() => budget.reserve(), /unknown/i);
 });
+
+test('duplicate, empty, or unsupported provider lists cannot create colliding paid calls', () => {
+  const cases = [{ id: 'C01', split: 'pilot' }];
+  assert.throws(() => makeMatrix(cases, 1, ['claude', 'claude']), /provider/i);
+  assert.throws(() => makeMatrix(cases, 1, []), /provider/i);
+  assert.throws(() => makeMatrix(cases, 1, ['unknown']), /provider/i);
+});
