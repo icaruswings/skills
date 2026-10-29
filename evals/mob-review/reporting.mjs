@@ -85,7 +85,7 @@ export function buildReport({ manifest, fixtures, panels, judgments, runCalls, g
   const allComplete = scores.length > 0 && scores.every(score => score.complete);
   const queue = humanQueue(measured.panels, judgments, fixtures);
   return {
-    schemaVersion: 1, sourceCommit, inputHash: manifest.inputHash, repetitions: manifest.repetitions,
+    schemaVersion: 1, sourceCommit, startedAt: manifest.createdAt ?? null, inputHash: manifest.inputHash, repetitions: manifest.repetitions,
     coverage: coverage(manifest.matrix, fixtures),
     adjudication: 'blinded-machine-provisional',
     gates: { allObservationsComplete: allComplete,
@@ -123,7 +123,7 @@ export function renderReport(report) {
   const added = report.pairs.filter(pair => pair.addedMissedBlockerIds?.length);
   const misses = report.scores.filter(score => score.missedBlockerIds.length || !score.complete);
   const lines = [
-    '# Mob-review quality pilot, 29 October 2026', '',
+    `# Mob-review quality pilot, ${report.startedAt ? new Intl.DateTimeFormat('en-GB', { day: 'numeric', month: 'long', year: 'numeric', timeZone: 'UTC' }).format(new Date(report.startedAt)) + ' UTC' : 'date unavailable'}`, '',
     'This report follows Simplified Technical English.', '',
     '**These are provisional machine-graded results. Human adjudication and final approval remain pending. This pilot does not establish equivalent review quality.**', '',
     `The frozen evaluation used source commit \`${report.sourceCommit}\` and input hash \`${report.inputHash}\`. It contains ${c.uniqueCases} unique cases. ${c.defectCases} cases contain ${c.knownDefects} known defects, including ${c.knownBlockers} labeled blockers. The remaining ${c.cleanCases} cases are clean controls. Each provider/policy has ${report.repetitions} repetitions, with ${c.panels} planned panels in total.`, '',
@@ -155,7 +155,7 @@ export function renderReport(report) {
     '- Review roles ran in separate tool-free CLI processes. Strong CLI triage followed. This measures inference on supplied context. Separate tests checked actual Claude/Codex subagent launches. The pilot does not establish full-repository review, architecture discovery, tool use, or native fan-out performance.',
     '- Codex CLI Balanced used `gpt-6-sol/medium`. This CLI/auth context rejected the app-supported `gpt-6.1-sol`. This does not evaluate the app Balanced model. Call records show requested and runtime-resolved models/efforts. Client metadata cannot prove undisclosed backend routing.',
     '- The evaluation froze the candidate, prompts, cases, splits, schemas, and model configuration before the completed matrix. The evaluation did not use held-out answers to tune them. A new run on these cases after a policy change would test for regressions. It would not provide fresh held-out confirmation.',
-    '- The final PR also repairs ownership, shutdown, resume, and accounting edge cases found during implementation review. The full matrix predates those repairs. Offline regression tests verify those paths. The recorded source commits identify the exact evaluated versions; the model mapping, prompts, and cases did not change.',
+    ...(report.verificationSmoke ? [`- A separate [live smoke check](final-smoke.json) verified ${report.verificationSmoke.panels} panels and ${report.verificationSmoke.calls} calls after implementation review. It used source commit \`${report.verificationSmoke.sourceCommit}\`. This smoke check tests orchestration and does not provide fresh held-out quality confirmation.`] : []),
     '- Keep the PR draft until humans adjudicate claims and severity labels, review blocker exceptions, and approve acceptance. Promote bounded tasks that miss real blockers. Then evaluate the changed policy on new held-out cases. Do not infer general parity from an aggregate score.', '',
     '## Split and role detail', '',
     '`summary.json` contains detailed per-split summaries, per-lens attribution, paired deltas, and per-role resource totals. A lens can discover a defect labeled for another lens. Per-lens detections therefore do not share a common recall denominator.', '',

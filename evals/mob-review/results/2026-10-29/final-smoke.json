@@ -1,0 +1,157 @@
+{
+  "scope": "Post-review live orchestration smoke only; not fresh held-out quality confirmation.",
+  "sourceCommit": "a963181885d91f5c08e80414923949685bc3047a",
+  "inputHash": "e3ef5b19ef8d72e60fe9e5d31087d8df357a9a193bf553f7954bde3cd7c22ae5",
+  "versions": {
+    "claude": "2.1.312 (Claude Code)",
+    "codex": "codex-cli 0.158.0"
+  },
+  "cases": [
+    "C13"
+  ],
+  "panels": 4,
+  "calls": 12,
+  "failures": 0,
+  "models": [
+    {
+      "key": "claude:strong:C13:1:Frontend & accessibility",
+      "provider": "claude",
+      "requestedModel": "opus",
+      "requestedEffort": null,
+      "effectiveModel": "claude-opus-5-5",
+      "modelVerified": true,
+      "effortVerified": true
+    },
+    {
+      "key": "claude:tiered:C13:1:Product",
+      "provider": "claude",
+      "requestedModel": "sonnet",
+      "requestedEffort": null,
+      "effectiveModel": "claude-sonnet-5-5",
+      "modelVerified": true,
+      "effortVerified": true
+    },
+    {
+      "key": "codex:tiered:C13:1:Frontend & accessibility",
+      "provider": "codex",
+      "requestedModel": "gpt-6-luna",
+      "requestedEffort": "medium",
+      "effectiveModel": "gpt-6-luna",
+      "effectiveEffort": "medium",
+      "modelVerified": true,
+      "effortVerified": true
+    },
+    {
+      "key": "codex:strong:C13:1:Product",
+      "provider": "codex",
+      "requestedModel": "gpt-6-astra",
+      "requestedEffort": "high",
+      "effectiveModel": "gpt-6-astra",
+      "effectiveEffort": "high",
+      "modelVerified": true,
+      "effortVerified": true
+    },
+    {
+      "key": "codex:tiered:C13:1:Product",
+      "provider": "codex",
+      "requestedModel": "gpt-6-sol",
+      "requestedEffort": "medium",
+      "effectiveModel": "gpt-6-sol",
+      "effectiveEffort": "medium",
+      "modelVerified": true,
+      "effortVerified": true
+    },
+    {
+      "key": "claude:strong:C13:1:Product",
+      "provider": "claude",
+      "requestedModel": "opus",
+      "requestedEffort": null,
+      "effectiveModel": "claude-opus-5-5",
+      "modelVerified": true,
+      "effortVerified": true
+    },
+    {
+      "key": "claude:tiered:C13:1:Frontend & accessibility",
+      "provider": "claude",
+      "requestedModel": "haiku",
+      "requestedEffort": null,
+      "effectiveModel": "claude-haiku-5-5",
+      "modelVerified": true,
+      "effortVerified": true
+    },
+    {
+      "key": "codex:strong:C13:1:Frontend & accessibility",
+      "provider": "codex",
+      "requestedModel": "gpt-6-astra",
+      "requestedEffort": "high",
+      "effectiveModel": "gpt-6-astra",
+      "effectiveEffort": "high",
+      "modelVerified": true,
+      "effortVerified": true
+    },
+    {
+      "key": "codex:tiered:C13:1:triage",
+      "provider": "codex",
+      "requestedModel": "gpt-6-astra",
+      "requestedEffort": "high",
+      "effectiveModel": "gpt-6-astra",
+      "effectiveEffort": "high",
+      "modelVerified": true,
+      "effortVerified": true
+    },
+    {
+      "key": "claude:tiered:C13:1:triage",
+      "provider": "claude",
+      "requestedModel": "opus",
+      "requestedEffort": null,
+      "effectiveModel": "claude-opus-5-5",
+      "modelVerified": true,
+      "effortVerified": true
+    },
+    {
+      "key": "claude:strong:C13:1:triage",
+      "provider": "claude",
+      "requestedModel": "opus",
+      "requestedEffort": null,
+      "effectiveModel": "claude-opus-5-5",
+      "modelVerified": true,
+      "effortVerified": true
+    },
+    {
+      "key": "codex:strong:C13:1:triage",
+      "provider": "codex",
+      "requestedModel": "gpt-6-astra",
+      "requestedEffort": "high",
+      "effectiveModel": "gpt-6-astra",
+      "effectiveEffort": "high",
+      "modelVerified": true,
+      "effortVerified": true
+    }
+  ],
+  "resources": {
+    "claude": {
+      "calls": 6,
+      "failedCalls": 0,
+      "knownCostUsd": 0.10505433,
+      "unknownCostCalls": 0,
+      "inputTokens": 14723,
+      "cachedTokens": 8646,
+      "outputTokens": 4181,
+      "unknownTokenCalls": 0,
+      "processSeconds": 49.45
+    },
+    "codex": {
+      "calls": 6,
+      "failedCalls": 0,
+      "knownCostUsd": 0,
+      "unknownCostCalls": 6,
+      "inputTokens": 44276,
+      "cachedTokens": 19200,
+      "outputTokens": 879,
+      "unknownTokenCalls": 0,
+      "processSeconds": 62.42
+    }
+  },
+  "cachedResumeVerified": true,
+  "additionalResumeCalls": 0
+}

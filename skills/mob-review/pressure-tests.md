@@ -105,3 +105,27 @@ Limitations: provider rejection/substitution and missing-control cases were scen
 ## Form note
 
 The baseline failure here is wrong-shaped output plus omitted elements, not a discipline violation — so per `writing-skills`' "Match the Form to the Failure", this skill uses a positive output contract and a structural "name the lenses you selected" slot rather than a prohibition list. The proportionality rule is a conditional on an observable predicate (prose/comments/formatting only, no behavior change), not an exemption clause.
+
+## Round 8: matched quality pilot (2026-10-29)
+
+The [versioned benchmark](../../evals/mob-review/README.md) compares tiered reviewers with all-Strong reviewers, followed by Strong triage.
+It contains 24 cases: 18 known defects and six clean controls. A fixed split assigns 16 cases to pilot and eight to holdout.
+Each provider/policy has three repetitions. All 288 panels and 888 reviewer/triage calls completed with verified runtime models.
+
+A separate Codex Astra/high grader matched findings without provider, model, policy, or repetition labels.
+Each provider/policy retained 54/54 known-defect observations, with no known blocker misses, severity downgrades, or triage losses.
+The clean controls had no final findings. Additional findings remain pending human adjudication; they are not automatically false positives.
+
+Measured Claude comparison cost was US$4.1404 for tiered reviewers and US$4.3246 for all Strong, a 4.3% reduction.
+Tiered Claude calls took 7.3% more aggregate process time. Codex aggregate process time fell 8.9%; its dollar cost was unavailable.
+These observations do not establish a cost or latency guarantee.
+
+The [report and normalized evidence](../../evals/mob-review/results/2026-10-29/REPORT.md) separate unique cases from repeated observations.
+They also distinguish CLI quality testing from Round 7's native subagent launch checks.
+Codex CLI Balanced used its supported `gpt-6-sol`; the app launch test used `gpt-6.1-sol`.
+Ten cases use Strong in both policies, and fixtures simulate short contracts rather than complete applications.
+
+The evaluation kept model mappings, prompts, cases, and holdout assignment fixed.
+Independent implementation review found harness lifecycle and accounting edge cases after the matrix source freeze.
+Offline regression tests verify those repairs, and the report identifies the exact earlier evaluation and grading commits.
+Human approval remains pending. This pilot supports its stated cases and cannot establish general review-quality equivalence.

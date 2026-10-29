@@ -13,7 +13,8 @@ import { runProcess } from './process.mjs';
 
 const { values } = parseArgs({ options: { dir: { type: 'string', default: '.eval-work/2026-10-29-cli' },
   'budget-root': { type: 'string', default: '.eval-work' }, out: { type: 'string', default: 'evals/mob-review/results/2026-10-29' },
-  'source-commit': { type: 'string' }, 'grading-source-commit': { type: 'string' } } });
+  'source-commit': { type: 'string' }, 'grading-source-commit': { type: 'string' },
+  'verification-smoke': { type: 'string' } } });
 if (!values['source-commit'] || !values['grading-source-commit']) throw new Error('Specify the exact evaluated and grading source commits');
 const root = fileURLToPath(new URL('../../', import.meta.url));
 const directory = resolve(values.dir), output = resolve(values.out);
@@ -59,6 +60,11 @@ const judgments = graded.flatMap(result => result.judgments);
 const report = buildReport({ manifest, fixtures: selected, panels, judgments, runCalls, gradingCalls, campaignCalls, sourceCommit });
 report.gradingSourceCommit = gradingSourceCommit;
 report.graderHash = expectedGraderHash;
+if (values['verification-smoke']) {
+  report.verificationSmoke = await readJson(resolve(values['verification-smoke']));
+  if (report.verificationSmoke.failures !== 0 || !report.verificationSmoke.models?.length
+    || !report.verificationSmoke.models.every(model => model.modelVerified && model.effortVerified)) throw new Error('Verification smoke is incomplete');
+}
 const humanReview = { status: 'human-pending', humanSignoff: false, instructions: [
   'Supply a blinded copy of the truth labels, code briefs, findings, and provisional matches before showing provider/policy mappings.',
   'Approve or correct each truth label and severity; adjudicate unmatched findings as valid defects, nonblocking advice, or false alarms.',
@@ -74,6 +80,7 @@ const normalizedCalls = calls => calls.map(call => ({ ...Object.fromEntries(call
   ...(call.review ? { reviewHash: hash(call.review) } : {}) }));
 await mkdir(output, { recursive: true });
 const artifacts = { 'manifest.json': { ...manifest, evaluatedSourceCommit: sourceCommit, gradingSourceCommit, graderHash: expectedGraderHash }, 'reviews.json': panels,
+  ...(report.verificationSmoke ? { 'final-smoke.json': report.verificationSmoke } : {}),
   'judgments.json': graded, 'oracles.json': verifyCorpus(selected), 'summary.json': report,
   'human-queue.json': report.humanQueue, 'human-review.json': humanReview,
   'blinded-review.json': selected.map(fixture => ({ ...blindPayload(fixture, panels.filter(panel => panel.caseId === fixture.id

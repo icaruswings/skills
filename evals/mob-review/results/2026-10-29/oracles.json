@@ -1,0 +1,416 @@
+[
+  {
+    "id": "C01",
+    "expected": [
+      {
+        "id": "E01",
+        "severity": "blocker",
+        "lens": "Security",
+        "criterion": "A caller can supply another tenant in the request and read its row because ownership is compared with untrusted request data instead of the authenticated session."
+      }
+    ],
+    "provenance": {
+      "kind": "seeded-defect",
+      "reference": "original synthetic example",
+      "description": "Minimal JavaScript written for this evaluation; no application source or private data."
+    },
+    "before": true,
+    "after": false,
+    "evidence": "{\"before\":{\"pass\":true,\"observed\":{\"foreign\":null,\"own\":{\"id\":\"r\",\"tenant\":\"other\",\"text\":\"private\"}}},\"after\":{\"pass\":false,\"observed\":{\"foreign\":{\"id\":\"r\",\"tenant\":\"other\",\"text\":\"private\"},\"own\":{\"id\":\"r\",\"tenant\":\"other\",\"text\":\"private\"}}}}"
+  },
+  {
+    "id": "C02",
+    "expected": [
+      {
+        "id": "E02",
+        "severity": "blocker",
+        "lens": "Data & contracts",
+        "criterion": "Removing name breaks still-supported installed clients that dereference payload.name; keep the old field until those consumers have migrated."
+      }
+    ],
+    "provenance": {
+      "kind": "seeded-defect",
+      "reference": "original synthetic example",
+      "description": "Minimal JavaScript written for this evaluation; no application source or private data."
+    },
+    "before": true,
+    "after": false,
+    "evidence": "{\"before\":{\"pass\":true,\"observed\":{\"payload\":{\"id\":\"1\",\"name\":\"Aster\",\"displayName\":\"Aster\"},\"legacy\":\"ASTER\"}},\"after\":{\"pass\":false,\"observed\":{\"payload\":{\"id\":\"1\",\"displayName\":\"Aster\"},\"legacy\":null}}}"
+  },
+  {
+    "id": "C03",
+    "expected": [
+      {
+        "id": "E03",
+        "severity": "blocker",
+        "lens": "Operability",
+        "criterion": "Using the per-attempt ID as the payment idempotency key creates another charge on a retry of the same event; the key must be stable for the logical payment."
+      }
+    ],
+    "provenance": {
+      "kind": "seeded-defect",
+      "reference": "original synthetic example",
+      "description": "Minimal JavaScript written for this evaluation; no application source or private data."
+    },
+    "before": true,
+    "after": false,
+    "evidence": "{\"before\":{\"pass\":true,\"observed\":{\"count\":1,\"first\":1,\"retry\":1}},\"after\":{\"pass\":false,\"observed\":{\"count\":2,\"first\":1,\"retry\":2}}}"
+  },
+  {
+    "id": "C04",
+    "expected": [],
+    "provenance": {
+      "kind": "clean-control",
+      "reference": "original synthetic example",
+      "description": "Minimal JavaScript written for this evaluation; no application source or private data."
+    },
+    "before": true,
+    "after": true,
+    "evidence": "{\"before\":{\"pass\":true,\"observed\":{\"rows\":[{\"id\":\"a\",\"score\":2},{\"id\":\"b\",\"score\":1},{\"id\":\"c\",\"score\":1}],\"result\":[{\"id\":\"b\",\"score\":1},{\"id\":\"c\",\"score\":1},{\"id\":\"a\",\"score\":2}]}},\"after\":{\"pass\":true,\"observed\":{\"rows\":[{\"id\":\"a\",\"score\":2},{\"id\":\"b\",\"score\":1},{\"id\":\"c\",\"score\":1}],\"result\":[{\"id\":\"b\",\"score\":1},{\"id\":\"c\",\"score\":1},{\"id\":\"a\",\"score\":2}]}}}"
+  },
+  {
+    "id": "C05",
+    "expected": [
+      {
+        "id": "E05",
+        "severity": "blocker",
+        "lens": "Data & contracts",
+        "criterion": "Removing the transaction permits a source debit to persist when the destination save fails, losing funds instead of rolling back both writes."
+      }
+    ],
+    "provenance": {
+      "kind": "seeded-defect",
+      "reference": "original synthetic example",
+      "description": "Minimal JavaScript written for this evaluation; no application source or private data."
+    },
+    "before": true,
+    "after": false,
+    "evidence": "{\"before\":{\"pass\":true,\"observed\":{\"a\":100,\"b\":20}},\"after\":{\"pass\":false,\"observed\":{\"a\":90,\"b\":20}}}"
+  },
+  {
+    "id": "C06",
+    "expected": [
+      {
+        "id": "E06",
+        "severity": "blocker",
+        "lens": "Security",
+        "criterion": "The resource wildcard expands deployment write permission to the whole bucket, allowing overwrite of unrelated objects outside releases/."
+      }
+    ],
+    "provenance": {
+      "kind": "seeded-defect",
+      "reference": "original synthetic example",
+      "description": "Minimal JavaScript written for this evaluation; no application source or private data."
+    },
+    "before": true,
+    "after": false,
+    "evidence": "{\"before\":{\"pass\":true,\"observed\":{\"rule\":{\"action\":\"object:Put\",\"resource\":\"assets/releases/*\"},\"release\":true,\"other\":false}},\"after\":{\"pass\":false,\"observed\":{\"rule\":{\"action\":\"object:Put\",\"resource\":\"assets/*\"},\"release\":true,\"other\":true}}}"
+  },
+  {
+    "id": "C07",
+    "expected": [
+      {
+        "id": "E07",
+        "severity": "should-fix",
+        "lens": "Operability",
+        "criterion": "The inclusive retry boundary makes four total attempts instead of the specified three, exceeding the retry budget for persistently transient responses."
+      }
+    ],
+    "provenance": {
+      "kind": "seeded-defect",
+      "reference": "original synthetic example",
+      "description": "Minimal JavaScript written for this evaluation; no application source or private data."
+    },
+    "before": true,
+    "after": false,
+    "evidence": "{\"before\":{\"pass\":true,\"observed\":{\"calls\":[1,2,3],\"result\":{\"retryable\":true,\"status\":503}}},\"after\":{\"pass\":false,\"observed\":{\"calls\":[1,2,3,4],\"result\":{\"retryable\":true,\"status\":503}}}}"
+  },
+  {
+    "id": "C08",
+    "expected": [],
+    "provenance": {
+      "kind": "clean-control",
+      "reference": "original synthetic example",
+      "description": "Minimal JavaScript written for this evaluation; no application source or private data."
+    },
+    "before": true,
+    "after": true,
+    "evidence": "{\"before\":{\"pass\":true,\"observed\":[null,null,null,{\"tenant\":\"a\",\"id\":1},null]},\"after\":{\"pass\":true,\"observed\":[null,null,null,{\"tenant\":\"a\",\"id\":1},null]}}"
+  },
+  {
+    "id": "C09",
+    "expected": [
+      {
+        "id": "E09",
+        "severity": "blocker",
+        "lens": "Infrastructure",
+        "criterion": "Checking only the first symlink hop lets an indirect destination resolve into the source repository and records writes there; resolve the full chain before the repository guard."
+      }
+    ],
+    "provenance": {
+      "kind": "historical-adaptation",
+      "reference": "da2635d527877d7a4e31d09f8403d93a5c4741dd",
+      "description": "Reintroduces the multi-hop destination guard regression repaired in scripts/link-skills.sh. Shell readlink and physical path resolution become a bounded alias map; writes become an operation log, with no filesystem mutations."
+    },
+    "before": true,
+    "after": false,
+    "evidence": "{\"before\":{\"pass\":true,\"observed\":{\"allowed\":false,\"ops\":[]}},\"after\":{\"pass\":false,\"observed\":{\"allowed\":true,\"ops\":[\"/repo/skills/tool\"]}}}"
+  },
+  {
+    "id": "C10",
+    "expected": [
+      {
+        "id": "E10",
+        "severity": "blocker",
+        "lens": "Infrastructure",
+        "criterion": "Replacing an existing real directory discards user-owned content; installation must refuse such conflicts and only replace symlinks."
+      }
+    ],
+    "provenance": {
+      "kind": "historical-adaptation",
+      "reference": "da2635d527877d7a4e31d09f8403d93a5c4741dd",
+      "description": "Reintroduces replacement of real per-skill directories from the same linker repair. The original recursive deletion is represented only by deleting a property on a fresh in-memory map; no host files can be removed."
+    },
+    "before": true,
+    "after": false,
+    "evidence": "{\"before\":{\"pass\":true,\"observed\":{\"allowed\":false,\"fs\":{\"/installed/tool\":{\"kind\":\"directory\",\"files\":[\"notes.txt\"]}}}},\"after\":{\"pass\":false,\"observed\":{\"allowed\":true,\"fs\":{\"/installed/tool\":{\"kind\":\"link\",\"to\":\"/repo/skills/tool\"}}}}}"
+  },
+  {
+    "id": "C11",
+    "expected": [
+      {
+        "id": "E11",
+        "severity": "blocker",
+        "lens": "Security",
+        "criterion": "The validator accepts allow_implicit_invocation under an ignored section even though the loader sees no root policy and allows model invocation of a human-only tool."
+      }
+    ],
+    "provenance": {
+      "kind": "historical-adaptation",
+      "reference": "da2635d527877d7a4e31d09f8403d93a5c4741dd",
+      "description": "Reintroduces the invocation-policy location bug repaired in scripts/check-skills.mjs. A parsed object replaces YAML scanning; the loader contract is unchanged so the example isolates checking an ignored parent section."
+    },
+    "before": true,
+    "after": false,
+    "evidence": "{\"before\":{\"pass\":true,\"observed\":{\"accepted\":false,\"legitimate\":true,\"loaderAllows\":true}},\"after\":{\"pass\":false,\"observed\":{\"accepted\":true,\"legitimate\":true,\"loaderAllows\":true}}}"
+  },
+  {
+    "id": "C12",
+    "expected": [],
+    "provenance": {
+      "kind": "clean-control",
+      "reference": "original synthetic example",
+      "description": "Minimal JavaScript written for this evaluation; no application source or private data."
+    },
+    "before": true,
+    "after": true,
+    "evidence": "{\"before\":{\"pass\":true,\"observed\":{\"old\":{\"title\":\"Old\"},\"next\":{\"title\":\"New\"},\"labels\":[\"Old\",\"New\",\"New\"]}},\"after\":{\"pass\":true,\"observed\":{\"old\":{\"title\":\"Old\"},\"next\":{\"title\":\"New\",\"label\":\"New\"},\"labels\":[\"Old\",\"New\",\"New\"]}}}"
+  },
+  {
+    "id": "C13",
+    "expected": [
+      {
+        "id": "E13",
+        "severity": "blocker",
+        "lens": "Frontend & accessibility",
+        "criterion": "A focusable div with a button role does not gain native Enter or Space activation; replacing the button without a key handler breaks keyboard saving."
+      }
+    ],
+    "provenance": {
+      "kind": "seeded-defect",
+      "reference": "original synthetic example",
+      "description": "Minimal JavaScript written for this evaluation; no application source or private data."
+    },
+    "before": true,
+    "after": false,
+    "evidence": "{\"before\":{\"pass\":true,\"observed\":{\"focusable\":true,\"activations\":3}},\"after\":{\"pass\":false,\"observed\":{\"focusable\":true,\"activations\":1}}}"
+  },
+  {
+    "id": "C14",
+    "expected": [
+      {
+        "id": "E14",
+        "severity": "blocker",
+        "lens": "Frontend & accessibility",
+        "criterion": "The Escape close path unmounts the dialog without restoring focus to its opener, so keyboard users lose their place in the screen."
+      }
+    ],
+    "provenance": {
+      "kind": "seeded-defect",
+      "reference": "original synthetic example",
+      "description": "Minimal JavaScript written for this evaluation; no application source or private data."
+    },
+    "before": true,
+    "after": false,
+    "evidence": "{\"before\":{\"pass\":true,\"observed\":{\"open\":false,\"focus\":\"opener\"}},\"after\":{\"pass\":false,\"observed\":{\"open\":false,\"focus\":\"dialog\"}}}"
+  },
+  {
+    "id": "C15",
+    "expected": [
+      {
+        "id": "E15",
+        "severity": "blocker",
+        "lens": "Product",
+        "criterion": "The monthly checkout promises a yearly $12 charge despite the specified monthly billing cadence; correct the visible price interval before users agree to purchase."
+      }
+    ],
+    "provenance": {
+      "kind": "seeded-defect",
+      "reference": "original synthetic example",
+      "description": "Minimal JavaScript written for this evaluation; no application source or private data."
+    },
+    "before": true,
+    "after": false,
+    "evidence": "{\"before\":{\"pass\":true,\"observed\":{\"text\":\"Start 7-day trial\",\"note\":\"Then $12/month\"}},\"after\":{\"pass\":false,\"observed\":{\"text\":\"Start 7-day trial\",\"note\":\"Then $12/year\"}}}"
+  },
+  {
+    "id": "C16",
+    "expected": [],
+    "provenance": {
+      "kind": "clean-control",
+      "reference": "original synthetic example",
+      "description": "Minimal JavaScript written for this evaluation; no application source or private data."
+    },
+    "before": true,
+    "after": true,
+    "evidence": "{\"before\":{\"pass\":true,\"observed\":{\"saves\":2,\"prevented\":2,\"button\":{\"tag\":\"button\",\"type\":\"submit\",\"text\":\"Save\"}}},\"after\":{\"pass\":true,\"observed\":{\"saves\":2,\"prevented\":2,\"button\":{\"tag\":\"button\",\"text\":\"Save\"}}}}"
+  },
+  {
+    "id": "C17",
+    "expected": [
+      {
+        "id": "E17",
+        "severity": "blocker",
+        "lens": "Frontend & accessibility",
+        "criterion": "The error branch returns before clearing loading, leaving the Retry control disabled and preventing recovery from a failed load."
+      }
+    ],
+    "provenance": {
+      "kind": "seeded-defect",
+      "reference": "original synthetic example",
+      "description": "Minimal JavaScript written for this evaluation; no application source or private data."
+    },
+    "before": true,
+    "after": false,
+    "evidence": "{\"before\":{\"pass\":true,\"observed\":{\"retryEnabled\":true,\"calls\":2,\"state\":{\"loading\":false,\"error\":null,\"items\":[\"item\"]}}},\"after\":{\"pass\":false,\"observed\":{\"retryEnabled\":false,\"calls\":1,\"state\":{\"loading\":true,\"error\":\"offline\",\"items\":[]}}}}"
+  },
+  {
+    "id": "C18",
+    "expected": [
+      {
+        "id": "E18",
+        "severity": "blocker",
+        "lens": "Product",
+        "criterion": "Storing a selected row index instead of its stable identity causes archive to target a different row after filtering or sorting changes the list order."
+      }
+    ],
+    "provenance": {
+      "kind": "seeded-defect",
+      "reference": "original synthetic example",
+      "description": "Minimal JavaScript written for this evaluation; no application source or private data."
+    },
+    "before": true,
+    "after": false,
+    "evidence": "{\"before\":{\"pass\":true,\"observed\":{\"selection\":\"b\",\"filtered\":[{\"id\":\"b\"},{\"id\":\"c\"}],\"archived\":[\"b\"]}},\"after\":{\"pass\":false,\"observed\":{\"selection\":1,\"filtered\":[{\"id\":\"b\"},{\"id\":\"c\"}],\"archived\":[\"c\"]}}}"
+  },
+  {
+    "id": "C19",
+    "expected": [
+      {
+        "id": "E19",
+        "severity": "blocker",
+        "lens": "Product",
+        "criterion": "Using truthiness treats the valid zero-cent quote as unavailable, blocking checkout for orders eligible for free delivery."
+      }
+    ],
+    "provenance": {
+      "kind": "seeded-defect",
+      "reference": "original synthetic example",
+      "description": "Minimal JavaScript written for this evaluation; no application source or private data."
+    },
+    "before": true,
+    "after": false,
+    "evidence": "{\"before\":{\"pass\":true,\"observed\":{\"free\":{\"available\":true,\"cents\":0},\"paid\":{\"available\":true,\"cents\":500},\"unavailable\":{\"available\":false,\"cents\":null}}},\"after\":{\"pass\":false,\"observed\":{\"free\":{\"available\":false,\"cents\":0},\"paid\":{\"available\":true,\"cents\":500},\"unavailable\":{\"available\":false,\"cents\":null}}}}"
+  },
+  {
+    "id": "C20",
+    "expected": [],
+    "provenance": {
+      "kind": "clean-control",
+      "reference": "original synthetic example",
+      "description": "Minimal JavaScript written for this evaluation; no application source or private data."
+    },
+    "before": true,
+    "after": true,
+    "evidence": "{\"before\":{\"pass\":true,\"observed\":{\"empty\":\"$0.00\",\"mixed\":\"$4.74\"}},\"after\":{\"pass\":true,\"observed\":{\"empty\":\"$0.00\",\"mixed\":\"$4.74\"}}}"
+  },
+  {
+    "id": "C21",
+    "expected": [
+      {
+        "id": "E21",
+        "severity": "blocker",
+        "lens": "Infrastructure",
+        "criterion": "Treating every link into the source tree as managed also prunes user-created aliases and links to files; ownership requires the entry name to match the direct skill target."
+      }
+    ],
+    "provenance": {
+      "kind": "historical-adaptation",
+      "reference": "cda1859a000fdf5e915db3b5622af38a84b24cac",
+      "description": "Reintroduces broad stale-link ownership from scripts/link-skills.sh before this repair. Shell path checks become pure string checks on absolute normalized paths; returned removal names replace actual unlink operations."
+    },
+    "before": true,
+    "after": false,
+    "evidence": "{\"before\":{\"pass\":true,\"observed\":{\"removed\":[\"old\"]}},\"after\":{\"pass\":false,\"observed\":{\"removed\":[\"old\",\"shortcut\",\"guide\"]}}}"
+  },
+  {
+    "id": "C22",
+    "expected": [
+      {
+        "id": "E22",
+        "severity": "blocker",
+        "lens": "Security",
+        "criterion": "Converting the policy value to a string accepts quoted false, although the loader requires boolean false and would still allow implicit invocation."
+      }
+    ],
+    "provenance": {
+      "kind": "historical-adaptation",
+      "reference": "cda1859a000fdf5e915db3b5622af38a84b24cac",
+      "description": "Reintroduces acceptance of quoted false documented in the checker repair. YAML has already been parsed into typed JavaScript values, isolating loss of scalar type without bundling a YAML parser or actual tool configuration."
+    },
+    "before": true,
+    "after": false,
+    "evidence": "{\"before\":{\"pass\":true,\"observed\":{\"accepted\":false,\"legitimate\":true,\"loaderAllows\":true}},\"after\":{\"pass\":false,\"observed\":{\"accepted\":true,\"legitimate\":true,\"loaderAllows\":true}}}"
+  },
+  {
+    "id": "C23",
+    "expected": [
+      {
+        "id": "E23",
+        "severity": "blocker",
+        "lens": "Staff engineer",
+        "criterion": "An older response can overwrite the latest query results because the request identity guard was removed; retain ordering protection or cancel obsolete requests."
+      }
+    ],
+    "provenance": {
+      "kind": "seeded-defect",
+      "reference": "original synthetic example",
+      "description": "Minimal JavaScript written for this evaluation; no application source or private data."
+    },
+    "before": true,
+    "after": false,
+    "evidence": "{\"before\":{\"pass\":true,\"observed\":{\"request\":2,\"items\":[\"ab-result\"]}},\"after\":{\"pass\":false,\"observed\":{\"request\":2,\"items\":[\"a-result\"]}}}"
+  },
+  {
+    "id": "C24",
+    "expected": [],
+    "provenance": {
+      "kind": "clean-control",
+      "reference": "original synthetic example",
+      "description": "Minimal JavaScript written for this evaluation; no application source or private data."
+    },
+    "before": true,
+    "after": true,
+    "evidence": "{\"before\":{\"pass\":true,\"observed\":{\"paths\":[\"/repo\",\"/repo/skills\",\"/repository\",\"/repo-copy\",\"/other/repo\"],\"results\":[true,true,false,false,false]}},\"after\":{\"pass\":true,\"observed\":{\"paths\":[\"/repo\",\"/repo/skills\",\"/repository\",\"/repo-copy\",\"/other/repo\"],\"results\":[true,true,false,false,false]}}}"
+  }
+]

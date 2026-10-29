@@ -33,24 +33,26 @@ Each `cases/*.mjs` default-exports an array. Each case has `id` (neutral C01..C2
 
 ## Task 1 — Corpus and executable ground truth
 
-- [ ] Write behavior tests that reject leaking identifiers, missing roles, invalid splits, vacuous oracles, and wrong clean/buggy before-after behavior.
-- [ ] Implement 12 backend/contract/infrastructure cases and 12 interface/product/staff/history cases under the shared interface.
-- [ ] Independently review the fixture contracts and run every oracle.
+- [x] Write behavior tests that reject leaking identifiers, missing roles, invalid splits, vacuous oracles, and wrong clean/buggy before-after behavior.
+- [x] Implement 12 backend/contract/infrastructure cases and 12 interface/product/staff/history cases under the shared interface.
+- [x] Independently review the fixture contracts and run every oracle.
 
 ## Task 2 — Isolated, resumable live runner
 
-- [ ] Test prompt isolation, model selection, effective-model parsing, failed runs, resumptions, and budget accounting before implementation.
-- [ ] Implement explicit Claude/Codex adapters, structured findings, per-lens runs and Strong triage, manifest hashes, bounded subprocess timeouts, and usage capture.
-- [ ] Smoke-test one case on both providers before the full matrix; run the approved pilot and held-out matrix within cap.
+- [x] Test prompt isolation, model selection, effective-model parsing, failed runs, resumptions, and budget accounting before implementation.
+- [x] Implement explicit Claude/Codex adapters, structured findings, per-lens runs and Strong triage, manifest hashes, bounded subprocess timeouts, and usage capture.
+- [x] Smoke-test one case on both providers before the full matrix; run the approved pilot and held-out matrix within cap.
 
 ## Task 3 — Blind scoring and evidence report
 
-- [ ] Test missed/retained blockers, clean-case alarms, incomplete matrices, duplicate findings, severity mismatches, and triage loss.
-- [ ] Implement blinded finding matching, provisional metrics, paired comparisons, and a human adjudication artifact.
-- [ ] Inspect actual misses and false alarms; document limitations and only change policy where evidence warrants it.
+- [x] Test missed/retained blockers, clean-case alarms, incomplete matrices, duplicate findings, severity mismatches, and triage loss.
+- [x] Implement blinded finding matching, provisional metrics, paired comparisons, and a human adjudication artifact.
+- [x] Inspect actual misses and false alarms; document limitations and only change policy where evidence warrants it.
 
 ## Task 4 — Review and PR
 
-- [ ] Run the complete test suite, repository wiring check, and whitespace checks.
-- [ ] Perform independent Strong review of the final change and resolve actionable issues within this authorized implementation scope.
+- [x] Run the complete test suite, repository wiring check, and whitespace checks.
+- [x] Perform independent Strong review of the final change and resolve actionable issues within this authorized implementation scope.
 - [ ] Commit approved scope on the new branch, push it, create a draft PR with actual results/gaps, and attach it to this chat.
+
+Execution evidence: `evals/mob-review/results/2026-10-29/REPORT.md`. Human adjudication remains pending; delivery is a draft PR.

@@ -84,6 +84,7 @@ node evals/mob-review/grade.mjs --dir .eval-work/2026-10-29-cli --jobs 2
 The grader receives opaque panel IDs without provider, model, scheme, or repetition labels.
 It provisionally matches raw and final findings to expected defects. Grading records stay under the run's `grading/` directory.
 Incomplete panels cannot become complete evidence through grading.
+
 Watch mode waits for complete, verified panels, even when an earlier interrupted run left partial results.
 For permanent errors, interrupt the watcher and grade without `--watch` to report the partial evidence.
 Runner and grader interruptions stop new work and drain active calls before releasing ownership.
@@ -104,6 +105,7 @@ Report sections cover matrix completeness, resources, provisional defect matches
 The CLI checks the supplied commit against the frozen manifest and current evidence sources before writing output.
 Use a separate output directory from the raw run data.
 The 2026-10-29 run evaluated commit `ffd3ce4` and used grader commit `345fe08`. Future runs need their own exact source commits.
+Use `--verification-smoke JSON` to attach a separate normalized live smoke record. Its charges stay in the shared campaign ledger.
 
 Missing comparison arms must remain explicitly incomplete. Resource totals include failed attempts and distinguish known amounts from unknown usage or cost.
 Observed totals with missing measurements are lower bounds. Summed process time does not measure elapsed run time when jobs overlap.
