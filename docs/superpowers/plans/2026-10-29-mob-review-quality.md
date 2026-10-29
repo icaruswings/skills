@@ -53,6 +53,8 @@ Each `cases/*.mjs` default-exports an array. Each case has `id` (neutral C01..C2
 
 - [x] Run the complete test suite, repository wiring check, and whitespace checks.
 - [x] Perform independent Strong review of the final change and resolve actionable issues within this authorized implementation scope.
-- [ ] Commit approved scope on the new branch, push it, create a draft PR with actual results/gaps, and attach it to this chat.
+- [x] Commit approved scope on the new branch, push it, create a draft PR with actual results/gaps, and attach it to this chat.
 
 Execution evidence: `evals/mob-review/results/2026-10-29/REPORT.md`. Human adjudication remains pending; delivery is a draft PR.
+
+Draft PR: https://github.com/icaruswings/skills/pull/1
