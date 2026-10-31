@@ -29,7 +29,7 @@ Add project-specific lenses to this roster in the project's `AGENTS.md` — a do
 
 ### Specs and plans
 
-A spec or a plan is a review target, not a prose edit. It gets the full panel. Judge the design it describes, not its wording.
+A spec or a plan is a review target, not a prose edit. Run the lenses in the table below as a panel, never the prose-only self-check. Judge the design it describes, not its wording.
 
 | Reviewing | Lenses |
 |---|---|
