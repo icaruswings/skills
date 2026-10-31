@@ -39,7 +39,7 @@ Keep every selected lens; tier its task by risk and ambiguity, not by diff size 
 
 The highest-risk responsibility sets the tier for the whole lens. Promote when evidence is missing, reasoning crosses boundaries, or reviewers disagree about correctness or risk; rerun the affected lower-tier lens at Strong. Final triage can resolve duplicate findings or factual misunderstandings directly from evidence. A cheaper evidence-gathering task does not replace a required review pass. Cost pressure never removes a lens or weakens a blocker.
 
-After subagent consent is resolved below, read [model-selection.md](./model-selection.md) for the active harness's supported controls and fallbacks. Respect explicit user/project model constraints. Resolve actual models from the exposed tool schema and available model catalog; use only supported reasoning settings. For each dispatch, provide the lens, scope and base diff, relevant spec/context, evidence required, and the read-only review contract. Give lenses independent context without other reviewers' conclusions.
+After resolving subagent consent below, read [model-selection.md](./model-selection.md) for the active client's supported controls and fallbacks. Respect explicit user/project model constraints. Resolve actual models from the exposed tool schema and available model catalog; use only supported reasoning settings.
 
 Run final triage on Strong: reconcile evidence, duplicates, conflicts, and severity without dropping lens attribution. The parent can do this only when its model meets Strong; otherwise delegate triage within the existing subagent consent. A weak or unknown fallback leaves a verification gap and cannot clear that gate.
 
@@ -59,7 +59,9 @@ One subagent per lens is the best way to run this: each lens gets independent co
 
 Never spawn the mob unasked, and never start reviewing while the question is pending.
 
-A review changes no files. Read, run, and inspect all you like, but the first edit waits for the user's answer to the question at the end of the report, or for a standing policy that turns on loop mode. This holds for your own uncommitted work too: a blocker in it means the change is not done, and saying so is the review's job. Fixing it is a separate job that the user assigns.
+A review changes no project files, index, or refs. The coordinator may keep review evidence in temporary storage outside the checkout. Reviewers may write only designated temporary reports. Project edits wait for the user's answer at the end of the report, or for a standing policy that turns on loop mode. This holds for your own uncommitted work too. A blocker means the change is not done; fixing it is a separate job that the user assigns.
+
+After consent, read [review-handoff.md](./review-handoff.md) before substantive review, in dispatched and self-review modes. Prepare one package for the exact scope. Give each lens independent context and collect its completion status, checks, findings, and gaps. Keep the same evidence standard when temporary storage is unavailable.
 
 ## Report
 
@@ -67,7 +69,7 @@ Produce exactly this, in this order:
 
 1. **Mode** — the report's first line, always: `Mode: dispatched (<N> subagents)`, `Mode: self-review passes (<reason: user declined / no subagent tool exposed / dispatch failed>)`, or `Mode: mixed (<N> subagents; <M> self-review passes; <dispatch failure>)`. Count triage subagents too. A report without a Mode line is an incomplete run; this line is what makes a quiet downgrade impossible.
 2. **Lenses selected** — one line, each with the clause that triggered it. Name the ones you considered and skipped when the change looked like it might need them. Include each lens's tier, requested model, confirmed model (or inherited/unknown), and any fallback; include final triage's model and any unresolved quality gate.
-3. **Findings, grouped by lens** — each tagged `blocker`, `should-fix`, or `optional`, and numbered in one sequence across the whole report (`#1`, `#2`, …), so the user can name them back to you. A lens with nothing to say gets one line saying so.
+3. **Findings, grouped by lens.** Tag each `blocker`, `should-fix`, or `optional`. Number findings in one sequence across the report (`#1`, `#2`, `...`) so the user can name them back to you. Include location, failure condition, consequence, and evidence. For each lens, state completion, checks performed or reused, and gaps. A completed lens with no findings gets one line saying so. Include the evidence-based disposition of each proposed blocker that triage dropped or downgraded.
 4. **Verdict** — ship, ship after blockers, or needs a decision from the user.
 5. **How to proceed** — the report's last line, always a question unless a standing policy turns on loop mode (see [Standing policy](#standing-policy)). Offer the choices in terms of the numbers above:
 
@@ -81,7 +83,7 @@ A blocker means the change is not done. It becomes done when someone fixes it or
 
 ## After the answer
 
-Do what the user picked and nothing more: all, blockers only, the numbers they named, or nothing. A fix is a change, so re-run the lenses whose surfaces it touched, and report again in the same shape, question included.
+Do what the user picked and nothing more: all, blockers only, the numbers they named, or nothing. Re-review the fix delta and affected dependencies with every affected lens, following review-handoff.md. Report again in the same shape, question included.
 
 ## Standing policy
 
@@ -93,7 +95,7 @@ A team can answer the two questions ahead of time in its instructions (`AGENTS.m
 
 1. Review and report as usual, but end the report with the line `Loop mode: fixing #… (round 1 of 2)` instead of the question.
 2. Fix the blockers and should-fixes. Leave every `optional` finding alone.
-3. Re-run the lenses whose surfaces the fixes touched, and report again in the same shape. That is round 2.
+3. Re-review the fix delta and affected dependencies with every affected lens, following review-handoff.md, and report again in the same shape. That is round 2.
 4. Stop after round 2, or sooner when no blocker or should-fix is left.
 5. Run one simplicity pass on the whole change. A review loop tends to add machinery one fix at a time, so look for code the goal doesn't need. Delete or narrow code that the loop itself added, then run the tests. Report anything else it finds as a finding.
 6. Send one final report. Give each finding its status: fixed in round 1, fixed in round 2, open, or declined as a follow-up. List the follow-ups.
@@ -110,6 +112,6 @@ An unfamiliar codebase raises the bar rather than lowering it — read enough su
 
 ## Done when
 
-Every selected lens has reported, Strong final triage has run or its verification gap is explicit, the verdict names which of the three it is, the turn ends on the how-to-proceed question, and no file has changed. An unresolved model/triage gap requires a needs-a-decision verdict. Fixing starts only when the user answers.
+Every selected lens has a result bound to the reviewed scope. Strong final triage has run or its verification gap is explicit. The report names a verdict and ends on the how-to-proceed question. Project files, index, and refs remain unchanged. An incomplete lens or unresolved coverage, model, or triage gap requires a needs-a-decision verdict. Start fixes only when the user answers.
 
 In loop mode, it's done when the loop has stopped, the simplicity pass has run, and the final report gives every finding a status. The turn ends on the policy's next step, or on a question to the user when a blocker, a scope change, or a disagreement is left.

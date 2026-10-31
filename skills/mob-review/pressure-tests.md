@@ -130,7 +130,44 @@ Independent implementation review found harness lifecycle and accounting edge ca
 Offline regression tests verify those repairs, and the report identifies the exact earlier evaluation and grading commits.
 Human approval remains pending. This pilot supports its stated cases and cannot establish general review-quality equivalence.
 
-## Round 9: standing policy and loop mode (2026-10-31, not yet run)
+## Round 9: compact handoffs (2026-10-30)
+
+Added one review package, scope identities, a compact result contract, evidence reuse, and scoped follow-ups. Lens selection, model tiers, consent, and user control over fixes remain in place.
+
+### Controls and updated samples
+
+Ran five fresh-context samples per variant with the same scenario. The baseline used the existing skill; the updated variant also reached review-handoff.md through SKILL.md.
+
+The hypothetical human authorized Staff engineer and Product reviewers, with a Strong parent for triage. The scope included committed, staged, unstaged, and untracked changes. Long implementation history and matching test evidence were available. After interruption, Product had finished and Staff needed clarification. The human requested a quick, inexpensive verdict. Samples returned controller actions, a reviewer brief, and a result contract.
+
+| Observed behavior | Baseline | Updated |
+|---|---|---|
+| Preserve Product's completed result and use relevant existing evidence | 5/5 | 5/5 |
+| Package the scope with a digest and request explicit identity, completion, checks, findings, and gaps | 0/5 | 5/5 |
+
+Read all ten responses manually. Baseline responses already preserved useful work. Their missing structure justified the new contract; the controls did not establish a defect in evidence reuse.
+
+One baseline response requested findings, references, and gaps, but omitted review identity and an explicit completion field. Updated responses consistently requested `Lens / review identity` and `Status: complete | incomplete`. All five reached the new reference, retained independent lenses, and kept unresolved work visible.
+
+### Concrete fixture and independent critique
+
+Executed the updated skill on a disposable Git repository. It included a committed normalization change, staged authorization removal, unstaged misleading copy, and an untracked test. The scenario human declined subagents.
+
+The reviewer packaged all four change layers, ran separate lens passes, and found the missing owner check and misleading submit label. It cited evidence and merged duplicates with lens attribution. It reported model and rendering gaps instead of clearing the review. Independent file, index, HEAD, and status comparisons confirmed that the fixture remained unchanged.
+
+The initial test evidence had an opaque identity. The reviewer marked it unverified and ran one focused test. This was correct behavior, not successful evidence reuse.
+
+A subsequent resumption supplied reproducible file digests and runtime information. The reviewer verified all inputs, recovered the saved results, and retained both findings. It repeated no tests, probes, or review passes. Independent comparisons again confirmed unchanged fixture files, index, HEAD, and status.
+
+An independent critique found two omissions: fresh briefs needed the read-only restrictions, and dependencies outside the package needed freshness checks. Both now appear in the handoff contract. The critic re-read the fixes and reported no remaining actionable issues, including in the inline fallback.
+
+A final fresh-context scenario covered inline-only storage, a changed caller in another repository, stale test evidence, and a disputed Product blocker. The response rechecked the caller, reopened affected conclusions, and required evidence for any downgrade. It preserved inline output, read-only restrictions, agent limits, and the unresolved verification gate.
+
+### Limits
+
+The ten micro-tests proposed dispatches; they did not launch reviewer panels. They used inherited runtime settings without independent effective-model verification. The concrete fixture exercised self-review passes, not native panel performance. These checks establish instruction behavior, not lower token usage or equivalent defect detection. The existing quality pilot remains evidence for its frozen policy only.
+
+## Round 10: standing policy and loop mode (2026-10-31, not yet run)
 
 In real use the two stops cost more than they saved. Across one month of a team's sessions, the user typed "use subagents" or "fix all" about 20 times, and a plan review took four rounds that each waited on that reply (21, 17, 13, then 6 findings). The stops were right for a reviewer the user hadn't briefed. They were wrong for a team that had already decided its answer.
 
