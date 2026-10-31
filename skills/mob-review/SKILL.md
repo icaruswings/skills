@@ -27,6 +27,23 @@ Select every lens whose trigger matches the change. Most changes need two or thr
 
 Add project-specific lenses to this roster in the project's `AGENTS.md` — a domain-expert lens (clinical, legal, financial, pedagogical) belongs wherever users would judge the domain rules, not just the code.
 
+### Specs and plans
+
+A spec or a plan is a review target, not a prose edit. It gets the full panel. Judge the design it describes, not its wording.
+
+| Reviewing | Lenses |
+|---|---|
+| **Spec** | **Completeness**, plus the lenses above whose surfaces the spec will change, and any standards lens the project's `AGENTS.md` adds |
+| **Plan** | **Traceability** and **Executability**, plus Staff engineer when the plan makes design choices the spec left open |
+
+| Lens | It checks |
+|---|---|
+| **Completeness** | the problem and who has it; scope and non-goals; behaviour in every state, including errors, empty and offline; acceptance criteria someone could test; open questions answered or listed as decisions |
+| **Traceability** | every spec requirement maps to a task, and every task traces back to the spec. A plan that disagrees with the spec is a finding against the spec as well: the spec outlives the plan, so fix the spec |
+| **Executability** | read each task as a junior developer would. It names the files, the code or command, and the result that shows it worked. Flag steps that leave a choice open ("choose", "TBD", "if needed", "as appropriate"), use names the plan never defines, or depend on a step that comes later. Read the plan; don't run it |
+
+A finding that only a person can settle, such as a product choice, a trade-off, or a gap in the spec, gets the tag `decision` as well as its severity. Don't settle it by guessing, and don't let a reviewer settle it either.
+
 ## Choose model tiers
 
 Keep every selected lens; tier its task by risk and ambiguity, not by diff size alone. These are skill policy names, not model IDs.
@@ -69,7 +86,7 @@ Produce exactly this, in this order:
 
 1. **Mode** — the report's first line, always: `Mode: dispatched (<N> subagents)`, `Mode: self-review passes (<reason: user declined / no subagent tool exposed / dispatch failed>)`, or `Mode: mixed (<N> subagents; <M> self-review passes; <dispatch failure>)`. Count triage subagents too. A report without a Mode line is an incomplete run; this line is what makes a quiet downgrade impossible.
 2. **Lenses selected** — one line, each with the clause that triggered it. Name the ones you considered and skipped when the change looked like it might need them. Include each lens's tier, requested model, confirmed model (or inherited/unknown), and any fallback; include final triage's model and any unresolved quality gate.
-3. **Findings, grouped by lens.** Tag each `blocker`, `should-fix`, or `optional`. Number findings in one sequence across the report (`#1`, `#2`, `...`) so the user can name them back to you. Include location, failure condition, consequence, and evidence. For each lens, state completion, checks performed or reused, and gaps. A completed lens with no findings gets one line saying so. Include the evidence-based disposition of each proposed blocker that triage dropped or downgraded.
+3. **Findings, grouped by lens.** Tag each `blocker`, `should-fix`, or `optional`, and add `decision` when only a person can settle it. Number findings in one sequence across the report (`#1`, `#2`, `...`) so the user can name them back to you. Include location, failure condition, consequence, and evidence. For each lens, state completion, checks performed or reused, and gaps. A completed lens with no findings gets one line saying so. Include the evidence-based disposition of each proposed blocker that triage dropped or downgraded.
 4. **Verdict** — ship, ship after blockers, or needs a decision from the user.
 5. **How to proceed** — the report's last line, always a question unless a standing policy turns on loop mode (see [Standing policy](#standing-policy)). Offer the choices in terms of the numbers above:
 
@@ -94,11 +111,12 @@ A team can answer the two questions ahead of time in its instructions (`AGENTS.m
 **Loop mode.** A policy that turns on loop mode answers the how-to-proceed question with "fix the blockers and should-fixes". Run it like this:
 
 1. Review and report as usual, but end the report with the line `Loop mode: fixing #… (round 1 of 2)` instead of the question.
-2. Fix the blockers and should-fixes. Leave every `optional` finding alone.
+2. Fix the blockers and should-fixes. Leave every `optional` finding alone. Don't fix a `decision` finding: hold it for the final report.
 3. Re-review the fix delta and affected dependencies with every affected lens, following review-handoff.md, and report again in the same shape. That is round 2.
 4. Stop after round 2, or sooner when no blocker or should-fix is left.
 5. Run one simplicity pass on the whole change. A review loop tends to add machinery one fix at a time, so look for code the goal doesn't need. Delete or narrow code that the loop itself added, then run the tests. Report anything else it finds as a finding.
-6. Send one final report. Give each finding its status: fixed in round 1, fixed in round 2, open, or declined as a follow-up. List the follow-ups.
+6. Send one final report. Give each finding its status: fixed in round 1, fixed in round 2, open, needs a decision, or declined as a follow-up. List the follow-ups.
+7. If any finding needs a decision, end with all of them as one numbered list of questions, each with the options and your recommendation. Ask once, not per round.
 
 Loop mode never decides that a blocker is acceptable. A blocker still open after round 2, a fix that would change scope, or lenses that disagree end the loop. Ask the user about it with the usual how-to-proceed question.
 
@@ -106,7 +124,7 @@ When the loop ends clean, the final report's last line is the next step the poli
 
 ## Scale to the change
 
-When the change is only prose, comments, or formatting, with no behavior change: skip the panel, the subagent question, and the how-to-proceed question; do one self-check and report in a line or two — no Mode line needed. Everything else gets the table above.
+When the change is only prose, comments, or formatting, with no behavior change, and isn't a spec or a plan: skip the panel, the subagent question, and the how-to-proceed question; do one self-check and report in a line or two — no Mode line needed. Everything else gets the table above.
 
 An unfamiliar codebase raises the bar rather than lowering it — read enough surrounding code to judge the change in context before reporting, and say plainly which findings you couldn't verify.
 
@@ -114,4 +132,4 @@ An unfamiliar codebase raises the bar rather than lowering it — read enough su
 
 Every selected lens has a result bound to the reviewed scope. Strong final triage has run or its verification gap is explicit. The report names a verdict and ends on the how-to-proceed question. Project files, index, and refs remain unchanged. An incomplete lens or unresolved coverage, model, or triage gap requires a needs-a-decision verdict. Start fixes only when the user answers.
 
-In loop mode, it's done when the loop has stopped, the simplicity pass has run, and the final report gives every finding a status. The turn ends on the policy's next step, or on a question to the user when a blocker, a scope change, or a disagreement is left.
+In loop mode, it's done when the loop has stopped, the simplicity pass has run, and the final report gives every finding a status. The turn ends on the policy's next step, or on a question to the user when a blocker, a scope change, a disagreement, or a `decision` finding is left.
