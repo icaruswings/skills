@@ -7,6 +7,8 @@ description: Use when finishing a meaningful change and before calling it done, 
 
 Pressure-test evidence: [pressure-tests.md](./pressure-tests.md).
 
+Review-quality evaluation and limitations: [quality-evaluation.md](./quality-evaluation.md). Model-routing checks alone do not establish equivalent defect detection.
+
 One reviewer finds one reviewer's bugs. A generic pass reports findings in the order it happened to notice them, which buries the blocker under the nitpick. Assemble a mob — the lenses that match what changed — run each as its own pass, and let each one rank its own findings.
 
 ## Pick the mob
@@ -25,6 +27,24 @@ Select every lens whose trigger matches the change. Most changes need two or thr
 
 Add project-specific lenses to this roster in the project's `AGENTS.md` — a domain-expert lens (clinical, legal, financial, pedagogical) belongs wherever users would judge the domain rules, not just the code.
 
+## Choose model tiers
+
+Keep every selected lens; tier its task by risk and ambiguity, not by diff size alone. These are skill policy names, not model IDs.
+
+| Tier | Use for |
+|---|---|
+| **Economy** | bounded evidence gathering or checks with explicit criteria: copy against a spec, semantic markup, keyboard checklists, locating tests; no architectural or complex correctness judgment |
+| **Balanced** | routine Staff engineer, Product, Frontend & accessibility, Data & contracts, Infrastructure, or Operability work with clear behavior and local context |
+| **Strong** | every Security pass; architecture, complex correctness, concurrency, payments, migration safety, privilege/blast-radius decisions, and final triage across all findings |
+
+The highest-risk responsibility sets the tier for the whole lens. Promote when evidence is missing, reasoning crosses boundaries, or reviewers disagree about correctness or risk; rerun the affected lower-tier lens at Strong. Final triage can resolve duplicate findings or factual misunderstandings directly from evidence. A cheaper evidence-gathering task does not replace a required review pass. Cost pressure never removes a lens or weakens a blocker.
+
+After subagent consent is resolved below, read [model-selection.md](./model-selection.md) for the active harness's supported controls and fallbacks. Respect explicit user/project model constraints. Resolve actual models from the exposed tool schema and available model catalog; use only supported reasoning settings. For each dispatch, provide the lens, scope and base diff, relevant spec/context, evidence required, and the read-only review contract. Give lenses independent context without other reviewers' conclusions.
+
+Run final triage on Strong: reconcile evidence, duplicates, conflicts, and severity without dropping lens attribution. The parent can do this only when its model meets Strong; otherwise delegate triage within the existing subagent consent. A weak or unknown fallback leaves a verification gap and cannot clear that gate.
+
+Include any needed triage agent in the consent count. Respect explicit limits on agent count/models; seek expanded consent before exceeding those limits, or report the resulting gap.
+
 ## Run them
 
 One subagent per lens is the best way to run this: each lens gets independent context and can't be anchored by another lens's findings.
@@ -34,7 +54,7 @@ One subagent per lens is the best way to run this: each lens gets independent co
 | Subagents | Do this |
 |---|---|
 | Tool exposed, and the user already sanctioned subagents for this work | Dispatch one per lens. |
-| Tool exposed, not sanctioned | Ask, after picking the mob and before any review work: "Mob review runs best as one subagent per lens, so no lens anchors another. Can I use subagents for this review? That's <N> agents: <lenses>. Otherwise I run each lens as a separate self-review pass." Then stop and wait for the answer. Asking is the normal path, not a failure — and mentioning the option while proceeding is not asking. |
+| Tool exposed, not sanctioned | Ask, after picking the mob and before any review work: "Mob review runs best as one subagent per lens, so no lens anchors another. Can I use subagents for this review? That's <N> agents: <lenses, plus final triage if needed>. Otherwise I run each lens as a separate self-review pass." Then stop and wait for the answer. Asking is the normal path, not a failure — and mentioning the option while proceeding is not asking. |
 | No tool exposed, or the user declined | Run an explicit separate pass per lens yourself. Don't ask — there's nothing to grant. |
 
 Never spawn the mob unasked, and never start reviewing while the question is pending.
@@ -45,8 +65,8 @@ A review changes no files. Read, run, and inspect all you like, but the first ed
 
 Produce exactly this, in this order:
 
-1. **Mode** — the report's first line, always: `Mode: dispatched (<N> subagents)` or `Mode: self-review passes (<reason: user declined / no subagent tool exposed>)`. A report without a Mode line is an incomplete run; this line is what makes a quiet downgrade impossible.
-2. **Lenses selected** — one line, each with the clause that triggered it. Name the ones you considered and skipped when the change looked like it might need them.
+1. **Mode** — the report's first line, always: `Mode: dispatched (<N> subagents)`, `Mode: self-review passes (<reason: user declined / no subagent tool exposed / dispatch failed>)`, or `Mode: mixed (<N> subagents; <M> self-review passes; <dispatch failure>)`. Count triage subagents too. A report without a Mode line is an incomplete run; this line is what makes a quiet downgrade impossible.
+2. **Lenses selected** — one line, each with the clause that triggered it. Name the ones you considered and skipped when the change looked like it might need them. Include each lens's tier, requested model, confirmed model (or inherited/unknown), and any fallback; include final triage's model and any unresolved quality gate.
 3. **Findings, grouped by lens** — each tagged `blocker`, `should-fix`, or `optional`, and numbered in one sequence across the whole report (`#1`, `#2`, …), so the user can name them back to you. A lens with nothing to say gets one line saying so.
 4. **Verdict** — ship, ship after blockers, or needs a decision from the user.
 5. **How to proceed** — the report's last line, always a question. Offer the choices in terms of the numbers above:
@@ -71,4 +91,4 @@ An unfamiliar codebase raises the bar rather than lowering it — read enough su
 
 ## Done when
 
-Every selected lens has reported, the verdict names which of the three it is, the turn ends on the how-to-proceed question, and no file has changed. Fixing starts only when the user answers.
+Every selected lens has reported, Strong final triage has run or its verification gap is explicit, the verdict names which of the three it is, the turn ends on the how-to-proceed question, and no file has changed. An unresolved model/triage gap requires a needs-a-decision verdict. Fixing starts only when the user answers.

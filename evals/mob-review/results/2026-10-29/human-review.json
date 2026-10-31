@@ -1,0 +1,2590 @@
+{
+  "status": "human-pending",
+  "humanSignoff": false,
+  "instructions": [
+    "Supply a blinded copy of the truth labels, code briefs, findings, and provisional matches before showing provider/policy mappings.",
+    "Approve or correct each truth label and severity; adjudicate unmatched findings as valid defects, nonblocking advice, or false alarms.",
+    "Resolve triage losses and severity disputes, then review paired gates and record a named human acceptance decision. Rerun scores after corrections."
+  ],
+  "truthLabels": [
+    {
+      "caseId": "C01",
+      "expected": [
+        {
+          "id": "E01",
+          "severity": "blocker",
+          "lens": "Security",
+          "criterion": "A caller can supply another tenant in the request and read its row because ownership is compared with untrusted request data instead of the authenticated session."
+        }
+      ],
+      "status": "human-pending"
+    },
+    {
+      "caseId": "C02",
+      "expected": [
+        {
+          "id": "E02",
+          "severity": "blocker",
+          "lens": "Data & contracts",
+          "criterion": "Removing name breaks still-supported installed clients that dereference payload.name; keep the old field until those consumers have migrated."
+        }
+      ],
+      "status": "human-pending"
+    },
+    {
+      "caseId": "C03",
+      "expected": [
+        {
+          "id": "E03",
+          "severity": "blocker",
+          "lens": "Operability",
+          "criterion": "Using the per-attempt ID as the payment idempotency key creates another charge on a retry of the same event; the key must be stable for the logical payment."
+        }
+      ],
+      "status": "human-pending"
+    },
+    {
+      "caseId": "C04",
+      "expected": [],
+      "status": "human-pending"
+    },
+    {
+      "caseId": "C05",
+      "expected": [
+        {
+          "id": "E05",
+          "severity": "blocker",
+          "lens": "Data & contracts",
+          "criterion": "Removing the transaction permits a source debit to persist when the destination save fails, losing funds instead of rolling back both writes."
+        }
+      ],
+      "status": "human-pending"
+    },
+    {
+      "caseId": "C06",
+      "expected": [
+        {
+          "id": "E06",
+          "severity": "blocker",
+          "lens": "Security",
+          "criterion": "The resource wildcard expands deployment write permission to the whole bucket, allowing overwrite of unrelated objects outside releases/."
+        }
+      ],
+      "status": "human-pending"
+    },
+    {
+      "caseId": "C07",
+      "expected": [
+        {
+          "id": "E07",
+          "severity": "should-fix",
+          "lens": "Operability",
+          "criterion": "The inclusive retry boundary makes four total attempts instead of the specified three, exceeding the retry budget for persistently transient responses."
+        }
+      ],
+      "status": "human-pending"
+    },
+    {
+      "caseId": "C08",
+      "expected": [],
+      "status": "human-pending"
+    },
+    {
+      "caseId": "C09",
+      "expected": [
+        {
+          "id": "E09",
+          "severity": "blocker",
+          "lens": "Infrastructure",
+          "criterion": "Checking only the first symlink hop lets an indirect destination resolve into the source repository and records writes there; resolve the full chain before the repository guard."
+        }
+      ],
+      "status": "human-pending"
+    },
+    {
+      "caseId": "C10",
+      "expected": [
+        {
+          "id": "E10",
+          "severity": "blocker",
+          "lens": "Infrastructure",
+          "criterion": "Replacing an existing real directory discards user-owned content; installation must refuse such conflicts and only replace symlinks."
+        }
+      ],
+      "status": "human-pending"
+    },
+    {
+      "caseId": "C11",
+      "expected": [
+        {
+          "id": "E11",
+          "severity": "blocker",
+          "lens": "Security",
+          "criterion": "The validator accepts allow_implicit_invocation under an ignored section even though the loader sees no root policy and allows model invocation of a human-only tool."
+        }
+      ],
+      "status": "human-pending"
+    },
+    {
+      "caseId": "C12",
+      "expected": [],
+      "status": "human-pending"
+    },
+    {
+      "caseId": "C13",
+      "expected": [
+        {
+          "id": "E13",
+          "severity": "blocker",
+          "lens": "Frontend & accessibility",
+          "criterion": "A focusable div with a button role does not gain native Enter or Space activation; replacing the button without a key handler breaks keyboard saving."
+        }
+      ],
+      "status": "human-pending"
+    },
+    {
+      "caseId": "C14",
+      "expected": [
+        {
+          "id": "E14",
+          "severity": "blocker",
+          "lens": "Frontend & accessibility",
+          "criterion": "The Escape close path unmounts the dialog without restoring focus to its opener, so keyboard users lose their place in the screen."
+        }
+      ],
+      "status": "human-pending"
+    },
+    {
+      "caseId": "C15",
+      "expected": [
+        {
+          "id": "E15",
+          "severity": "blocker",
+          "lens": "Product",
+          "criterion": "The monthly checkout promises a yearly $12 charge despite the specified monthly billing cadence; correct the visible price interval before users agree to purchase."
+        }
+      ],
+      "status": "human-pending"
+    },
+    {
+      "caseId": "C16",
+      "expected": [],
+      "status": "human-pending"
+    },
+    {
+      "caseId": "C17",
+      "expected": [
+        {
+          "id": "E17",
+          "severity": "blocker",
+          "lens": "Frontend & accessibility",
+          "criterion": "The error branch returns before clearing loading, leaving the Retry control disabled and preventing recovery from a failed load."
+        }
+      ],
+      "status": "human-pending"
+    },
+    {
+      "caseId": "C18",
+      "expected": [
+        {
+          "id": "E18",
+          "severity": "blocker",
+          "lens": "Product",
+          "criterion": "Storing a selected row index instead of its stable identity causes archive to target a different row after filtering or sorting changes the list order."
+        }
+      ],
+      "status": "human-pending"
+    },
+    {
+      "caseId": "C19",
+      "expected": [
+        {
+          "id": "E19",
+          "severity": "blocker",
+          "lens": "Product",
+          "criterion": "Using truthiness treats the valid zero-cent quote as unavailable, blocking checkout for orders eligible for free delivery."
+        }
+      ],
+      "status": "human-pending"
+    },
+    {
+      "caseId": "C20",
+      "expected": [],
+      "status": "human-pending"
+    },
+    {
+      "caseId": "C21",
+      "expected": [
+        {
+          "id": "E21",
+          "severity": "blocker",
+          "lens": "Infrastructure",
+          "criterion": "Treating every link into the source tree as managed also prunes user-created aliases and links to files; ownership requires the entry name to match the direct skill target."
+        }
+      ],
+      "status": "human-pending"
+    },
+    {
+      "caseId": "C22",
+      "expected": [
+        {
+          "id": "E22",
+          "severity": "blocker",
+          "lens": "Security",
+          "criterion": "Converting the policy value to a string accepts quoted false, although the loader requires boolean false and would still allow implicit invocation."
+        }
+      ],
+      "status": "human-pending"
+    },
+    {
+      "caseId": "C23",
+      "expected": [
+        {
+          "id": "E23",
+          "severity": "blocker",
+          "lens": "Staff engineer",
+          "criterion": "An older response can overwrite the latest query results because the request identity guard was removed; retain ordering protection or cancel obsolete requests."
+        }
+      ],
+      "status": "human-pending"
+    },
+    {
+      "caseId": "C24",
+      "expected": [],
+      "status": "human-pending"
+    }
+  ],
+  "severityDisputes": [
+    {
+      "panelId": "10cb672e9d50b9a1",
+      "caseId": "C05",
+      "mismatches": [
+        {
+          "stage": "raw",
+          "expectedId": "E05",
+          "findingIndex": 6,
+          "expected": "blocker",
+          "actual": "should-fix"
+        }
+      ]
+    },
+    {
+      "panelId": "1602939db2e695f8",
+      "caseId": "C05",
+      "mismatches": [
+        {
+          "stage": "raw",
+          "expectedId": "E05",
+          "findingIndex": 7,
+          "expected": "blocker",
+          "actual": "should-fix"
+        },
+        {
+          "stage": "raw",
+          "expectedId": "E05",
+          "findingIndex": 8,
+          "expected": "blocker",
+          "actual": "should-fix"
+        }
+      ]
+    },
+    {
+      "panelId": "22286ece6dc77628",
+      "caseId": "C07",
+      "mismatches": [
+        {
+          "stage": "raw",
+          "expectedId": "E07",
+          "findingIndex": 0,
+          "expected": "should-fix",
+          "actual": "blocker"
+        },
+        {
+          "stage": "raw",
+          "expectedId": "E07",
+          "findingIndex": 1,
+          "expected": "should-fix",
+          "actual": "blocker"
+        },
+        {
+          "stage": "triage",
+          "expectedId": "E07",
+          "findingIndex": 0,
+          "expected": "should-fix",
+          "actual": "blocker"
+        }
+      ]
+    },
+    {
+      "panelId": "2250fbe01df82b71",
+      "caseId": "C14",
+      "mismatches": [
+        {
+          "stage": "raw",
+          "expectedId": "E14",
+          "findingIndex": 0,
+          "expected": "blocker",
+          "actual": "should-fix"
+        }
+      ]
+    },
+    {
+      "panelId": "33c9405a846b08a9",
+      "caseId": "C07",
+      "mismatches": [
+        {
+          "stage": "raw",
+          "expectedId": "E07",
+          "findingIndex": 0,
+          "expected": "should-fix",
+          "actual": "blocker"
+        },
+        {
+          "stage": "raw",
+          "expectedId": "E07",
+          "findingIndex": 1,
+          "expected": "should-fix",
+          "actual": "blocker"
+        },
+        {
+          "stage": "triage",
+          "expectedId": "E07",
+          "findingIndex": 0,
+          "expected": "should-fix",
+          "actual": "blocker"
+        }
+      ]
+    },
+    {
+      "panelId": "49c9305c9a293a22",
+      "caseId": "C07",
+      "mismatches": [
+        {
+          "stage": "raw",
+          "expectedId": "E07",
+          "findingIndex": 0,
+          "expected": "should-fix",
+          "actual": "blocker"
+        },
+        {
+          "stage": "raw",
+          "expectedId": "E07",
+          "findingIndex": 1,
+          "expected": "should-fix",
+          "actual": "blocker"
+        },
+        {
+          "stage": "triage",
+          "expectedId": "E07",
+          "findingIndex": 0,
+          "expected": "should-fix",
+          "actual": "blocker"
+        }
+      ]
+    },
+    {
+      "panelId": "4b792bd7e09b0663",
+      "caseId": "C17",
+      "mismatches": [
+        {
+          "stage": "raw",
+          "expectedId": "E17",
+          "findingIndex": 3,
+          "expected": "blocker",
+          "actual": "should-fix"
+        }
+      ]
+    },
+    {
+      "panelId": "50b79072a7331a8d",
+      "caseId": "C07",
+      "mismatches": [
+        {
+          "stage": "raw",
+          "expectedId": "E07",
+          "findingIndex": 0,
+          "expected": "should-fix",
+          "actual": "blocker"
+        },
+        {
+          "stage": "triage",
+          "expectedId": "E07",
+          "findingIndex": 0,
+          "expected": "should-fix",
+          "actual": "blocker"
+        }
+      ]
+    },
+    {
+      "panelId": "5d8c4a622a25e1ef",
+      "caseId": "C05",
+      "mismatches": [
+        {
+          "stage": "raw",
+          "expectedId": "E05",
+          "findingIndex": 7,
+          "expected": "blocker",
+          "actual": "should-fix"
+        }
+      ]
+    },
+    {
+      "panelId": "631ef470e47f1a03",
+      "caseId": "C07",
+      "mismatches": [
+        {
+          "stage": "raw",
+          "expectedId": "E07",
+          "findingIndex": 0,
+          "expected": "should-fix",
+          "actual": "blocker"
+        },
+        {
+          "stage": "raw",
+          "expectedId": "E07",
+          "findingIndex": 1,
+          "expected": "should-fix",
+          "actual": "blocker"
+        },
+        {
+          "stage": "triage",
+          "expectedId": "E07",
+          "findingIndex": 0,
+          "expected": "should-fix",
+          "actual": "blocker"
+        }
+      ]
+    },
+    {
+      "panelId": "7497707a65400829",
+      "caseId": "C09",
+      "mismatches": [
+        {
+          "stage": "raw",
+          "expectedId": "E09",
+          "findingIndex": 2,
+          "expected": "blocker",
+          "actual": "should-fix"
+        }
+      ]
+    },
+    {
+      "panelId": "7e8b9f422d3f4248",
+      "caseId": "C05",
+      "mismatches": [
+        {
+          "stage": "raw",
+          "expectedId": "E05",
+          "findingIndex": 7,
+          "expected": "blocker",
+          "actual": "should-fix"
+        }
+      ]
+    },
+    {
+      "panelId": "8269903fe2d73ed8",
+      "caseId": "C09",
+      "mismatches": [
+        {
+          "stage": "raw",
+          "expectedId": "E09",
+          "findingIndex": 1,
+          "expected": "blocker",
+          "actual": "should-fix"
+        },
+        {
+          "stage": "raw",
+          "expectedId": "E09",
+          "findingIndex": 3,
+          "expected": "blocker",
+          "actual": "should-fix"
+        }
+      ]
+    },
+    {
+      "panelId": "8ca2b7ac59d8e704",
+      "caseId": "C14",
+      "mismatches": [
+        {
+          "stage": "raw",
+          "expectedId": "E14",
+          "findingIndex": 0,
+          "expected": "blocker",
+          "actual": "should-fix"
+        }
+      ]
+    },
+    {
+      "panelId": "a2fb460e0e41c0bd",
+      "caseId": "C05",
+      "mismatches": [
+        {
+          "stage": "raw",
+          "expectedId": "E05",
+          "findingIndex": 7,
+          "expected": "blocker",
+          "actual": "should-fix"
+        },
+        {
+          "stage": "raw",
+          "expectedId": "E05",
+          "findingIndex": 8,
+          "expected": "blocker",
+          "actual": "should-fix"
+        }
+      ]
+    },
+    {
+      "panelId": "a54fd5f5d8245ca6",
+      "caseId": "C09",
+      "mismatches": [
+        {
+          "stage": "raw",
+          "expectedId": "E09",
+          "findingIndex": 2,
+          "expected": "blocker",
+          "actual": "should-fix"
+        }
+      ]
+    },
+    {
+      "panelId": "a9fdad592eec3721",
+      "caseId": "C07",
+      "mismatches": [
+        {
+          "stage": "raw",
+          "expectedId": "E07",
+          "findingIndex": 0,
+          "expected": "should-fix",
+          "actual": "blocker"
+        },
+        {
+          "stage": "raw",
+          "expectedId": "E07",
+          "findingIndex": 1,
+          "expected": "should-fix",
+          "actual": "blocker"
+        },
+        {
+          "stage": "triage",
+          "expectedId": "E07",
+          "findingIndex": 0,
+          "expected": "should-fix",
+          "actual": "blocker"
+        }
+      ]
+    },
+    {
+      "panelId": "ad6548bb4f00c3e0",
+      "caseId": "C09",
+      "mismatches": [
+        {
+          "stage": "raw",
+          "expectedId": "E09",
+          "findingIndex": 2,
+          "expected": "blocker",
+          "actual": "should-fix"
+        }
+      ]
+    },
+    {
+      "panelId": "b2e1d8405b8e7924",
+      "caseId": "C07",
+      "mismatches": [
+        {
+          "stage": "raw",
+          "expectedId": "E07",
+          "findingIndex": 0,
+          "expected": "should-fix",
+          "actual": "blocker"
+        },
+        {
+          "stage": "raw",
+          "expectedId": "E07",
+          "findingIndex": 2,
+          "expected": "should-fix",
+          "actual": "blocker"
+        },
+        {
+          "stage": "triage",
+          "expectedId": "E07",
+          "findingIndex": 0,
+          "expected": "should-fix",
+          "actual": "blocker"
+        }
+      ]
+    },
+    {
+      "panelId": "c01ad3f65eda6055",
+      "caseId": "C07",
+      "mismatches": [
+        {
+          "stage": "raw",
+          "expectedId": "E07",
+          "findingIndex": 0,
+          "expected": "should-fix",
+          "actual": "blocker"
+        },
+        {
+          "stage": "raw",
+          "expectedId": "E07",
+          "findingIndex": 1,
+          "expected": "should-fix",
+          "actual": "blocker"
+        },
+        {
+          "stage": "triage",
+          "expectedId": "E07",
+          "findingIndex": 0,
+          "expected": "should-fix",
+          "actual": "blocker"
+        }
+      ]
+    },
+    {
+      "panelId": "c0863dd83fa78411",
+      "caseId": "C07",
+      "mismatches": [
+        {
+          "stage": "raw",
+          "expectedId": "E07",
+          "findingIndex": 0,
+          "expected": "should-fix",
+          "actual": "blocker"
+        },
+        {
+          "stage": "raw",
+          "expectedId": "E07",
+          "findingIndex": 1,
+          "expected": "should-fix",
+          "actual": "blocker"
+        },
+        {
+          "stage": "triage",
+          "expectedId": "E07",
+          "findingIndex": 0,
+          "expected": "should-fix",
+          "actual": "blocker"
+        }
+      ]
+    },
+    {
+      "panelId": "c3b4b18336c46246",
+      "caseId": "C07",
+      "mismatches": [
+        {
+          "stage": "raw",
+          "expectedId": "E07",
+          "findingIndex": 0,
+          "expected": "should-fix",
+          "actual": "blocker"
+        },
+        {
+          "stage": "raw",
+          "expectedId": "E07",
+          "findingIndex": 1,
+          "expected": "should-fix",
+          "actual": "blocker"
+        },
+        {
+          "stage": "triage",
+          "expectedId": "E07",
+          "findingIndex": 0,
+          "expected": "should-fix",
+          "actual": "blocker"
+        }
+      ]
+    },
+    {
+      "panelId": "c6110c50437cdf34",
+      "caseId": "C07",
+      "mismatches": [
+        {
+          "stage": "raw",
+          "expectedId": "E07",
+          "findingIndex": 0,
+          "expected": "should-fix",
+          "actual": "blocker"
+        },
+        {
+          "stage": "raw",
+          "expectedId": "E07",
+          "findingIndex": 2,
+          "expected": "should-fix",
+          "actual": "blocker"
+        },
+        {
+          "stage": "triage",
+          "expectedId": "E07",
+          "findingIndex": 0,
+          "expected": "should-fix",
+          "actual": "blocker"
+        }
+      ]
+    },
+    {
+      "panelId": "f6203a4f658ed64b",
+      "caseId": "C07",
+      "mismatches": [
+        {
+          "stage": "raw",
+          "expectedId": "E07",
+          "findingIndex": 0,
+          "expected": "should-fix",
+          "actual": "blocker"
+        },
+        {
+          "stage": "raw",
+          "expectedId": "E07",
+          "findingIndex": 1,
+          "expected": "should-fix",
+          "actual": "blocker"
+        },
+        {
+          "stage": "triage",
+          "expectedId": "E07",
+          "findingIndex": 0,
+          "expected": "should-fix",
+          "actual": "blocker"
+        }
+      ]
+    },
+    {
+      "panelId": "0cae4b869586cca2",
+      "caseId": "C13",
+      "mismatches": [
+        {
+          "stage": "raw",
+          "expectedId": "E13",
+          "findingIndex": 0,
+          "expected": "blocker",
+          "actual": "should-fix"
+        }
+      ]
+    },
+    {
+      "panelId": "0e469d89d1fdcdc0",
+      "caseId": "C21",
+      "mismatches": [
+        {
+          "stage": "raw",
+          "expectedId": "E21",
+          "findingIndex": 1,
+          "expected": "blocker",
+          "actual": "should-fix"
+        },
+        {
+          "stage": "raw",
+          "expectedId": "E21",
+          "findingIndex": 3,
+          "expected": "blocker",
+          "actual": "should-fix"
+        }
+      ]
+    },
+    {
+      "panelId": "0f1afc74e4e94b5f",
+      "caseId": "C13",
+      "mismatches": [
+        {
+          "stage": "raw",
+          "expectedId": "E13",
+          "findingIndex": 1,
+          "expected": "blocker",
+          "actual": "should-fix"
+        }
+      ]
+    },
+    {
+      "panelId": "a2627aa6e7a496fb",
+      "caseId": "C13",
+      "mismatches": [
+        {
+          "stage": "raw",
+          "expectedId": "E13",
+          "findingIndex": 0,
+          "expected": "blocker",
+          "actual": "should-fix"
+        }
+      ]
+    },
+    {
+      "panelId": "a706ca6b4851f564",
+      "caseId": "C21",
+      "mismatches": [
+        {
+          "stage": "raw",
+          "expectedId": "E21",
+          "findingIndex": 2,
+          "expected": "blocker",
+          "actual": "should-fix"
+        }
+      ]
+    },
+    {
+      "panelId": "ea31464f2e5f5018",
+      "caseId": "C13",
+      "mismatches": [
+        {
+          "stage": "raw",
+          "expectedId": "E13",
+          "findingIndex": 1,
+          "expected": "blocker",
+          "actual": "should-fix"
+        }
+      ]
+    },
+    {
+      "panelId": "fd2c10d855f68136",
+      "caseId": "C21",
+      "mismatches": [
+        {
+          "stage": "raw",
+          "expectedId": "E21",
+          "findingIndex": 2,
+          "expected": "blocker",
+          "actual": "should-fix"
+        }
+      ]
+    }
+  ],
+  "triageLosses": [],
+  "unmatched": [
+    {
+      "panelId": "022393c2f1358b28",
+      "caseId": "C10",
+      "stage": "raw",
+      "findingIndex": 1,
+      "finding": {
+        "lens": "Infrastructure",
+        "severity": "should-fix",
+        "title": "Install always reports success, so callers can't detect or contain conflicts",
+        "evidence": "`return true;` is now unconditional, so the false return for conflicts in the spec is gone. Callers can no longer find or limit installs that overwrote non-link nodes.",
+        "location": "module.js: install(), return statement"
+      },
+      "status": "human-pending"
+    },
+    {
+      "panelId": "022393c2f1358b28",
+      "caseId": "C10",
+      "stage": "raw",
+      "findingIndex": 3,
+      "finding": {
+        "lens": "Staff engineer",
+        "severity": "optional",
+        "title": "Redundant delete before assignment",
+        "evidence": "`delete fs[target]` is immediately followed by `fs[target]=...`, which already replaces the node, so the delete adds nothing. Restore the kind check instead.",
+        "location": "module.js: install(), `delete fs[target];`"
+      },
+      "status": "human-pending"
+    },
+    {
+      "panelId": "08291706dd2d7d54",
+      "caseId": "C01",
+      "stage": "raw",
+      "findingIndex": 1,
+      "finding": {
+        "lens": "Staff engineer",
+        "severity": "should-fix",
+        "title": "No test shows that a session cannot read another tenant's document by supplying a matching request.tenant",
+        "evidence": "The fixture includes no tests for the new behavior. A regression test with session.tenant='A', request.tenant='B' and row.tenant='B' that expects null would have caught this change.",
+        "location": "module.js:read (missing test coverage)"
+      },
+      "status": "human-pending"
+    },
+    {
+      "panelId": "0f62411721d92170",
+      "caseId": "C23",
+      "stage": "raw",
+      "findingIndex": 1,
+      "finding": {
+        "lens": "Staff engineer",
+        "severity": "optional",
+        "title": "Unused request counter is left in place",
+        "evidence": "`++state.request` still runs, but nothing reads its value anymore. This makes it look like requests are still ordered when they aren't. Either restore the comparison (the correct fix) or remove the counter.",
+        "location": "module.js:search, line 2"
+      },
+      "status": "human-pending"
+    },
+    {
+      "panelId": "0f62411721d92170",
+      "caseId": "C23",
+      "stage": "triage",
+      "findingIndex": 1,
+      "finding": {
+        "lens": "Staff engineer",
+        "severity": "optional",
+        "title": "Request counter is incremented but never read",
+        "evidence": "`++state.request` still runs, but nothing reads the value, so it suggests requests are ordered when they are not. The Product lens also called this dead code. The fix for the blocker (capture the id and compare it in the callback) resolves this too.",
+        "location": "module.js:search (after), line 2"
+      },
+      "status": "human-pending"
+    },
+    {
+      "panelId": "0f6eb1c819b488b1",
+      "caseId": "C09",
+      "stage": "raw",
+      "findingIndex": 2,
+      "finding": {
+        "lens": "Staff engineer",
+        "severity": "should-fix",
+        "title": "No test covers multi-hop alias chains for the /repo guard",
+        "evidence": "The change includes no test showing that a chain of two or more aliases ending under /repo is refused and records no operation. A test like that would have caught this regression. Fix: go back to `resolved=canonical(path,links)`, use `resolved` in the push, and add tests for 0, 1 and 2+ hop chains plus the exact '/repo' boundary.",
+        "location": "module.js install(); tests absent"
+      },
+      "status": "human-pending"
+    },
+    {
+      "panelId": "10cb672e9d50b9a1",
+      "caseId": "C05",
+      "stage": "raw",
+      "findingIndex": 1,
+      "finding": {
+        "lens": "Staff engineer",
+        "severity": "should-fix",
+        "title": "Reads moved outside the snapshot and the transaction result is no longer returned",
+        "evidence": "The before code read balances with tx.get inside an isolated snapshot and returned the result of db.transaction. The after code reads with db.get outside any isolation, so concurrent transfers can read the same balance and overwrite each other's update. It also returns undefined, which breaks any caller that used the transaction's return value.",
+        "location": "module.js transfer(): `db.get(from)` / `db.get(to)` and missing `return`"
+      },
+      "status": "human-pending"
+    },
+    {
+      "panelId": "10cb672e9d50b9a1",
+      "caseId": "C05",
+      "stage": "raw",
+      "findingIndex": 3,
+      "finding": {
+        "lens": "Data & contracts",
+        "severity": "should-fix",
+        "title": "Return value changed: transfer no longer returns the transaction result",
+        "evidence": "Before, transfer returned db.transaction(...). After, it returns undefined. Callers that await or check the result of transfer will see a different value than they used to.",
+        "location": "module.js transfer(): missing return statement"
+      },
+      "status": "human-pending"
+    },
+    {
+      "panelId": "10cb672e9d50b9a1",
+      "caseId": "C05",
+      "stage": "raw",
+      "findingIndex": 4,
+      "finding": {
+        "lens": "Data & contracts",
+        "severity": "should-fix",
+        "title": "Reads and writes are no longer isolated, so concurrent transfers can lose updates",
+        "evidence": "db.get and db.save now run outside an isolated snapshot. If another transfer touches the same account between the get and the save, one of the updates is overwritten. Before, tx.get and tx.save ran inside the isolated transaction snapshot.",
+        "location": "module.js transfer(): db.get(from)/db.save(from, ...), db.get(to)/db.save(to, ...)"
+      },
+      "status": "human-pending"
+    },
+    {
+      "panelId": "10cb672e9d50b9a1",
+      "caseId": "C05",
+      "stage": "raw",
+      "findingIndex": 7,
+      "finding": {
+        "lens": "Operability",
+        "severity": "should-fix",
+        "title": "Transfer result is no longer returned to callers",
+        "evidence": "The before code returned db.transaction(...), so callers got the commit result and could await it or see it fail. The after code returns undefined. Callers that rely on the return value to confirm or monitor the transfer lose that signal.",
+        "location": "module.js: transfer(), missing `return`"
+      },
+      "status": "human-pending"
+    },
+    {
+      "panelId": "10cb672e9d50b9a1",
+      "caseId": "C05",
+      "stage": "triage",
+      "findingIndex": 1,
+      "finding": {
+        "lens": "Data & contracts",
+        "severity": "should-fix",
+        "title": "Reads and writes now run outside the isolated snapshot, so concurrent transfers can lose updates",
+        "evidence": "Staff engineer and Data & contracts both reported this. The before code used tx.get/tx.save inside db.transaction, which the context describes as writing to an isolated snapshot. The after code uses db.get followed by db.save with no isolation. Two concurrent transfers on the same account can read the same balance, and one update can overwrite the other.",
+        "location": "module.js transfer(): `db.get(from)`/`db.save(from, ...)` and `db.get(to)`/`db.save(to, ...)`"
+      },
+      "status": "human-pending"
+    },
+    {
+      "panelId": "10cb672e9d50b9a1",
+      "caseId": "C05",
+      "stage": "triage",
+      "findingIndex": 2,
+      "finding": {
+        "lens": "Data & contracts",
+        "severity": "should-fix",
+        "title": "transfer() no longer returns the transaction result",
+        "evidence": "Staff engineer, Data & contracts and Operability all reported this. Before, transfer returned `db.transaction(...)`. After, there is no return statement, so it returns undefined. Any caller that awaits or checks the result, or relies on it to see a failure, now gets different behaviour. The impact depends on what db.transaction returns, which the fixture does not specify.",
+        "location": "module.js transfer(): missing `return`"
+      },
+      "status": "human-pending"
+    },
+    {
+      "panelId": "1602939db2e695f8",
+      "caseId": "C05",
+      "stage": "raw",
+      "findingIndex": 1,
+      "finding": {
+        "lens": "Staff engineer",
+        "severity": "should-fix",
+        "title": "Reads and writes no longer use an isolated snapshot, so concurrent transfers can lose updates",
+        "evidence": "The old code read and wrote through tx, which works on an isolated snapshot. The new code calls db.get and then db.save directly, so it reads a value, changes it and writes it back with no isolation. Two transfers running at the same time can read the same balance, and one write will overwrite the other.",
+        "location": "module.js transfer(): `db.get(from)` / `db.get(to)` used outside db.transaction"
+      },
+      "status": "human-pending"
+    },
+    {
+      "panelId": "1602939db2e695f8",
+      "caseId": "C05",
+      "stage": "raw",
+      "findingIndex": 2,
+      "finding": {
+        "lens": "Staff engineer",
+        "severity": "should-fix",
+        "title": "Return value of transfer changed",
+        "evidence": "The old code returned the result of db.transaction(...), so callers could see whether the transfer committed. The new code returns undefined, which changes the function's contract for callers.",
+        "location": "module.js transfer(): missing `return`"
+      },
+      "status": "human-pending"
+    },
+    {
+      "panelId": "1602939db2e695f8",
+      "caseId": "C05",
+      "stage": "raw",
+      "findingIndex": 4,
+      "finding": {
+        "lens": "Data & contracts",
+        "severity": "should-fix",
+        "title": "Return contract changed: transfer no longer returns the transaction result",
+        "evidence": "Before, transfer returned the result of db.transaction(...). Now it returns undefined. Any caller that awaits or checks that result for commit status gets nothing back. Callers could also have relied on the transaction's outcome to detect a failure.",
+        "location": "module.js transfer() return value"
+      },
+      "status": "human-pending"
+    },
+    {
+      "panelId": "1602939db2e695f8",
+      "caseId": "C05",
+      "stage": "raw",
+      "findingIndex": 5,
+      "finding": {
+        "lens": "Data & contracts",
+        "severity": "should-fix",
+        "title": "Reads happen outside an isolated snapshot, so balances can be read stale or lost between get and save",
+        "evidence": "Before, tx.get read from an isolated snapshot. Now db.get and db.save run on live state with no isolation. If two transfers run at the same time on the same account, one can overwrite the other's update (a lost update), which corrupts the balance.",
+        "location": "module.js transfer(), `db.get(from)` / `db.get(to)`"
+      },
+      "status": "human-pending"
+    },
+    {
+      "panelId": "1602939db2e695f8",
+      "caseId": "C05",
+      "stage": "triage",
+      "findingIndex": 1,
+      "finding": {
+        "lens": "Data & contracts",
+        "severity": "should-fix",
+        "title": "transfer no longer returns the db.transaction result",
+        "evidence": "Before, transfer returned the result of db.transaction(...). Now it has no return statement, so it returns undefined. Any caller that uses the result loses it. The Staff engineer lens reported the same change, and Operability listed it as a gap. No callers were supplied, so the impact is not confirmed.",
+        "location": "module.js transfer(): missing `return`"
+      },
+      "status": "human-pending"
+    },
+    {
+      "panelId": "17a435ec0ee8bf52",
+      "caseId": "C14",
+      "stage": "raw",
+      "findingIndex": 2,
+      "finding": {
+        "lens": "Staff engineer",
+        "severity": "should-fix",
+        "title": "No test covers focus restoration on Escape",
+        "evidence": "The change ships no test. A regression test should open with a mock trigger, send Escape, and assert `state.open===false` and `trigger.focus` was called once. It should also check that non-Escape keys do not close the dialog or move focus. The removed behavior would otherwise go unnoticed.",
+        "location": "module.js (no accompanying tests)"
+      },
+      "status": "human-pending"
+    },
+    {
+      "panelId": "1ee40e01156481d1",
+      "caseId": "C08",
+      "stage": "raw",
+      "findingIndex": 0,
+      "finding": {
+        "lens": "Staff engineer",
+        "severity": "optional",
+        "title": "Refactor changes the not-found return value when session.tenant is undefined",
+        "evidence": "Before, a falsy row always hit `return null`. After, `row?.tenant===session.tenant ? row : null` evaluates `undefined===undefined` as true when `find` returns undefined or null and `session.tenant` is undefined. The function then returns `row` (undefined) rather than null. This is not a leak, because no record is exposed. It does break the null-return contract on that path. Context says tenant IDs are opaque strings, so the case is unlikely. The optional chaining also made the tenant comparison harder to reason about than the explicit `!row` guard.",
+        "location": "module.js:read, line 4 (return row?.tenant===session.tenant ? row : null)"
+      },
+      "status": "human-pending"
+    },
+    {
+      "panelId": "2c483f426b337baa",
+      "caseId": "C19",
+      "stage": "raw",
+      "findingIndex": 2,
+      "finding": {
+        "lens": "Staff engineer",
+        "severity": "should-fix",
+        "title": "No test covers the zero-cents boundary",
+        "evidence": "No tests come with the change. The spec singles out 0 vs null as the key distinction, and a test where `quote` returns 0 and expects `available: true` (plus a null case expecting false) would have caught this regression.",
+        "location": "module.js:delivery (missing tests)"
+      },
+      "status": "human-pending"
+    },
+    {
+      "panelId": "330321bf82df3db2",
+      "caseId": "C14",
+      "stage": "raw",
+      "findingIndex": 2,
+      "finding": {
+        "lens": "Staff engineer",
+        "severity": "should-fix",
+        "title": "No test covers the focus-restoration behavior",
+        "evidence": "The change deletes the only code that implements the spec'd behavior and adds no test. A test that opens with a mock trigger, sends Escape, and asserts `trigger.focus` was called once would have caught the regression. Non-Escape keys should also be covered, to confirm they leave the dialog open and do not move focus.",
+        "location": "module.js (no tests supplied)"
+      },
+      "status": "human-pending"
+    },
+    {
+      "panelId": "33d4f8326d3dfa09",
+      "caseId": "C19",
+      "stage": "raw",
+      "findingIndex": 2,
+      "finding": {
+        "lens": "Staff engineer",
+        "severity": "should-fix",
+        "title": "No regression test covering the zero-cents boundary",
+        "evidence": "The change alters availability semantics, but no tests are supplied. The contract has three distinct cases: null, 0, and a positive integer. A test for `quote() === 0` expecting `available:true` would have caught this defect.",
+        "location": "module.js (no accompanying tests)"
+      },
+      "status": "human-pending"
+    },
+    {
+      "panelId": "42d10e3e86ac46cb",
+      "caseId": "C18",
+      "stage": "raw",
+      "findingIndex": 1,
+      "finding": {
+        "lens": "Staff engineer",
+        "severity": "should-fix",
+        "title": "No guard for out-of-range or stale selection",
+        "evidence": "archiveSelected dereferences rows[selection].id without checking that the row exists. An empty list, a filtered list, or a null selection throws instead of being a safe no-op.",
+        "location": "module.js: archiveSelected()"
+      },
+      "status": "human-pending"
+    },
+    {
+      "panelId": "42d10e3e86ac46cb",
+      "caseId": "C18",
+      "stage": "raw",
+      "findingIndex": 2,
+      "finding": {
+        "lens": "Staff engineer",
+        "severity": "should-fix",
+        "title": "No tests for the new behavior",
+        "evidence": "No tests are supplied. The spec's key scenarios (archive after filter, archive after sort, stale selection) are uncovered. A test that selects a row, reorders the rows, and archives would have caught the regression.",
+        "location": "module.js (tests absent)"
+      },
+      "status": "human-pending"
+    },
+    {
+      "panelId": "4321120a61c1360f",
+      "caseId": "C14",
+      "stage": "raw",
+      "findingIndex": 2,
+      "finding": {
+        "lens": "Staff engineer",
+        "severity": "should-fix",
+        "title": "No test covers focus restoration on Escape",
+        "evidence": "The change removes the behavior the spec requires, and no test catches it. A test should call open(trigger), send onKey with {key:'Escape'}, and check that trigger.focus was called (or that document.activeElement === trigger after unmount). It should also check that keys other than Escape leave state.open true and don't move focus.",
+        "location": "module.js: onKey (missing test coverage)"
+      },
+      "status": "human-pending"
+    },
+    {
+      "panelId": "486da0adcd55b7cb",
+      "caseId": "C10",
+      "stage": "raw",
+      "findingIndex": 2,
+      "finding": {
+        "lens": "Staff engineer",
+        "severity": "blocker",
+        "title": "Returns true on conflicts, breaking the spec's return-false contract",
+        "evidence": "The function now always runs `return true;`. Callers expect false when a real file or directory is in the way. Without that signal they cannot tell that a conflict happened, and they cannot know data was overwritten.",
+        "location": "module.js:install, line 3 (`return true;`)"
+      },
+      "status": "human-pending"
+    },
+    {
+      "panelId": "486da0adcd55b7cb",
+      "caseId": "C10",
+      "stage": "raw",
+      "findingIndex": 3,
+      "finding": {
+        "lens": "Staff engineer",
+        "severity": "optional",
+        "title": "The `delete` is unnecessary",
+        "evidence": "`delete fs[target]` comes right before an assignment that already replaces the whole node, so it does nothing useful and only makes the destructive intent more obvious. Restoring the original guard is the right fix. The delete is not needed.",
+        "location": "module.js:install, line 2"
+      },
+      "status": "human-pending"
+    },
+    {
+      "panelId": "4b5521310a6f102a",
+      "caseId": "C23",
+      "stage": "raw",
+      "findingIndex": 1,
+      "finding": {
+        "lens": "Staff engineer",
+        "severity": "optional",
+        "title": "Leftover request counter increment has no purpose",
+        "evidence": "`++state.request;` still runs, but nothing reads the value any more. It looks like the ordering protection is still there when it is not. Restore the captured-token comparison and keep the increment.",
+        "location": "module.js: search(), line `++state.request;`"
+      },
+      "status": "human-pending"
+    },
+    {
+      "panelId": "4b5521310a6f102a",
+      "caseId": "C23",
+      "stage": "raw",
+      "findingIndex": 4,
+      "finding": {
+        "lens": "Product",
+        "severity": "optional",
+        "title": "Request counter is still incremented but no longer used",
+        "evidence": "`++state.request;` is still there, but nothing reads its value any more. This makes it look like stale responses are still being handled when they aren't.",
+        "location": "module.js: search(), line `++state.request;`"
+      },
+      "status": "human-pending"
+    },
+    {
+      "panelId": "4b5521310a6f102a",
+      "caseId": "C23",
+      "stage": "triage",
+      "findingIndex": 1,
+      "finding": {
+        "lens": "Staff engineer",
+        "severity": "optional",
+        "title": "Request counter is still incremented but nothing reads it",
+        "evidence": "Merged from the Staff engineer and Product reports. `++state.request;` still runs, but nothing reads the value, so it looks like stale responses are still handled when they aren't. The blocker fix resolves this too: restore the captured token and the comparison rather than deleting the increment.",
+        "location": "module.js: search(), line `++state.request;`"
+      },
+      "status": "human-pending"
+    },
+    {
+      "panelId": "50b79072a7331a8d",
+      "caseId": "C07",
+      "stage": "raw",
+      "findingIndex": 1,
+      "finding": {
+        "lens": "Staff engineer",
+        "severity": "should-fix",
+        "title": "No test covers the retry bound",
+        "evidence": "The change touches the boundary but adds no test. A request stub that always returns retryable should assert exactly 3 calls and that the last response is returned. Other cases to cover are success on attempts 1, 2 and 3, and a non-retryable failure returning immediately. Any of these boundary tests would have caught the 4-call regression.",
+        "location": "module.js tests (absent)"
+      },
+      "status": "human-pending"
+    },
+    {
+      "panelId": "571913fba5043d87",
+      "caseId": "C01",
+      "stage": "raw",
+      "findingIndex": 1,
+      "finding": {
+        "lens": "Staff engineer",
+        "severity": "should-fix",
+        "title": "No tests for cross-tenant access or for a spoofed request tenant",
+        "evidence": "The change swaps the trust boundary with no accompanying tests. Missing cases: session tenant matches and request tenant is absent or different (should return the row); session tenant differs while request.tenant is set to the document's tenant (should return null); and a missing row (should return null). Any of the first two would have caught this regression.",
+        "location": "module.js (no test coverage for read)"
+      },
+      "status": "human-pending"
+    },
+    {
+      "panelId": "5d8c4a622a25e1ef",
+      "caseId": "C05",
+      "stage": "raw",
+      "findingIndex": 1,
+      "finding": {
+        "lens": "Staff engineer",
+        "severity": "should-fix",
+        "title": "Return value of transfer dropped",
+        "evidence": "The before version returned the result of db.transaction(...). The after version returns undefined, so any caller that awaits or checks the transaction result loses that signal.",
+        "location": "module.js transfer(): missing `return db.transaction(...)`"
+      },
+      "status": "human-pending"
+    },
+    {
+      "panelId": "5d8c4a622a25e1ef",
+      "caseId": "C05",
+      "stage": "raw",
+      "findingIndex": 2,
+      "finding": {
+        "lens": "Staff engineer",
+        "severity": "should-fix",
+        "title": "Reads and writes moved outside the isolated snapshot",
+        "evidence": "Without a transaction, db.get and db.save run against live state. Two transfers running at the same time on the same account can read the same balance and overwrite each other's update. The before version used tx.get and tx.save inside an isolated snapshot.",
+        "location": "module.js transfer(): `db.get(from)` / `db.get(to)`"
+      },
+      "status": "human-pending"
+    },
+    {
+      "panelId": "5d8c4a622a25e1ef",
+      "caseId": "C05",
+      "stage": "raw",
+      "findingIndex": 4,
+      "finding": {
+        "lens": "Data & contracts",
+        "severity": "should-fix",
+        "title": "Read-modify-write runs outside the isolated snapshot, so concurrent transfers can overwrite each other",
+        "evidence": "The new code reads with db.get and then writes with db.save directly, without the isolated snapshot that db.transaction provided. If two transfers on the same account run at the same time, one can overwrite the other's update. The old code did the reads and writes through tx.get/tx.save inside the transaction.",
+        "location": "module.js transfer(): `db.get(from)` / `db.get(to)` used outside db.transaction"
+      },
+      "status": "human-pending"
+    },
+    {
+      "panelId": "5d8c4a622a25e1ef",
+      "caseId": "C05",
+      "stage": "raw",
+      "findingIndex": 5,
+      "finding": {
+        "lens": "Data & contracts",
+        "severity": "optional",
+        "title": "Return value changed: callers no longer get the transaction result",
+        "evidence": "The old code returned db.transaction(...). The new code returns undefined, so any caller that awaits or chains on transfer() to learn whether the commit finished now gets nothing back.",
+        "location": "module.js transfer(): missing `return`"
+      },
+      "status": "human-pending"
+    },
+    {
+      "panelId": "5d8c4a622a25e1ef",
+      "caseId": "C05",
+      "stage": "triage",
+      "findingIndex": 1,
+      "finding": {
+        "lens": "Data & contracts",
+        "severity": "should-fix",
+        "title": "Read-modify-write moved outside the isolated snapshot, so concurrent transfers can lose updates",
+        "evidence": "Data & contracts, Staff engineer and Operability all reported this. The after code reads with `db.get` and writes with `db.save` against live state. The before code used `tx.get`/`tx.save` inside the isolated snapshot. Two transfers that overlap on the same account can read the same balance, and one can overwrite the other's update.",
+        "location": "module.js transfer(): `db.get(from)` / `db.get(to)` used outside db.transaction"
+      },
+      "status": "human-pending"
+    },
+    {
+      "panelId": "5d8c4a622a25e1ef",
+      "caseId": "C05",
+      "stage": "triage",
+      "findingIndex": 2,
+      "finding": {
+        "lens": "Staff engineer",
+        "severity": "should-fix",
+        "title": "transfer() no longer returns the transaction result",
+        "evidence": "Staff engineer rated this should-fix and Data & contracts rated it optional. I kept should-fix. The before code returned `db.transaction(...)`, and the after code returns undefined, so any caller that awaits or checks the commit result loses that signal. It's not a blocker because the callers aren't shown.",
+        "location": "module.js transfer(): missing `return db.transaction(...)`"
+      },
+      "status": "human-pending"
+    },
+    {
+      "panelId": "5ebca9a8106f1585",
+      "caseId": "C23",
+      "stage": "raw",
+      "findingIndex": 1,
+      "finding": {
+        "lens": "Staff engineer",
+        "severity": "optional",
+        "title": "Leftover request counter increment no longer does anything",
+        "evidence": "After the change, `++state.request` still runs but nothing reads its value. Readers may think it still protects against stale responses. Either restore the captured-token comparison (the preferred fix) or delete the increment.",
+        "location": "module.js: search(), line `++state.request;`"
+      },
+      "status": "human-pending"
+    },
+    {
+      "panelId": "5ebca9a8106f1585",
+      "caseId": "C23",
+      "stage": "triage",
+      "findingIndex": 1,
+      "finding": {
+        "lens": "Staff engineer",
+        "severity": "optional",
+        "title": "The `++state.request` increment is now dead code",
+        "evidence": "After the change, `++state.request` still runs, but nothing reads the value, so readers may think it still guards against stale responses. The Product lens noted the same thing inside its blocker finding. Restoring the guard (the blocker fix) also fixes this. Otherwise, delete the increment.",
+        "location": "module.js: search() (after), line `++state.request;`"
+      },
+      "status": "human-pending"
+    },
+    {
+      "panelId": "709442a93554dd41",
+      "caseId": "C23",
+      "stage": "raw",
+      "findingIndex": 1,
+      "finding": {
+        "lens": "Staff engineer",
+        "severity": "optional",
+        "title": "Leftover counter increment has no effect",
+        "evidence": "`++state.request;` stays, but nothing reads the value any more. It looks like the race is still handled when it is not. Restore the captured-token comparison instead of keeping the dead increment.",
+        "location": "module.js: search(), line `++state.request;`"
+      },
+      "status": "human-pending"
+    },
+    {
+      "panelId": "7342fa63fca206e0",
+      "caseId": "C18",
+      "stage": "raw",
+      "findingIndex": 1,
+      "finding": {
+        "lens": "Staff engineer",
+        "severity": "blocker",
+        "title": "Out-of-range index after filtering throws or archives undefined",
+        "evidence": "If a filter shrinks `rows` below the stored index, `rows[selection]` is undefined, and `rows[selection].id` throws a TypeError. The archive action then fails for the user. Before the change, archive was called with the stored id and did not depend on the current rows.",
+        "location": "module.js: archiveSelected()"
+      },
+      "status": "human-pending"
+    },
+    {
+      "panelId": "7342fa63fca206e0",
+      "caseId": "C18",
+      "stage": "triage",
+      "findingIndex": 1,
+      "finding": {
+        "lens": "Staff engineer",
+        "severity": "blocker",
+        "title": "Archive throws a TypeError if a filter leaves fewer rows than the stored index",
+        "evidence": "Raised by Staff engineer, and also by Product inside its wrong-row finding. If a filter shortens `rows` so that its length is at or below the stored index, `rows[selection]` is undefined. Reading `.id` on it throws a TypeError, so archive fails for the user. The before code passed the stored id directly and did not depend on the current rows. Correction to the original title: the code never archives `undefined`. It throws before `archive` is called.",
+        "location": "module.js: archiveSelected() (`rows[selection].id`)"
+      },
+      "status": "human-pending"
+    },
+    {
+      "panelId": "73843d1818d24a8a",
+      "caseId": "C18",
+      "stage": "raw",
+      "findingIndex": 1,
+      "finding": {
+        "lens": "Staff engineer",
+        "severity": "should-fix",
+        "title": "No tests cover archiving after a filter or sort",
+        "evidence": "The spec explicitly requires archive to work after the list is filtered or reordered, but the change includes no tests for that. A test that selects a row, reorders or filters `rows`, then checks which id archive receives would catch the regression above. So would a test where the filtered list is shorter than the selected index.",
+        "location": "module.js (tests absent)"
+      },
+      "status": "human-pending"
+    },
+    {
+      "panelId": "74884a1e9ddea121",
+      "caseId": "C01",
+      "stage": "raw",
+      "findingIndex": 1,
+      "finding": {
+        "lens": "Staff engineer",
+        "severity": "should-fix",
+        "title": "No tests for tenant isolation or spoofed request tenant",
+        "evidence": "The change alters the authorization logic and no tests are shown. Needed cases: a matching session tenant returns the row, a different session tenant returns null, and a spoofed request.tenant that differs from session.tenant returns null. A missing id and a missing request.tenant should also be covered. A test for the spoofed case would have caught this regression.",
+        "location": "module.js:read (test coverage)"
+      },
+      "status": "human-pending"
+    },
+    {
+      "panelId": "75c088cfbbebf79e",
+      "caseId": "C05",
+      "stage": "raw",
+      "findingIndex": 1,
+      "finding": {
+        "lens": "Staff engineer",
+        "severity": "should-fix",
+        "title": "Return value of transfer changed from the transaction result to undefined",
+        "evidence": "Before: `return db.transaction(...)` passed the transaction result to callers. After: transfer has no return statement, so callers that relied on the result, or awaited it if transaction is async, now get undefined.",
+        "location": "module.js: transfer function body"
+      },
+      "status": "human-pending"
+    },
+    {
+      "panelId": "75c088cfbbebf79e",
+      "caseId": "C05",
+      "stage": "raw",
+      "findingIndex": 2,
+      "finding": {
+        "lens": "Staff engineer",
+        "severity": "should-fix",
+        "title": "Reads moved outside the isolated snapshot",
+        "evidence": "db.get is now read outside any transaction, so the read-modify-write is not isolated. Concurrent transfers can interleave and lose updates. The before code read through tx.get inside the snapshot.",
+        "location": "module.js: transfer, db.get(from) / db.get(to)"
+      },
+      "status": "human-pending"
+    },
+    {
+      "panelId": "75c088cfbbebf79e",
+      "caseId": "C05",
+      "stage": "raw",
+      "findingIndex": 4,
+      "finding": {
+        "lens": "Data & contracts",
+        "severity": "should-fix",
+        "title": "Reads and writes are no longer isolated, so concurrent transfers can overwrite each other",
+        "evidence": "The new code reads with db.get and writes with db.save directly, outside the isolated snapshot that db.transaction provides. If two transfers run at the same time, both can read the same old balance and the second write overwrites the first, so one update is lost.",
+        "location": "module.js transfer(): `db.get(from)` / `db.get(to)` read-modify-write"
+      },
+      "status": "human-pending"
+    },
+    {
+      "panelId": "75c088cfbbebf79e",
+      "caseId": "C05",
+      "stage": "raw",
+      "findingIndex": 5,
+      "finding": {
+        "lens": "Data & contracts",
+        "severity": "should-fix",
+        "title": "transfer() no longer returns the transaction result",
+        "evidence": "The old code returned db.transaction(...), so callers got back the transaction's result (for example a promise or a commit status). The new code returns undefined. Any caller that awaits or checks that value will now silently get nothing back.",
+        "location": "module.js transfer(): missing `return`"
+      },
+      "status": "human-pending"
+    },
+    {
+      "panelId": "75c088cfbbebf79e",
+      "caseId": "C05",
+      "stage": "raw",
+      "findingIndex": 8,
+      "finding": {
+        "lens": "Operability",
+        "severity": "should-fix",
+        "title": "Without the transaction snapshot, concurrent transfers can overwrite each other",
+        "evidence": "The after version reads with db.get and writes with db.save directly, outside the isolated snapshot that db.transaction provided. Two transfers running at the same time can both read the same balance and then overwrite each other's update. The result is wrong balances that leave no error or trace behind for anyone to find.",
+        "location": "module.js transfer(): db.get/db.save read-modify-write"
+      },
+      "status": "human-pending"
+    },
+    {
+      "panelId": "75c088cfbbebf79e",
+      "caseId": "C05",
+      "stage": "triage",
+      "findingIndex": 1,
+      "finding": {
+        "lens": "Data & contracts",
+        "severity": "should-fix",
+        "title": "Read-modify-write now runs outside the isolated snapshot, so concurrent transfers can overwrite each other",
+        "evidence": "All three lenses (Staff engineer, Data & contracts, Operability) reported this. Before, transfer read and wrote through tx.get/tx.save inside the snapshot that db.transaction provides. After, it uses db.get/db.save directly. Two transfers running at the same time can read the same balance, and the later write overwrites the earlier one with no error. This is inferred from the context's 'isolated snapshot' description. The fixture doesn't confirm that transfers actually run concurrently.",
+        "location": "module.js transfer(): db.get(from)/db.get(to) and the db.save calls that follow"
+      },
+      "status": "human-pending"
+    },
+    {
+      "panelId": "75c088cfbbebf79e",
+      "caseId": "C05",
+      "stage": "triage",
+      "findingIndex": 2,
+      "finding": {
+        "lens": "Data & contracts",
+        "severity": "should-fix",
+        "title": "transfer() no longer returns the transaction result",
+        "evidence": "Staff engineer and Data & contracts both reported this. Before: `return db.transaction(...)`. After: there is no return statement, so transfer returns undefined. Callers that used or awaited the result now silently get nothing. The context doesn't say what db.transaction returns, so how much this affects callers is unknown.",
+        "location": "module.js transfer(): missing `return`"
+      },
+      "status": "human-pending"
+    },
+    {
+      "panelId": "774a275e8cc26b1c",
+      "caseId": "C18",
+      "stage": "raw",
+      "findingIndex": 1,
+      "finding": {
+        "lens": "Staff engineer",
+        "severity": "should-fix",
+        "title": "No tests cover archiving after filter or reorder, or an out-of-range selection",
+        "evidence": "The spec's key behavior is that archive stays correct after filter or sort. The change includes no tests for that case, nor for a selection index that is out of range or has no matching row. A regression test would have caught the bug above.",
+        "location": "module.js: tests (none supplied)"
+      },
+      "status": "human-pending"
+    },
+    {
+      "panelId": "7984cb5705d1a24b",
+      "caseId": "C16",
+      "stage": "raw",
+      "findingIndex": 0,
+      "finding": {
+        "lens": "Frontend & accessibility",
+        "severity": "optional",
+        "title": "Primary submit button lost its explicit type attribute",
+        "evidence": "Before: button:{tag:'button',type:'submit',text:'Save'}. After: button:{tag:'button',text:'Save'}. Submission still works because a native button with omitted type defaults to submit inside a form, and the context states the form has exactly one primary button and no other submit handlers. The spec is still met, but the submit behavior now depends on an implicit HTML default rather than a declared contract.",
+        "location": "module.js, form() return value, button property (after change)"
+      },
+      "status": "human-pending"
+    },
+    {
+      "panelId": "7984cb5705d1a24b",
+      "caseId": "C16",
+      "stage": "raw",
+      "findingIndex": 1,
+      "finding": {
+        "lens": "Staff engineer",
+        "severity": "optional",
+        "title": "Explicit type removed; submit behavior relies on implicit default and no test covers it",
+        "evidence": "The change drops type:'submit' from the button. The context says native buttons with omitted type default to submit, and the form has one primary button and no other submit handlers. So click and Enter-in-input should still submit and call save once, and the spec is met. The risk is that the button is now less explicit. A renderer or a later refactor that stops passing the type through, or a button moved outside the form, would silently break submission. The diff adds no test for the click path or the Enter path, so nothing guards that behavior.",
+        "location": "module.js:form() button definition"
+      },
+      "status": "human-pending"
+    },
+    {
+      "panelId": "7e8b9f422d3f4248",
+      "caseId": "C05",
+      "stage": "raw",
+      "findingIndex": 1,
+      "finding": {
+        "lens": "Staff engineer",
+        "severity": "should-fix",
+        "title": "Reads now come from the live db instead of an isolated snapshot",
+        "evidence": "The new code uses db.get, which reads live state, instead of tx.get, which reads the isolated snapshot. The read and the write are separate steps, so two concurrent transfers can both read the same balance and one update can overwrite the other. The before version did these reads and writes inside the transaction snapshot.",
+        "location": "module.js transfer(): `db.get(from)` / `db.get(to)`"
+      },
+      "status": "human-pending"
+    },
+    {
+      "panelId": "7e8b9f422d3f4248",
+      "caseId": "C05",
+      "stage": "raw",
+      "findingIndex": 2,
+      "finding": {
+        "lens": "Staff engineer",
+        "severity": "should-fix",
+        "title": "Return value of transfer dropped",
+        "evidence": "The before version returned the result of db.transaction(...). The new version returns undefined, so any caller that relies on that return value (for example, a commit result) breaks.",
+        "location": "module.js transfer(): missing `return`"
+      },
+      "status": "human-pending"
+    },
+    {
+      "panelId": "7e8b9f422d3f4248",
+      "caseId": "C05",
+      "stage": "raw",
+      "findingIndex": 4,
+      "finding": {
+        "lens": "Data & contracts",
+        "severity": "should-fix",
+        "title": "Return contract changed: transfer no longer returns the transaction result",
+        "evidence": "Before: `return db.transaction(...)` gave callers the transaction's result or promise. After: the function returns undefined. Any caller that awaits or chains on the return value will see different behavior.",
+        "location": "module.js transfer(): missing `return db.transaction(...)`"
+      },
+      "status": "human-pending"
+    },
+    {
+      "panelId": "7e8b9f422d3f4248",
+      "caseId": "C05",
+      "stage": "raw",
+      "findingIndex": 5,
+      "finding": {
+        "lens": "Data & contracts",
+        "severity": "should-fix",
+        "title": "Non-isolated read-modify-write allows lost updates",
+        "evidence": "db.get followed by db.save now runs outside the isolated snapshot. A concurrent transfer touching the same account can interleave and overwrite the balance with a stale value.",
+        "location": "module.js transfer(): `db.save(from, db.get(from)-amount)` / `db.save(to, db.get(to)+amount)`"
+      },
+      "status": "human-pending"
+    },
+    {
+      "panelId": "7e8b9f422d3f4248",
+      "caseId": "C05",
+      "stage": "raw",
+      "findingIndex": 8,
+      "finding": {
+        "lens": "Operability",
+        "severity": "should-fix",
+        "title": "Return value removed, so callers can't detect or wait for completion",
+        "evidence": "The before version returned the result of db.transaction(...), so callers could see whether the transfer committed or failed. The after version returns undefined. Any caller that waits on or checks this result loses that signal, which makes failures harder to detect and trace.",
+        "location": "module.js transfer(): missing `return`"
+      },
+      "status": "human-pending"
+    },
+    {
+      "panelId": "7e8b9f422d3f4248",
+      "caseId": "C05",
+      "stage": "triage",
+      "findingIndex": 1,
+      "finding": {
+        "lens": "Data & contracts",
+        "severity": "should-fix",
+        "title": "Read-modify-write now runs outside the isolated snapshot, so concurrent transfers can lose updates",
+        "evidence": "The before version read through tx.get inside the isolated transaction snapshot. The after version reads live state with db.get and writes with db.save as a separate immediate step. Two transfers touching the same account can interleave, and one can overwrite the balance with a stale value. Merged from: Staff engineer and Data & contracts.",
+        "location": "module.js transfer(): `db.get(from)` / `db.get(to)` used in db.save calls"
+      },
+      "status": "human-pending"
+    },
+    {
+      "panelId": "7e8b9f422d3f4248",
+      "caseId": "C05",
+      "stage": "triage",
+      "findingIndex": 2,
+      "finding": {
+        "lens": "Data & contracts",
+        "severity": "should-fix",
+        "title": "transfer no longer returns the transaction result",
+        "evidence": "The before version returned `db.transaction(...)`. The after version has no return, so it returns undefined. Any caller that checks, awaits or chains on the result loses the commit/failure signal. Merged from: Staff engineer, Data & contracts and Operability.",
+        "location": "module.js transfer(): missing `return db.transaction(...)`"
+      },
+      "status": "human-pending"
+    },
+    {
+      "panelId": "81dd7386239f1020",
+      "caseId": "C23",
+      "stage": "raw",
+      "findingIndex": 1,
+      "finding": {
+        "lens": "Staff engineer",
+        "severity": "should-fix",
+        "title": "No test covers out-of-order responses",
+        "evidence": "The change provides no test that fires two searches and resolves the older callback last, then checks that state.items still holds the newer query's results. A test like that would have caught this regression.",
+        "location": "module.js: search() (no accompanying test)"
+      },
+      "status": "human-pending"
+    },
+    {
+      "panelId": "8269903fe2d73ed8",
+      "caseId": "C09",
+      "stage": "triage",
+      "findingIndex": 1,
+      "finding": {
+        "lens": "Infrastructure",
+        "severity": "optional",
+        "title": "The path is resolved twice: once for the check and again for the push",
+        "evidence": "The Infrastructure and Staff engineer reports both raised this, as should-fix. I downgraded it to optional. The before code also called canonical twice, so this change did not introduce the duplication. The harm it causes here is the one-hop regression already reported above. Hardening suggestion: compute `const resolved=canonical(path,links)` once and push `resolved+'/tool'`, so the checked path and the used path can't drift apart again.",
+        "location": "module.js install(): `operations.push(canonical(path,links)+'/tool')`"
+      },
+      "status": "human-pending"
+    },
+    {
+      "panelId": "8b5567d6df9f57de",
+      "caseId": "C19",
+      "stage": "raw",
+      "findingIndex": 2,
+      "finding": {
+        "lens": "Staff engineer",
+        "severity": "should-fix",
+        "title": "No test covers the zero-cents boundary",
+        "evidence": "The change doesn't add or update a test asserting that delivery(() => 0) returns available:true, or that delivery(() => null) returns available:false. A test for the 0 case would have caught this regression, and the spec names it explicitly as a required behavior.",
+        "location": "module.js: delivery() (no accompanying tests)"
+      },
+      "status": "human-pending"
+    },
+    {
+      "panelId": "8b5e4f40a9bb3a53",
+      "caseId": "C16",
+      "stage": "raw",
+      "findingIndex": 0,
+      "finding": {
+        "lens": "Frontend & accessibility",
+        "severity": "optional",
+        "title": "Primary button's explicit type='submit' removed, relying on implicit default",
+        "evidence": "The before version sets button:{tag:'button',type:'submit',text:'Save'}. The after version sets button:{tag:'button',text:'Save'}. The review context says native buttons with omitted type default to submit, and that the form has exactly one primary button with no other submit handlers. Click and Enter submission should therefore still work, so the spec's behavior holds. The change is still a loss of explicitness: the button's submit role is now implied by the HTML default, not stated, so a future change to the renderer's default or a button rendered outside the form could silently change behavior.",
+        "location": "module.js: form() return value, button property (after version)"
+      },
+      "status": "human-pending"
+    },
+    {
+      "panelId": "8b5e4f40a9bb3a53",
+      "caseId": "C16",
+      "stage": "raw",
+      "findingIndex": 1,
+      "finding": {
+        "lens": "Staff engineer",
+        "severity": "optional",
+        "title": "Removed explicit type=\"submit\" relies on implicit default; no test covers the behavior",
+        "evidence": "The change drops type:'submit' from the button. Per the context, native buttons with an omitted type default to submit, and there is one primary button and no other handlers, so click and Enter-in-input still submit and the spec is met. However, the change gives no benefit and removes an explicit declaration of intent. If the renderer or a wrapper ever treats a missing type differently, the behavior would silently break. No tests are included to verify that click and Enter each call save once and call preventDefault.",
+        "location": "module.js: form() return value, button:{tag:'button',text:'Save'}"
+      },
+      "status": "human-pending"
+    },
+    {
+      "panelId": "94f770d13b79888c",
+      "caseId": "C19",
+      "stage": "raw",
+      "findingIndex": 2,
+      "finding": {
+        "lens": "Staff engineer",
+        "severity": "should-fix",
+        "title": "No regression test for the zero-cent boundary",
+        "evidence": "The change has no tests for the null, 0, and positive-cent cases. A test asserting that 0 gives available:true and cents:0 would have caught this truthiness bug.",
+        "location": "module.js / test coverage for delivery()"
+      },
+      "status": "human-pending"
+    },
+    {
+      "panelId": "990b109eda35918c",
+      "caseId": "C09",
+      "stage": "raw",
+      "findingIndex": 2,
+      "finding": {
+        "lens": "Staff engineer",
+        "severity": "should-fix",
+        "title": "No test covers multi-hop alias chains into /repo",
+        "evidence": "No tests were supplied with the change. A regression test with a chain of two or more hops ending at /repo or /repo/... should check that install returns false and that operations stays empty. That test would catch this regression. Ideally, compute canonical once and use that value for both the check and the push.",
+        "location": "module.js install()"
+      },
+      "status": "human-pending"
+    },
+    {
+      "panelId": "9a2c3093e0d05d78",
+      "caseId": "C01",
+      "stage": "raw",
+      "findingIndex": 1,
+      "finding": {
+        "lens": "Staff engineer",
+        "severity": "should-fix",
+        "title": "No test covers a session reading a document from another tenant",
+        "evidence": "The change shows no test asserting that `read` returns null when `session.tenant` differs from `row.tenant`, including when `request.tenant` matches the row. A test like that would have caught this regression.",
+        "location": "module.js: read() test coverage"
+      },
+      "status": "human-pending"
+    },
+    {
+      "panelId": "9b0e1f0e1ea84f20",
+      "caseId": "C01",
+      "stage": "raw",
+      "findingIndex": 1,
+      "finding": {
+        "lens": "Staff engineer",
+        "severity": "should-fix",
+        "title": "No test covers the case where a session from one tenant requests another tenant's document",
+        "evidence": "The diff has no tests with it. A regression test should cover two cases: session.tenant !== row.tenant while request.tenant === row.tenant, and a missing request.tenant. Each should return null. That test would have caught this change.",
+        "location": "module.js:read (missing test coverage)"
+      },
+      "status": "human-pending"
+    },
+    {
+      "panelId": "9e985214e4b20471",
+      "caseId": "C18",
+      "stage": "raw",
+      "findingIndex": 1,
+      "finding": {
+        "lens": "Staff engineer",
+        "severity": "should-fix",
+        "title": "No tests cover filter/sort after selection, and no guard for an invalid selection",
+        "evidence": "The change has no tests for archiving after the rows are filtered or reordered, or for a selection that no longer exists. archiveSelected has no guard for a missing row, so it throws instead of doing nothing or reporting an error.",
+        "location": "module.js: archiveSelected()"
+      },
+      "status": "human-pending"
+    },
+    {
+      "panelId": "a2fb460e0e41c0bd",
+      "caseId": "C05",
+      "stage": "raw",
+      "findingIndex": 1,
+      "finding": {
+        "lens": "Staff engineer",
+        "severity": "should-fix",
+        "title": "Reads and writes moved outside the isolated snapshot, so concurrent transfers can lose updates",
+        "evidence": "The new code reads with db.get and then writes with db.save outside any transaction. Two transfers running at the same time can read the same balance, and one overwrites the other's update. Before, tx.get/tx.save ran against an isolated snapshot.",
+        "location": "module.js transfer(): `db.get(from)` / `db.get(to)` read-modify-write"
+      },
+      "status": "human-pending"
+    },
+    {
+      "panelId": "a2fb460e0e41c0bd",
+      "caseId": "C05",
+      "stage": "raw",
+      "findingIndex": 2,
+      "finding": {
+        "lens": "Staff engineer",
+        "severity": "should-fix",
+        "title": "Return value of the transaction is no longer propagated",
+        "evidence": "Before, the function returned db.transaction(...), so callers could await it or observe the commit result. After, transfer returns undefined. That is a contract change for any caller that depends on the returned value.",
+        "location": "module.js transfer(): missing `return`"
+      },
+      "status": "human-pending"
+    },
+    {
+      "panelId": "a2fb460e0e41c0bd",
+      "caseId": "C05",
+      "stage": "raw",
+      "findingIndex": 4,
+      "finding": {
+        "lens": "Data & contracts",
+        "severity": "should-fix",
+        "title": "Return value contract changed: transfer no longer returns the transaction result",
+        "evidence": "Before, transfer returned whatever db.transaction(...) returned. After, it returns undefined. Any caller that relies on the returned value, such as a commit result or promise, would break.",
+        "location": "module.js transfer(): missing `return db.transaction(...)`"
+      },
+      "status": "human-pending"
+    },
+    {
+      "panelId": "a2fb460e0e41c0bd",
+      "caseId": "C05",
+      "stage": "raw",
+      "findingIndex": 5,
+      "finding": {
+        "lens": "Data & contracts",
+        "severity": "should-fix",
+        "title": "Reads and writes are not isolated, so concurrent transfers can lose updates",
+        "evidence": "The new code reads with db.get and writes with db.save directly, outside the isolated snapshot. A transfer running at the same time between the get and the save can be overwritten, which corrupts balances. The old code read through tx.get inside the snapshot.",
+        "location": "module.js transfer(): `db.get(from)` / `db.get(to)`"
+      },
+      "status": "human-pending"
+    },
+    {
+      "panelId": "a2fb460e0e41c0bd",
+      "caseId": "C05",
+      "stage": "triage",
+      "findingIndex": 1,
+      "finding": {
+        "lens": "Data & contracts",
+        "severity": "should-fix",
+        "title": "transfer() no longer returns the transaction result",
+        "evidence": "Before, the function returned `db.transaction(...)`, so callers got the commit result. After, there is no return statement and transfer() returns undefined, which changes the function's observable contract. All three lenses reported this (Staff engineer, Data & contracts, Operability). Merged in from Operability: callers lose the transaction outcome signal. The fixture doesn't show any caller that uses the return value, so this stays should-fix rather than blocker.",
+        "location": "module.js transfer(): missing `return` (before: `return db.transaction(...)`)"
+      },
+      "status": "human-pending"
+    },
+    {
+      "panelId": "a7ec5d1aafda2886",
+      "caseId": "C08",
+      "stage": "raw",
+      "findingIndex": 0,
+      "finding": {
+        "lens": "Staff engineer",
+        "severity": "optional",
+        "title": "Refactor loses the explicit `!row` guard, so a missing row can leak `undefined` instead of `null`",
+        "evidence": "The before code returned null whenever `!row`. The after code returns `row` whenever `row?.tenant === session.tenant`. If `find` returns `undefined` and `session.tenant` is `undefined`, both sides are `undefined`. The function then returns `undefined`, not `null`. The context says tenant IDs are opaque strings and the middleware is trusted, so this is unlikely in practice. It is still a narrow change from the old contract. The spec only promises null for unauthenticated callers, so this is not a spec violation.",
+        "location": "module.js:read, line 4 (`return row?.tenant===session.tenant ? row : null;`)"
+      },
+      "status": "human-pending"
+    },
+    {
+      "panelId": "a7ec5d1aafda2886",
+      "caseId": "C08",
+      "stage": "raw",
+      "findingIndex": 1,
+      "finding": {
+        "lens": "Staff engineer",
+        "severity": "optional",
+        "title": "No tests accompany the behavior-preserving refactor",
+        "evidence": "The change rewrites the auth and tenant guards with optional chaining, and no tests are supplied. Cases worth pinning: null or undefined session, `active` false or truthy-but-not-true, `find` returning null or undefined, a tenant mismatch, and a tenant match.",
+        "location": "module.js:read"
+      },
+      "status": "human-pending"
+    },
+    {
+      "panelId": "a8277ad9775a1d5a",
+      "caseId": "C18",
+      "stage": "raw",
+      "findingIndex": 1,
+      "finding": {
+        "lens": "Staff engineer",
+        "severity": "should-fix",
+        "title": "No test covers archiving after the list is filtered or reordered",
+        "evidence": "The spec specifically requires correct behaviour when the list is filtered or reordered after selection. The change has no test that selects a row, filters or sorts the rows, then checks that archive is called with the original id. A test like that would catch this regression.",
+        "location": "module.js tests (absent)"
+      },
+      "status": "human-pending"
+    },
+    {
+      "panelId": "b2a834fd0527b3e5",
+      "caseId": "C01",
+      "stage": "raw",
+      "findingIndex": 1,
+      "finding": {
+        "lens": "Staff engineer",
+        "severity": "should-fix",
+        "title": "No tests for tenant isolation",
+        "evidence": "The change has no tests. A regression test should cover a session in tenant A that requests a tenant B document while passing request.tenant=B. That case must return null. Other cases to cover are a same-tenant read, a missing row, and a request that omits tenant. Without these, the authorization regression went unnoticed.",
+        "location": "module.js:read (no accompanying test)"
+      },
+      "status": "human-pending"
+    },
+    {
+      "panelId": "b2e1d8405b8e7924",
+      "caseId": "C07",
+      "stage": "raw",
+      "findingIndex": 1,
+      "finding": {
+        "lens": "Staff engineer",
+        "severity": "should-fix",
+        "title": "No test covers the retry limit boundary",
+        "evidence": "No tests are supplied with the change. A regression test should use a request that always returns retryable. It should assert exactly three calls and that the third response is returned. It should also assert that success on attempt 1 or 2 returns immediately. A test like that would have caught the fourth-attempt regression.",
+        "location": "module.js tests (missing)"
+      },
+      "status": "human-pending"
+    },
+    {
+      "panelId": "b2e1d8405b8e7924",
+      "caseId": "C07",
+      "stage": "raw",
+      "findingIndex": 3,
+      "finding": {
+        "lens": "Operability",
+        "severity": "optional",
+        "title": "No visibility into retries or final failure",
+        "evidence": "The retry loop emits no log, metric, or attempt/status context. The last retryable result is returned silently, so on-call cannot tell that retries were exhausted or how many attempts were made. There is also no backoff or timeout, though the synchronous contract limits what can be done here.",
+        "location": "module.js:send"
+      },
+      "status": "human-pending"
+    },
+    {
+      "panelId": "b395c505cee646d6",
+      "caseId": "C23",
+      "stage": "raw",
+      "findingIndex": 1,
+      "finding": {
+        "lens": "Staff engineer",
+        "severity": "optional",
+        "title": "Dead counter increment left behind",
+        "evidence": "`++state.request;` still runs, but nothing reads the value anymore, so it looks like a guard that does nothing. Restoring the per-request capture and comparison fixes both this and the blocker.",
+        "location": "module.js: search(), line `++state.request;`"
+      },
+      "status": "human-pending"
+    },
+    {
+      "panelId": "b395c505cee646d6",
+      "caseId": "C23",
+      "stage": "raw",
+      "findingIndex": 4,
+      "finding": {
+        "lens": "Product",
+        "severity": "optional",
+        "title": "Request counter is still incremented but nothing reads it",
+        "evidence": "`++state.request` remains, but no code compares against it anymore. This makes it look as if stale responses are still handled when they aren't. Either restore the comparison or remove the counter.",
+        "location": "module.js search(): `++state.request;`"
+      },
+      "status": "human-pending"
+    },
+    {
+      "panelId": "b395c505cee646d6",
+      "caseId": "C23",
+      "stage": "triage",
+      "findingIndex": 1,
+      "finding": {
+        "lens": "Staff engineer",
+        "severity": "optional",
+        "title": "Request counter is still incremented but never read",
+        "evidence": "Raised by Staff engineer and Product. `++state.request;` is still there, but no code compares against it anymore. That makes it look like stale responses are still handled. Restoring the per-request capture and comparison fixes this along with the blocker.",
+        "location": "module.js: search(), line `++state.request;`"
+      },
+      "status": "human-pending"
+    },
+    {
+      "panelId": "b48166999f3ca218",
+      "caseId": "C10",
+      "stage": "raw",
+      "findingIndex": 2,
+      "finding": {
+        "lens": "Staff engineer",
+        "severity": "optional",
+        "title": "The `delete` before reassigning does nothing",
+        "evidence": "The next statement assigns `fs[target]`, which replaces the whole node anyway, so `delete fs[target]` has no effect beyond that. It also hides the missing conflict check. The fix is to restore the kind guard and drop the delete.",
+        "location": "module.js install(): `delete fs[target];`"
+      },
+      "status": "human-pending"
+    },
+    {
+      "panelId": "bf5bad7ea2ca4b1b",
+      "caseId": "C10",
+      "stage": "raw",
+      "findingIndex": 1,
+      "finding": {
+        "lens": "Infrastructure",
+        "severity": "blocker",
+        "title": "Function always returns true, so callers can no longer detect conflicts",
+        "evidence": "With the guard gone, the function only ever reaches `return true`. Callers can no longer see conflicts, which breaks the spec's contract to return false when the target is a real file or directory.",
+        "location": "module.js install(): `return true;`"
+      },
+      "status": "human-pending"
+    },
+    {
+      "panelId": "bf5bad7ea2ca4b1b",
+      "caseId": "C10",
+      "stage": "raw",
+      "findingIndex": 3,
+      "finding": {
+        "lens": "Staff engineer",
+        "severity": "optional",
+        "title": "Redundant delete before assignment",
+        "evidence": "`delete fs[target]` has no effect because the next line assigns to the same key and replaces the whole node anyway. It adds complexity without changing behavior. Once the guard is restored, it can be removed.",
+        "location": "module.js:install, line 2"
+      },
+      "status": "human-pending"
+    },
+    {
+      "panelId": "bf5bad7ea2ca4b1b",
+      "caseId": "C10",
+      "stage": "triage",
+      "findingIndex": 1,
+      "finding": {
+        "lens": "Staff engineer",
+        "severity": "optional",
+        "title": "Redundant delete before assignment",
+        "evidence": "`delete fs[target]` has no observable effect. The next line assigns `fs[target]={kind:'link',to:source}`, and the context says assignment replaces the entire node. Remove it when the guard is restored.",
+        "location": "module.js install(): `delete fs[target];`"
+      },
+      "status": "human-pending"
+    },
+    {
+      "panelId": "c573c52b96a9e8e2",
+      "caseId": "C14",
+      "stage": "raw",
+      "findingIndex": 2,
+      "finding": {
+        "lens": "Staff engineer",
+        "severity": "should-fix",
+        "title": "No test covers focus restoration on Escape",
+        "evidence": "The change ships no test asserting that Escape calls `trigger.focus()` or that focus returns to the opener. The removal of the behavior went undetected. A regression test should open with a mock trigger, send Escape, and assert focus was called.",
+        "location": "module.js (no tests supplied)"
+      },
+      "status": "human-pending"
+    },
+    {
+      "panelId": "c6110c50437cdf34",
+      "caseId": "C07",
+      "stage": "raw",
+      "findingIndex": 1,
+      "finding": {
+        "lens": "Staff engineer",
+        "severity": "should-fix",
+        "title": "No tests cover the retry limit",
+        "evidence": "The change alters the boundary condition, but no test was supplied. A test that always returns a retryable response and asserts exactly 3 calls and that the last response is returned would have caught the regression. Tests for immediate success and success on the second or third attempt are also missing.",
+        "location": "module.js (no accompanying tests)"
+      },
+      "status": "human-pending"
+    },
+    {
+      "panelId": "c6110c50437cdf34",
+      "caseId": "C07",
+      "stage": "raw",
+      "findingIndex": 3,
+      "finding": {
+        "lens": "Operability",
+        "severity": "should-fix",
+        "title": "No backoff, timeout, or attempt logging in retry path",
+        "evidence": "Retries are immediate and synchronous, with no delay, jitter, or per-attempt logging or metrics. The fourth attempt introduced here amplifies load on a struggling dependency. On-call cannot tell from the returned last response how many attempts were made or what earlier statuses were.",
+        "location": "module.js:send"
+      },
+      "status": "human-pending"
+    },
+    {
+      "panelId": "c94ee5f2572b13f2",
+      "caseId": "C10",
+      "stage": "raw",
+      "findingIndex": 2,
+      "finding": {
+        "lens": "Staff engineer",
+        "severity": "blocker",
+        "title": "install now always returns true, so callers can't detect conflicts anymore",
+        "evidence": "The spec says install must return false when the target is a real file or directory. The after code returns true on every path, which breaks that contract for any caller that checks the result.",
+        "location": "module.js:install, `return true;`"
+      },
+      "status": "human-pending"
+    },
+    {
+      "panelId": "c94ee5f2572b13f2",
+      "caseId": "C10",
+      "stage": "raw",
+      "findingIndex": 3,
+      "finding": {
+        "lens": "Staff engineer",
+        "severity": "optional",
+        "title": "The `delete` before assignment does nothing",
+        "evidence": "The next line reassigns `fs[target]` anyway, so `delete fs[target]` adds nothing. It only makes the overwrite look deliberate. Restore the original guard instead.",
+        "location": "module.js:install, line 2"
+      },
+      "status": "human-pending"
+    },
+    {
+      "panelId": "ea6855a6be09d9e6",
+      "caseId": "C12",
+      "stage": "raw",
+      "findingIndex": 0,
+      "finding": {
+        "lens": "Staff engineer",
+        "severity": "optional",
+        "title": "No tests cover the new dual-write and label-first read fallback",
+        "evidence": "The change makes write() return {title:text,label:text} and read() return row.label ?? row.title, but adds no tests. Four cases are untested: a legacy row with title only, which reads title; a migrated row with label and title, which reads label; written rows keeping title for version-one consumers; and a row whose label is null or undefined, which falls back to title. Tests for these would protect the readability promise the spec requires while the migration is open.",
+        "location": "module.js: write() and read()"
+      },
+      "status": "human-pending"
+    },
+    {
+      "panelId": "f47f566e32f90b44",
+      "caseId": "C16",
+      "stage": "raw",
+      "findingIndex": 0,
+      "finding": {
+        "lens": "Staff engineer",
+        "severity": "optional",
+        "title": "Removing the explicit type='submit' makes the button rely on the browser's default",
+        "evidence": "In the before version the button spec was {tag:'button',type:'submit',text:'Save'}. In the after version it is {tag:'button',text:'Save'}. The context says native buttons with no type default to submit, and the form has only one primary button and no other submit handlers. So clicking the button and pressing Enter in an input still fire the native submit event, which calls preventDefault() and then save() once. Behavior does not change. However, the submit behavior now depends on a default that isn't visible in the code. If the renderer or a later refactor sets a different default type (for example, 'button'), submission would break without any warning. Keeping type:'submit' states the intent and costs nothing.",
+        "location": "module.js: form() return value, button object"
+      },
+      "status": "human-pending"
+    },
+    {
+      "panelId": "f5ef0021a5bdb476",
+      "caseId": "C19",
+      "stage": "raw",
+      "findingIndex": 2,
+      "finding": {
+        "lens": "Staff engineer",
+        "severity": "should-fix",
+        "title": "No regression test covers the zero-cent boundary",
+        "evidence": "The change alters the availability logic, but no tests are supplied. A test for quote() returning 0 (expect available true, cents 0) would have caught this. The null case and a positive value (for example 500) should also be covered.",
+        "location": "module.js:delivery (tests missing)"
+      },
+      "status": "human-pending"
+    },
+    {
+      "panelId": "f92f4405e0cf0177",
+      "caseId": "C10",
+      "stage": "raw",
+      "findingIndex": 2,
+      "finding": {
+        "lens": "Staff engineer",
+        "severity": "optional",
+        "title": "The added `delete` does nothing useful",
+        "evidence": "`delete fs[target]` is followed straight away by assigning `fs[target]`. The assignment already replaces the whole node, so the delete changes nothing. It just adds clutter, and it suggests the change was meant to overwrite targets unconditionally.",
+        "location": "module.js install(), `delete fs[target];`"
+      },
+      "status": "human-pending"
+    },
+    {
+      "panelId": "f9a6413f9f9e90f6",
+      "caseId": "C19",
+      "stage": "raw",
+      "findingIndex": 2,
+      "finding": {
+        "lens": "Staff engineer",
+        "severity": "should-fix",
+        "title": "No test covers the zero-cents boundary",
+        "evidence": "The change shows no tests for delivery(). A test with quote returning 0 should expect available:true, and a test with quote returning null should expect available:false. Either test would have caught this regression, and the zero case is exactly what the spec calls out.",
+        "location": "module.js:delivery (missing tests)"
+      },
+      "status": "human-pending"
+    },
+    {
+      "panelId": "facc9b0372244928",
+      "caseId": "C16",
+      "stage": "raw",
+      "findingIndex": 0,
+      "finding": {
+        "lens": "Frontend & accessibility",
+        "severity": "optional",
+        "title": "Explicit type=\"submit\" removed from primary button",
+        "evidence": "The before version sets button:{tag:'button',type:'submit',text:'Save'}; the after version sets button:{tag:'button',text:'Save'}. The review context states native buttons with omitted type default to submit, and the form has exactly one primary button with no other submit handlers, so click and Enter-key submission should still reach onSubmit and preventDefault still prevents navigation. The remaining risk is readability and robustness: the submit intent is now implicit, and it depends on the renderer emitting a native <button> element. If the renderer ever outputs a non-native element or a button with a type attribute default changed, submission would silently break. No functional regression is shown by the supplied evidence.",
+        "location": "module.js, form() return value, button property (after version)"
+      },
+      "status": "human-pending"
+    },
+    {
+      "panelId": "facc9b0372244928",
+      "caseId": "C16",
+      "stage": "raw",
+      "findingIndex": 1,
+      "finding": {
+        "lens": "Staff engineer",
+        "severity": "optional",
+        "title": "Explicit type='submit' removed; behavior relies on implicit default and no test covers it",
+        "evidence": "The change drops type:'submit' from the button. Per the context, native buttons with omitted type default to submit, and the form has one primary button and no other submit handlers. So both click and Enter-in-input still submit and call save once through onSubmit. This is behavior-preserving, not a defect. The only concern is that the explicit declaration was removed with no stated reason and no test was added or changed. A test that clicks the button and presses Enter, and checks that save is called once and preventDefault is called, would protect against a renderer that stops applying the native default.",
+        "location": "module.js: form() button definition"
+      },
+      "status": "human-pending"
+    },
+    {
+      "panelId": "02976bd9bb0b2277",
+      "caseId": "C13",
+      "stage": "raw",
+      "findingIndex": 2,
+      "finding": {
+        "lens": "Product",
+        "severity": "should-fix",
+        "title": "Swapping the native button for a div is unneeded and doesn't help users",
+        "evidence": "The old native button (tag:'button', type:'button') already met all three requirements: Tab focus, Enter and Space, and click. There are no forms on this screen, so the old type:'button' carried no form-submit risk that the change needed to avoid. The div with role='button' and tabIndex=0 tries to rebuild what the button did for free and only partly succeeds. The simplest fix is to go back to tag:'button'.",
+        "location": "module.js: control(), before vs after"
+      },
+      "status": "human-pending"
+    },
+    {
+      "panelId": "02e382801707c6db",
+      "caseId": "C02",
+      "stage": "raw",
+      "findingIndex": 2,
+      "finding": {
+        "lens": "Staff engineer",
+        "severity": "should-fix",
+        "title": "No test covers the backward-compatible response shape",
+        "evidence": "The change includes no test that checks the response has both `name` and `displayName`. A contract test like that would have caught this removal. Add a test asserting response(row).name === row.name and response(row).displayName === row.name.",
+        "location": "module.js: response()"
+      },
+      "status": "human-pending"
+    },
+    {
+      "panelId": "2394a203a9fa10dd",
+      "caseId": "C03",
+      "stage": "raw",
+      "findingIndex": 2,
+      "finding": {
+        "lens": "Staff engineer",
+        "severity": "should-fix",
+        "title": "No test covers retry idempotency",
+        "evidence": "No test delivers the same event.id twice with different attemptIds and checks that charge gets the same key and only one charge is created. A test like that would have caught this regression.",
+        "location": "module.js: deliver() (missing test)"
+      },
+      "status": "human-pending"
+    },
+    {
+      "panelId": "244301d13c17f78e",
+      "caseId": "C21",
+      "stage": "raw",
+      "findingIndex": 2,
+      "finding": {
+        "lens": "Staff engineer",
+        "severity": "should-fix",
+        "title": "No tests for the narrowed managed-link definition",
+        "evidence": "No tests come with the change to show that aliases (name != basename of target) and in-skill file links are preserved. Tests for both cases would have caught this regression.",
+        "location": "module.js prune (tests absent)"
+      },
+      "status": "human-pending"
+    },
+    {
+      "panelId": "266affca22d2d3a4",
+      "caseId": "C21",
+      "stage": "raw",
+      "findingIndex": 1,
+      "finding": {
+        "lens": "Infrastructure",
+        "severity": "should-fix",
+        "title": "Prefix check has no path-boundary guard",
+        "evidence": "startsWith('/repo/skills/') also matches traversal-style targets such as '/repo/skills/../other'. Because the targets are not normalized, links that resolve outside the skills tree can also be classified as managed and removed.",
+        "location": "module.js prune(), filter predicate"
+      },
+      "status": "human-pending"
+    },
+    {
+      "panelId": "266affca22d2d3a4",
+      "caseId": "C21",
+      "stage": "raw",
+      "findingIndex": 3,
+      "finding": {
+        "lens": "Staff engineer",
+        "severity": "should-fix",
+        "title": "No tests for alias or file links",
+        "evidence": "No tests come with the change. Nothing checks that an alias (name differs from the skill directory) or a link to a file inside a skill is left alone. A test for either case would have caught the bug above.",
+        "location": "module.js prune() — test coverage"
+      },
+      "status": "human-pending"
+    },
+    {
+      "panelId": "2d8bb4781187ed3c",
+      "caseId": "C02",
+      "stage": "raw",
+      "findingIndex": 2,
+      "finding": {
+        "lens": "Staff engineer",
+        "severity": "should-fix",
+        "title": "No test checks that both `name` and `displayName` stay in the response",
+        "evidence": "The change removes a field that installed clients depend on, and nothing caught it. A contract test should assert that `response(row)` includes both `name` and `displayName` set to `row.name`. That keeps legacy and new clients working until the 90-day mobile release window has passed.",
+        "location": "module.js: response() tests (none supplied)"
+      },
+      "status": "human-pending"
+    },
+    {
+      "panelId": "31511cb046ae994f",
+      "caseId": "C03",
+      "stage": "raw",
+      "findingIndex": 2,
+      "finding": {
+        "lens": "Staff engineer",
+        "severity": "should-fix",
+        "title": "No test covers retry idempotency",
+        "evidence": "No test checks that two deliveries of the same event with different attemptIds produce a single charge, or that charge gets the same key each time. A test like that would have caught this regression.",
+        "location": "module.js: deliver (test coverage)"
+      },
+      "status": "human-pending"
+    },
+    {
+      "panelId": "658cc7ef1d7b5408",
+      "caseId": "C02",
+      "stage": "raw",
+      "findingIndex": 2,
+      "finding": {
+        "lens": "Staff engineer",
+        "severity": "should-fix",
+        "title": "No test checks that the response keeps both `name` and `displayName`",
+        "evidence": "The change shows no test asserting that the response includes both `name` (legacy contract) and `displayName` (new web client). A contract test that runs `response(row).name.toUpperCase()` and also checks `displayName` would have caught this regression.",
+        "location": "module.js: response(row); test suite (absent)"
+      },
+      "status": "human-pending"
+    },
+    {
+      "panelId": "66c5ca85438c3f57",
+      "caseId": "C13",
+      "stage": "raw",
+      "findingIndex": 2,
+      "finding": {
+        "lens": "Product",
+        "severity": "should-fix",
+        "title": "Unneeded replacement of native button with div",
+        "evidence": "Forms are absent on this screen, so there was no apparent reason to drop the native button, which gave the required keyboard behavior for free. The div needs extra handling to match it. The type:'button' attribute was also removed, though that is harmless here.",
+        "location": "module.js:control (after)"
+      },
+      "status": "human-pending"
+    },
+    {
+      "panelId": "6a32d96a6fc1f3ca",
+      "caseId": "C20",
+      "stage": "raw",
+      "findingIndex": 0,
+      "finding": {
+        "lens": "Staff engineer",
+        "severity": "optional",
+        "title": "No tests accompany the refactor or pin the subtotal formatting",
+        "evidence": "The change swaps the loop for reduce with an initial value of 0. Behavior is unchanged for the stated inputs. Integer cents below 1e8 divided by 100 and passed to toFixed(2) format correctly. No test was supplied for the empty basket ('$0.00'), zero-priced items, multiple quantities, or cent values such as 1005 ('$10.05'). Nothing guards the output format against future edits.",
+        "location": "module.js:subtotal"
+      },
+      "status": "human-pending"
+    },
+    {
+      "panelId": "6a4bfc3827e4f741",
+      "caseId": "C03",
+      "stage": "raw",
+      "findingIndex": 2,
+      "finding": {
+        "lens": "Staff engineer",
+        "severity": "should-fix",
+        "title": "No test covers retry idempotency",
+        "evidence": "Nothing in the change shows a test that calls deliver twice with the same event and different attemptIds and checks that charge got the same key or that only one charge was created. A test like that would have caught this regression.",
+        "location": "module.js tests (absent)"
+      },
+      "status": "human-pending"
+    },
+    {
+      "panelId": "8d7f513ea62124b1",
+      "caseId": "C03",
+      "stage": "raw",
+      "findingIndex": 2,
+      "finding": {
+        "lens": "Staff engineer",
+        "severity": "should-fix",
+        "title": "No test covers retrying the same event with a new attemptId",
+        "evidence": "The change ships without a test that calls deliver twice with the same event and different attemptIds and checks that only one charge exists. That test would have caught this regression.",
+        "location": "module.js: deliver() (tests absent)"
+      },
+      "status": "human-pending"
+    },
+    {
+      "panelId": "8dee4d9713393c8e",
+      "caseId": "C24",
+      "stage": "raw",
+      "findingIndex": 0,
+      "finding": {
+        "lens": "Staff engineer",
+        "severity": "optional",
+        "title": "Rewrite adds no behavior and no regression tests for the sibling-prefix case",
+        "evidence": "Under the stated constraints (absolute POSIX path, no trailing slash, no dot segments, root always /repo), `parts[1]==='repo'` gives the same result as the old check. It is true for /repo and /repo/x. It is false for siblings such as /repo-evil and /repo2, and for /other/repo. The rewrite allocates an array to do what the old `===` / `startsWith('/repo/')` check did directly. It is also less obviously tied to the spec, because it compares only the first segment and not the full root. If the root became multi-segment, such as /a/repo, it would silently be wrong. No tests are included for the boundary cases that matter: /repo, /repo/x, /repo-evil, /repo2/x, and /other/repo.",
+        "location": "module.js:inside"
+      },
+      "status": "human-pending"
+    },
+    {
+      "panelId": "91a8c9c66c512e57",
+      "caseId": "C02",
+      "stage": "raw",
+      "findingIndex": 2,
+      "finding": {
+        "lens": "Staff engineer",
+        "severity": "should-fix",
+        "title": "No test covers backward compatibility of the response shape",
+        "evidence": "The change removed a field that live clients depend on and nothing caught it. A contract test should check that response(row) includes both name and displayName, and that both equal row.name.",
+        "location": "module.js: response()"
+      },
+      "status": "human-pending"
+    },
+    {
+      "panelId": "a1a93aae40476a4a",
+      "caseId": "C13",
+      "stage": "raw",
+      "findingIndex": 2,
+      "finding": {
+        "lens": "Product",
+        "severity": "should-fix",
+        "title": "Replacing the native button with a div adds no user value and risks a regression",
+        "evidence": "The before version already met every part of the spec with a native button (type:'button', and there is no form to worry about). Changing it to a div with role='button' gives users nothing new, and to get back to equal behavior the keyboard handling has to be rebuilt by hand. Keep tag:'button'.",
+        "location": "module.js: control() tag change from 'button' to 'div'"
+      },
+      "status": "human-pending"
+    },
+    {
+      "panelId": "c2d170e62b3b348f",
+      "caseId": "C03",
+      "stage": "raw",
+      "findingIndex": 2,
+      "finding": {
+        "lens": "Staff engineer",
+        "severity": "should-fix",
+        "title": "No test checks that retries are idempotent",
+        "evidence": "The change has no test that delivers the same event twice with different attemptIds and checks that only one charge is created, or that the same key is used. That test would have caught this regression. The restart case also needs coverage, with the key derived only from durable event data.",
+        "location": "module.js: deliver() (no accompanying test)"
+      },
+      "status": "human-pending"
+    },
+    {
+      "panelId": "c463e556c6ae9d42",
+      "caseId": "C02",
+      "stage": "raw",
+      "findingIndex": 2,
+      "finding": {
+        "lens": "Staff engineer",
+        "severity": "should-fix",
+        "title": "No test checks that both name and displayName are in the response",
+        "evidence": "Nothing in the change shows a contract or compatibility test that checks `name` and `displayName` both appear and are equal. Such a test would have caught this regression. Add one, and keep it until the 90-day mobile support window ends and `name` is formally deprecated.",
+        "location": "module.js: response(row) (missing test coverage)"
+      },
+      "status": "human-pending"
+    },
+    {
+      "panelId": "e59b6f1101a02458",
+      "caseId": "C24",
+      "stage": "raw",
+      "findingIndex": 0,
+      "finding": {
+        "lens": "Staff engineer",
+        "severity": "optional",
+        "title": "Rewrite is behaviorally equivalent but adds no value and has no tests",
+        "evidence": "Under the stated input constraints (absolute POSIX path, no trailing slash, no dot segments, root always /repo), `parts[1]==='repo'` gives the same result as the old check. '/repo' and '/repo/x' return true. '/repo-sibling' and '/other/repo' return false. The new form allocates an array for every call. It also hides the 'at or beneath /repo' intent, because the root is encoded only as a segment index. It is more fragile if the root ever changes to a multi-segment path or if the input contract loosens. No tests cover the sibling-prefix case (/repo-x), the exact root, or nested paths.",
+        "location": "module.js: inside()"
+      },
+      "status": "human-pending"
+    },
+    {
+      "panelId": "f5741d238c7c65cf",
+      "caseId": "C03",
+      "stage": "raw",
+      "findingIndex": 2,
+      "finding": {
+        "lens": "Staff engineer",
+        "severity": "should-fix",
+        "title": "No test covers retry idempotency",
+        "evidence": "The change includes no test that calls deliver twice with the same event.id and different attemptIds and checks for one charge. A test like that would have caught this regression. Keying on event.id also leaves attemptId unused in deliver, which shows the key choice needs a test to protect it.",
+        "location": "module.js: deliver() (missing test coverage)"
+      },
+      "status": "human-pending"
+    },
+    {
+      "panelId": "fd2c10d855f68136",
+      "caseId": "C21",
+      "stage": "raw",
+      "findingIndex": 3,
+      "finding": {
+        "lens": "Staff engineer",
+        "severity": "should-fix",
+        "title": "No tests cover the alias and file-link cases",
+        "evidence": "The change makes the predicate broader but comes with no tests showing that an alias (name≠target basename) or a file link inside a skill is kept. Those are exactly the cases the spec protects.",
+        "location": "module.js prune() test coverage"
+      },
+      "status": "human-pending"
+    },
+    {
+      "panelId": "fd2c10d855f68136",
+      "caseId": "C21",
+      "stage": "triage",
+      "findingIndex": 1,
+      "finding": {
+        "lens": "Staff engineer",
+        "severity": "optional",
+        "title": "No regression tests for preserving aliases and in-skill file links",
+        "evidence": "The change makes the predicate broader but adds no tests showing that an alias (name differs from the target's skill) or a link to a file inside a skill is kept. Those are the cases the spec protects.",
+        "location": "module.js prune() test coverage"
+      },
+      "status": "human-pending"
+    }
+  ]
+}

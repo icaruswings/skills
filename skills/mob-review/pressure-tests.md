@@ -65,6 +65,67 @@ Verified on the checkout handler in a real git fixture with an editable file and
 - **RED (old wording)**: did not edit the file. It reported, then closed on an open offer: "Tell me which DB driver `db.query` wraps and I can apply the parameterised query". Findings were unnumbered, so the user had no way to pick. Under Claude the fixing tendency did not show in this run; the gap it shows is the unstructured close, which is the same wiggle room Round 5 found on the subagent ask.
 - **GREEN (new wording)**: did not edit the file. Fifteen numbered findings across four lenses, a verdict, and the turn ended on "How do you want to proceed? Fix all, fix the blockers only (#1, #7), fix by number, or leave it with you?"
 
+## Round 7 — provider-aware model tiers (2026-10-29)
+
+The previous skill had no model/effort routing, escalation, or unavailable-model policy. Added Economy, Balanced, and Strong task tiers, provider-native model controls, explicit final-triage routing, and visible fallback/verification gaps. The seven lens definitions and existing blocker, read-only, re-review, and prose-only rules are unchanged.
+
+### RED / GREEN micro-tests
+
+Used `superpowers:writing-skills`: five fresh-context samples per variant, manually read, with the same auth/ownership/race-condition scenario, a Balanced parent, and pressure to use the cheapest adequate approach and finish quickly. Samples proposed launch arguments without performing a real review. No expected answers were supplied.
+
+- **RED, old skill: 5/5 missed the new quality requirement.** All chose `gpt-6-luna` for Security and left final synthesis with the parent. Four used low effort, one omitted effort. One rationalized: “The low-cost Luna model at low effort fits the bounded lens and deadline.” This was missing policy, not a violation of the old skill.
+- **GREEN, updated skill: 5/5 selected `gpt-6-astra`, high effort, and a clean context for Security, plus a separate Astra final-triage agent.** No model/tier variance. One response named the triage model without repeating effort/fork settings; this was a proposed-call test, not a completed launch.
+- Eight additional scenarios covered bounded form checks, payments/migrations, reviewer disagreement, absent model controls, Claude managed substitution, unsanctioned subagents, prose-only edits, and partial dispatch failure. Independent validation found understated triage consent counts and ambiguous cost constraints; both were corrected and rechecked.
+
+### Live launches
+
+These are actual dispatch tests with synthetic inline fixtures, not inferred model choices. Reviewers could not edit files. Effective models below were checked from Codex `turn_context` records and Claude forwarded assistant-message metadata, not agent self-reports.
+
+| Runtime | Task | Requested model | Confirmed model |
+|---|---|---|---|
+| Codex | Economy copy evidence | `gpt-6-luna`, medium effort | `gpt-6-luna`, medium effort |
+| Codex | Balanced routine correctness | `gpt-6.1-sol`, medium effort | `gpt-6.1-sol`, medium effort |
+| Codex | Strong ownership-authorization review | `gpt-6-astra`, high effort | `gpt-6-astra`, high effort |
+| Claude Code | Economy copy evidence | `haiku` | `claude-haiku-5-5` |
+| Claude Code | Balanced routine correctness | `sonnet` | `claude-sonnet-5-5` |
+| Claude Code | Strong ownership-authorization review | `opus` | `claude-opus-5-5` |
+| Claude Code | Final triage from a Sonnet parent | `opus` | `claude-opus-5-5` |
+
+All seven launches completed. Both Security reviewers caught the planted missing owner check as a blocker. Claude autonomously chose the three aliases from the updated skill, then delegated triage to Opus rather than doing it on Sonnet. Its four-agent run reported US$0.1564196; that single-run cost does not establish comparative savings. Codex smoke tests exercised explicit native launch parameters; the paired micro-tests separately checked automatic model-selection decisions.
+
+Limitations: provider rejection/substitution and missing-control cases were scenario tests, not forced live outages. Model aliases/catalogs may change; rerun live checks after changing mappings. Some reviewers could not observe their own effective model, so they correctly reported unknown; the external runtime traces supplied confirmation for these tests.
+
+### Repeatable checks
+
+1. Run five fresh-context controls with the old policy and five with the updated policy. Keep the scenario and runtime catalog identical; record every choice and read the responses.
+2. Launch the copy, local-correctness, and ownership fixtures using the active harness's actual model fields. In Claude, a Balanced parent must also delegate Strong triage. Do not preselect models in the test prompt when testing autonomous routing.
+3. Compare requested models with runtime metadata. Treat self-reports and accepted launch arguments alone as insufficient evidence of the effective model. Keep permissions read-only and any account/model constraints intact.
+4. Parse the YAML/TOML examples, check local reference links, and run `node scripts/check-skills.mjs` plus `git diff --check`. Both linked skill paths should resolve to this same source.
+
 ## Form note
 
 The baseline failure here is wrong-shaped output plus omitted elements, not a discipline violation — so per `writing-skills`' "Match the Form to the Failure", this skill uses a positive output contract and a structural "name the lenses you selected" slot rather than a prohibition list. The proportionality rule is a conditional on an observable predicate (prose/comments/formatting only, no behavior change), not an exemption clause.
+
+## Round 8: matched quality pilot (2026-10-29)
+
+The [versioned benchmark](../../evals/mob-review/README.md) compares tiered reviewers with all-Strong reviewers, followed by Strong triage.
+It contains 24 cases: 18 known defects and six clean controls. A fixed split assigns 16 cases to pilot and eight to holdout.
+Each provider/policy has three repetitions. All 288 panels and 888 reviewer/triage calls completed with verified runtime models.
+
+A separate Codex Astra/high grader matched findings without provider, model, policy, or repetition labels.
+Each provider/policy retained 54/54 known-defect observations, with no known blocker misses, severity downgrades, or triage losses.
+The clean controls had no final findings. Additional findings remain pending human adjudication; they are not automatically false positives.
+
+Measured Claude comparison cost was US$4.1404 for tiered reviewers and US$4.3246 for all Strong, a 4.3% reduction.
+Tiered Claude calls took 7.3% more aggregate process time. Codex aggregate process time fell 8.9%; its dollar cost was unavailable.
+These observations do not establish a cost or latency guarantee.
+
+The [report and normalized evidence](../../evals/mob-review/results/2026-10-29/REPORT.md) separate unique cases from repeated observations.
+They also distinguish CLI quality testing from Round 7's native subagent launch checks.
+Codex CLI Balanced used its supported `gpt-6-sol`; the app launch test used `gpt-6.1-sol`.
+Ten cases use Strong in both policies, and fixtures simulate short contracts rather than complete applications.
+
+The evaluation kept model mappings, prompts, cases, and holdout assignment fixed.
+Independent implementation review found harness lifecycle and accounting edge cases after the matrix source freeze.
+Offline regression tests verify those repairs, and the report identifies the exact earlier evaluation and grading commits.
+Human approval remains pending. This pilot supports its stated cases and cannot establish general review-quality equivalence.

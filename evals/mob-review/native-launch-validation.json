@@ -1,0 +1,74 @@
+{
+  "date": "2026-10-29",
+  "scope": "Native subagent launch verification before the quality campaign. This is routing evidence, not comparative quality evidence.",
+  "codex": [
+    {
+      "task": "launch_economy",
+      "model": "gpt-6-luna",
+      "effort": "medium",
+      "confirmedFrom": "runtime turn_context"
+    },
+    {
+      "task": "launch_strong",
+      "model": "gpt-6-astra",
+      "effort": "high",
+      "confirmedFrom": "runtime turn_context"
+    },
+    {
+      "task": "launch_balanced",
+      "model": "gpt-6.1-sol",
+      "effort": "medium",
+      "confirmedFrom": "runtime turn_context"
+    }
+  ],
+  "claude": {
+    "cli_version": "2.1.312",
+    "launches": [
+      {
+        "task": "Product lens: button copy",
+        "requested_model": "haiku",
+        "confirmed_model": "claude-haiku-5-5"
+      },
+      {
+        "task": "Staff engineer lens: label()",
+        "requested_model": "sonnet",
+        "confirmed_model": "claude-sonnet-5-5"
+      },
+      {
+        "task": "Security lens: cancelOrder authz",
+        "requested_model": "opus",
+        "confirmed_model": "claude-opus-5-5"
+      },
+      {
+        "task": "Strong final triage",
+        "requested_model": "opus",
+        "confirmed_model": "claude-opus-5-5"
+      }
+    ],
+    "completed": 4,
+    "failed": 0,
+    "reported_cost_usd": 0.1564196
+  },
+  "microtests": {
+    "samples_per_variant": 5,
+    "baseline_target_failures": 5,
+    "updated_core_compliance": 5,
+    "variance": "no Security model or final-triage model variance",
+    "limitation": "Proposed-call behavior for one fixed hypothetical scenario; live dispatch checks are recorded separately."
+  },
+  "notes": [
+    "Confirmed from Codex turn_context and Claude forwarded assistant message metadata; model self-reports were not used.",
+    "Fixtures were synthetic; no source edits were permitted during review tests.",
+    "Provider failure/fallback cases were behavioral scenarios, not forced live outages.",
+    "The Claude launch cost was a separately approved earlier test; the US$20 quality campaign accounting begins with its own smoke/failed/replacement calls."
+  ],
+  "validation": {
+    "skill_frontmatter": "valid YAML; name and description preserved",
+    "claude_agent_example": "valid YAML; supported model field sonnet",
+    "codex_agent_example": "valid TOML; required standalone-agent fields and supported model/effort",
+    "skill_links": "Claude Code and Codex paths resolve to same installed source",
+    "local_references": "resolve",
+    "repo_wiring": "passed (5 skills)",
+    "diff_whitespace": "passed"
+  }
+}

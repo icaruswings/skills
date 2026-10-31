@@ -1,0 +1,5451 @@
+[
+  {
+    "caseId": "C01",
+    "payloadHash": "13259f4381346655df2cd2d78723996cce714c97496930e3cbd89045d02958bd",
+    "graderHash": "baf15b47cd9ef59245b9781215f4984428793e60b54a3a67c51ff444e05f3380",
+    "graderCallId": "32278393fba466aa",
+    "runtimeHash": "0373547496970a1dec96fd3c7a3e37d09495e3db1c97441d2499d503ab83afa4",
+    "versions": {
+      "claude": "2.1.312 (Claude Code)",
+      "codex": "codex-cli 0.158.0"
+    },
+    "adjudication": "blinded-machine-provisional",
+    "humanSignoff": false,
+    "judgments": [
+      {
+        "panelId": "08291706dd2d7d54",
+        "raw": [
+          {
+            "expectedId": "E01",
+            "findingIndex": 0
+          },
+          {
+            "expectedId": "E01",
+            "findingIndex": 2
+          }
+        ],
+        "triage": [
+          {
+            "expectedId": "E01",
+            "findingIndex": 0
+          }
+        ],
+        "notes": [
+          "Raw finding 1 concerns missing tests, not the authorization defect itself; pending human adjudication."
+        ]
+      },
+      {
+        "panelId": "18149e4dbe68f0ba",
+        "raw": [
+          {
+            "expectedId": "E01",
+            "findingIndex": 0
+          },
+          {
+            "expectedId": "E01",
+            "findingIndex": 1
+          }
+        ],
+        "triage": [
+          {
+            "expectedId": "E01",
+            "findingIndex": 0
+          }
+        ],
+        "notes": []
+      },
+      {
+        "panelId": "4496b524d2d425d4",
+        "raw": [
+          {
+            "expectedId": "E01",
+            "findingIndex": 0
+          },
+          {
+            "expectedId": "E01",
+            "findingIndex": 1
+          }
+        ],
+        "triage": [
+          {
+            "expectedId": "E01",
+            "findingIndex": 0
+          }
+        ],
+        "notes": []
+      },
+      {
+        "panelId": "571913fba5043d87",
+        "raw": [
+          {
+            "expectedId": "E01",
+            "findingIndex": 0
+          },
+          {
+            "expectedId": "E01",
+            "findingIndex": 2
+          }
+        ],
+        "triage": [
+          {
+            "expectedId": "E01",
+            "findingIndex": 0
+          }
+        ],
+        "notes": [
+          "Raw finding 1 concerns missing tests; pending human adjudication. The additional same-tenant read rejection claim in raw finding 0 and triage finding 0 is outside E01."
+        ]
+      },
+      {
+        "panelId": "74884a1e9ddea121",
+        "raw": [
+          {
+            "expectedId": "E01",
+            "findingIndex": 0
+          },
+          {
+            "expectedId": "E01",
+            "findingIndex": 2
+          }
+        ],
+        "triage": [
+          {
+            "expectedId": "E01",
+            "findingIndex": 0
+          }
+        ],
+        "notes": [
+          "Raw finding 1 concerns missing tests, not the authorization defect itself; pending human adjudication."
+        ]
+      },
+      {
+        "panelId": "75b30c92f2d405aa",
+        "raw": [
+          {
+            "expectedId": "E01",
+            "findingIndex": 0
+          },
+          {
+            "expectedId": "E01",
+            "findingIndex": 1
+          }
+        ],
+        "triage": [
+          {
+            "expectedId": "E01",
+            "findingIndex": 0
+          }
+        ],
+        "notes": []
+      },
+      {
+        "panelId": "8a370d0ad9284d54",
+        "raw": [
+          {
+            "expectedId": "E01",
+            "findingIndex": 0
+          },
+          {
+            "expectedId": "E01",
+            "findingIndex": 1
+          }
+        ],
+        "triage": [
+          {
+            "expectedId": "E01",
+            "findingIndex": 0
+          }
+        ],
+        "notes": []
+      },
+      {
+        "panelId": "9a2c3093e0d05d78",
+        "raw": [
+          {
+            "expectedId": "E01",
+            "findingIndex": 0
+          },
+          {
+            "expectedId": "E01",
+            "findingIndex": 2
+          }
+        ],
+        "triage": [
+          {
+            "expectedId": "E01",
+            "findingIndex": 0
+          }
+        ],
+        "notes": [
+          "Raw finding 1 concerns missing tests, not the authorization defect itself; pending human adjudication."
+        ]
+      },
+      {
+        "panelId": "9b0e1f0e1ea84f20",
+        "raw": [
+          {
+            "expectedId": "E01",
+            "findingIndex": 0
+          },
+          {
+            "expectedId": "E01",
+            "findingIndex": 2
+          }
+        ],
+        "triage": [
+          {
+            "expectedId": "E01",
+            "findingIndex": 0
+          }
+        ],
+        "notes": [
+          "Raw finding 1 concerns missing tests, not the authorization defect itself; its proposed expectations remain pending human adjudication."
+        ]
+      },
+      {
+        "panelId": "aecae5165cc28a0c",
+        "raw": [
+          {
+            "expectedId": "E01",
+            "findingIndex": 0
+          },
+          {
+            "expectedId": "E01",
+            "findingIndex": 1
+          }
+        ],
+        "triage": [
+          {
+            "expectedId": "E01",
+            "findingIndex": 0
+          }
+        ],
+        "notes": []
+      },
+      {
+        "panelId": "b2a834fd0527b3e5",
+        "raw": [
+          {
+            "expectedId": "E01",
+            "findingIndex": 0
+          },
+          {
+            "expectedId": "E01",
+            "findingIndex": 2
+          }
+        ],
+        "triage": [
+          {
+            "expectedId": "E01",
+            "findingIndex": 0
+          }
+        ],
+        "notes": [
+          "Raw finding 1 concerns missing tests, not the authorization defect itself; pending human adjudication."
+        ]
+      },
+      {
+        "panelId": "b5e8a7bfc34f7537",
+        "raw": [
+          {
+            "expectedId": "E01",
+            "findingIndex": 0
+          },
+          {
+            "expectedId": "E01",
+            "findingIndex": 1
+          }
+        ],
+        "triage": [
+          {
+            "expectedId": "E01",
+            "findingIndex": 0
+          }
+        ],
+        "notes": []
+      }
+    ]
+  },
+  {
+    "caseId": "C02",
+    "payloadHash": "eb758b4089bf9a9b7c5ca35ceb57bedf9a06ae87c6a90f63275dea6f02b97d02",
+    "graderHash": "baf15b47cd9ef59245b9781215f4984428793e60b54a3a67c51ff444e05f3380",
+    "graderCallId": "e22c32e33dea410a",
+    "runtimeHash": "0373547496970a1dec96fd3c7a3e37d09495e3db1c97441d2499d503ab83afa4",
+    "versions": {
+      "claude": "2.1.312 (Claude Code)",
+      "codex": "codex-cli 0.158.0"
+    },
+    "adjudication": "blinded-machine-provisional",
+    "humanSignoff": false,
+    "judgments": [
+      {
+        "panelId": "02e382801707c6db",
+        "raw": [
+          {
+            "expectedId": "E02",
+            "findingIndex": 0
+          },
+          {
+            "expectedId": "E02",
+            "findingIndex": 1
+          }
+        ],
+        "triage": [
+          {
+            "expectedId": "E02",
+            "findingIndex": 0
+          }
+        ],
+        "notes": [
+          "Raw finding 2 concerns missing tests rather than identifying the legacy dereference failure; unmatched and pending human adjudication."
+        ]
+      },
+      {
+        "panelId": "103899ace91531e3",
+        "raw": [
+          {
+            "expectedId": "E02",
+            "findingIndex": 0
+          },
+          {
+            "expectedId": "E02",
+            "findingIndex": 1
+          }
+        ],
+        "triage": [
+          {
+            "expectedId": "E02",
+            "findingIndex": 0
+          }
+        ],
+        "notes": []
+      },
+      {
+        "panelId": "1a8af0db7aa0a966",
+        "raw": [
+          {
+            "expectedId": "E02",
+            "findingIndex": 0
+          },
+          {
+            "expectedId": "E02",
+            "findingIndex": 1
+          }
+        ],
+        "triage": [
+          {
+            "expectedId": "E02",
+            "findingIndex": 0
+          }
+        ],
+        "notes": []
+      },
+      {
+        "panelId": "224eeeb3d53fb214",
+        "raw": [
+          {
+            "expectedId": "E02",
+            "findingIndex": 0
+          },
+          {
+            "expectedId": "E02",
+            "findingIndex": 1
+          }
+        ],
+        "triage": [
+          {
+            "expectedId": "E02",
+            "findingIndex": 0
+          }
+        ],
+        "notes": []
+      },
+      {
+        "panelId": "2d8bb4781187ed3c",
+        "raw": [
+          {
+            "expectedId": "E02",
+            "findingIndex": 0
+          },
+          {
+            "expectedId": "E02",
+            "findingIndex": 1
+          }
+        ],
+        "triage": [
+          {
+            "expectedId": "E02",
+            "findingIndex": 0
+          }
+        ],
+        "notes": [
+          "Raw finding 2 recommends contract tests but does not explain the legacy dereference failure; unmatched and pending human adjudication."
+        ]
+      },
+      {
+        "panelId": "44d04ae82d4d962b",
+        "raw": [
+          {
+            "expectedId": "E02",
+            "findingIndex": 0
+          },
+          {
+            "expectedId": "E02",
+            "findingIndex": 1
+          }
+        ],
+        "triage": [
+          {
+            "expectedId": "E02",
+            "findingIndex": 0
+          }
+        ],
+        "notes": []
+      },
+      {
+        "panelId": "658cc7ef1d7b5408",
+        "raw": [
+          {
+            "expectedId": "E02",
+            "findingIndex": 0
+          },
+          {
+            "expectedId": "E02",
+            "findingIndex": 1
+          }
+        ],
+        "triage": [
+          {
+            "expectedId": "E02",
+            "findingIndex": 0
+          }
+        ],
+        "notes": [
+          "Raw finding 2 suggests testing the legacy call but does not independently explain its failure from removing name; unmatched and pending human adjudication."
+        ]
+      },
+      {
+        "panelId": "8ba998272817907a",
+        "raw": [
+          {
+            "expectedId": "E02",
+            "findingIndex": 0
+          },
+          {
+            "expectedId": "E02",
+            "findingIndex": 1
+          }
+        ],
+        "triage": [
+          {
+            "expectedId": "E02",
+            "findingIndex": 0
+          }
+        ],
+        "notes": []
+      },
+      {
+        "panelId": "91a8c9c66c512e57",
+        "raw": [
+          {
+            "expectedId": "E02",
+            "findingIndex": 0
+          },
+          {
+            "expectedId": "E02",
+            "findingIndex": 1
+          }
+        ],
+        "triage": [
+          {
+            "expectedId": "E02",
+            "findingIndex": 0
+          }
+        ],
+        "notes": [
+          "Raw finding 2 recommends contract tests without identifying the legacy dereference failure; unmatched and pending human adjudication."
+        ]
+      },
+      {
+        "panelId": "acd8cac9a0e45229",
+        "raw": [
+          {
+            "expectedId": "E02",
+            "findingIndex": 0
+          },
+          {
+            "expectedId": "E02",
+            "findingIndex": 1
+          }
+        ],
+        "triage": [
+          {
+            "expectedId": "E02",
+            "findingIndex": 0
+          }
+        ],
+        "notes": []
+      },
+      {
+        "panelId": "c463e556c6ae9d42",
+        "raw": [
+          {
+            "expectedId": "E02",
+            "findingIndex": 0
+          },
+          {
+            "expectedId": "E02",
+            "findingIndex": 1
+          }
+        ],
+        "triage": [
+          {
+            "expectedId": "E02",
+            "findingIndex": 0
+          }
+        ],
+        "notes": [
+          "Raw finding 2 concerns missing compatibility tests rather than identifying the legacy dereference failure; unmatched and pending human adjudication."
+        ]
+      },
+      {
+        "panelId": "d8242357cb492de3",
+        "raw": [
+          {
+            "expectedId": "E02",
+            "findingIndex": 0
+          },
+          {
+            "expectedId": "E02",
+            "findingIndex": 1
+          }
+        ],
+        "triage": [
+          {
+            "expectedId": "E02",
+            "findingIndex": 0
+          }
+        ],
+        "notes": []
+      }
+    ]
+  },
+  {
+    "caseId": "C03",
+    "payloadHash": "c51193071ff313868808f915a1530449b74e55fdcac5c43855b62571eb85093b",
+    "graderHash": "baf15b47cd9ef59245b9781215f4984428793e60b54a3a67c51ff444e05f3380",
+    "graderCallId": "9b4313e35e1b4931",
+    "runtimeHash": "0373547496970a1dec96fd3c7a3e37d09495e3db1c97441d2499d503ab83afa4",
+    "versions": {
+      "claude": "2.1.312 (Claude Code)",
+      "codex": "codex-cli 0.158.0"
+    },
+    "adjudication": "blinded-machine-provisional",
+    "humanSignoff": false,
+    "judgments": [
+      {
+        "panelId": "0a82d8c3d5ee5dbd",
+        "raw": [
+          {
+            "expectedId": "E03",
+            "findingIndex": 0
+          },
+          {
+            "expectedId": "E03",
+            "findingIndex": 1
+          }
+        ],
+        "triage": [
+          {
+            "expectedId": "E03",
+            "findingIndex": 0
+          }
+        ],
+        "notes": []
+      },
+      {
+        "panelId": "2394a203a9fa10dd",
+        "raw": [
+          {
+            "expectedId": "E03",
+            "findingIndex": 0
+          },
+          {
+            "expectedId": "E03",
+            "findingIndex": 1
+          }
+        ],
+        "triage": [
+          {
+            "expectedId": "E03",
+            "findingIndex": 0
+          }
+        ],
+        "notes": [
+          "Raw finding 2 concerns missing tests, not the defect mechanism; test absence is not established by the supplied snippet. Pending human adjudication."
+        ]
+      },
+      {
+        "panelId": "31511cb046ae994f",
+        "raw": [
+          {
+            "expectedId": "E03",
+            "findingIndex": 0
+          },
+          {
+            "expectedId": "E03",
+            "findingIndex": 1
+          }
+        ],
+        "triage": [
+          {
+            "expectedId": "E03",
+            "findingIndex": 0
+          }
+        ],
+        "notes": [
+          "Raw finding 2 concerns missing tests, not the defect mechanism; test absence is not established by the supplied snippet. Pending human adjudication."
+        ]
+      },
+      {
+        "panelId": "5d5b3af9a750b007",
+        "raw": [
+          {
+            "expectedId": "E03",
+            "findingIndex": 0
+          },
+          {
+            "expectedId": "E03",
+            "findingIndex": 1
+          }
+        ],
+        "triage": [
+          {
+            "expectedId": "E03",
+            "findingIndex": 0
+          }
+        ],
+        "notes": []
+      },
+      {
+        "panelId": "6a4bfc3827e4f741",
+        "raw": [
+          {
+            "expectedId": "E03",
+            "findingIndex": 0
+          },
+          {
+            "expectedId": "E03",
+            "findingIndex": 1
+          }
+        ],
+        "triage": [
+          {
+            "expectedId": "E03",
+            "findingIndex": 0
+          }
+        ],
+        "notes": [
+          "Raw finding 2 suggests test coverage without independently identifying the defect mechanism. No tests were supplied; the coverage claim remains pending human adjudication."
+        ]
+      },
+      {
+        "panelId": "7bc6b248a83c308e",
+        "raw": [
+          {
+            "expectedId": "E03",
+            "findingIndex": 0
+          },
+          {
+            "expectedId": "E03",
+            "findingIndex": 1
+          }
+        ],
+        "triage": [
+          {
+            "expectedId": "E03",
+            "findingIndex": 0
+          }
+        ],
+        "notes": []
+      },
+      {
+        "panelId": "8d7f513ea62124b1",
+        "raw": [
+          {
+            "expectedId": "E03",
+            "findingIndex": 0
+          },
+          {
+            "expectedId": "E03",
+            "findingIndex": 1
+          }
+        ],
+        "triage": [
+          {
+            "expectedId": "E03",
+            "findingIndex": 0
+          }
+        ],
+        "notes": [
+          "Raw finding 2 concerns missing tests, not the defect mechanism; test absence is not established by the supplied snippet. Pending human adjudication."
+        ]
+      },
+      {
+        "panelId": "9acf3ff4b690531e",
+        "raw": [
+          {
+            "expectedId": "E03",
+            "findingIndex": 0
+          },
+          {
+            "expectedId": "E03",
+            "findingIndex": 1
+          }
+        ],
+        "triage": [
+          {
+            "expectedId": "E03",
+            "findingIndex": 0
+          }
+        ],
+        "notes": []
+      },
+      {
+        "panelId": "a510b22c8bbfdb64",
+        "raw": [
+          {
+            "expectedId": "E03",
+            "findingIndex": 0
+          },
+          {
+            "expectedId": "E03",
+            "findingIndex": 1
+          }
+        ],
+        "triage": [
+          {
+            "expectedId": "E03",
+            "findingIndex": 0
+          }
+        ],
+        "notes": []
+      },
+      {
+        "panelId": "a954c0a2e5be0e92",
+        "raw": [
+          {
+            "expectedId": "E03",
+            "findingIndex": 0
+          },
+          {
+            "expectedId": "E03",
+            "findingIndex": 1
+          }
+        ],
+        "triage": [
+          {
+            "expectedId": "E03",
+            "findingIndex": 0
+          }
+        ],
+        "notes": []
+      },
+      {
+        "panelId": "c2d170e62b3b348f",
+        "raw": [
+          {
+            "expectedId": "E03",
+            "findingIndex": 0
+          },
+          {
+            "expectedId": "E03",
+            "findingIndex": 1
+          }
+        ],
+        "triage": [
+          {
+            "expectedId": "E03",
+            "findingIndex": 0
+          }
+        ],
+        "notes": [
+          "Raw finding 2 recommends retry and restart tests without independently identifying the changed-key defect mechanism. Test absence is not established; pending human adjudication."
+        ]
+      },
+      {
+        "panelId": "f5741d238c7c65cf",
+        "raw": [
+          {
+            "expectedId": "E03",
+            "findingIndex": 0
+          },
+          {
+            "expectedId": "E03",
+            "findingIndex": 1
+          }
+        ],
+        "triage": [
+          {
+            "expectedId": "E03",
+            "findingIndex": 0
+          }
+        ],
+        "notes": [
+          "Raw finding 2 recommends tests and mentions an unused parameter without identifying the changed-key defect mechanism. Test absence is not established; pending human adjudication."
+        ]
+      }
+    ]
+  },
+  {
+    "caseId": "C04",
+    "payloadHash": "a9b0ad944ad7acea6d20422a5dec8f2aba1f659f64dd024289b988e52e233054",
+    "graderHash": "baf15b47cd9ef59245b9781215f4984428793e60b54a3a67c51ff444e05f3380",
+    "graderCallId": "6b2647265b3c3763",
+    "runtimeHash": "0373547496970a1dec96fd3c7a3e37d09495e3db1c97441d2499d503ab83afa4",
+    "versions": {
+      "claude": "2.1.312 (Claude Code)",
+      "codex": "codex-cli 0.158.0"
+    },
+    "adjudication": "blinded-machine-provisional",
+    "humanSignoff": false,
+    "judgments": [
+      {
+        "panelId": "157302c750e2b7cc",
+        "raw": [],
+        "triage": [],
+        "notes": []
+      },
+      {
+        "panelId": "3ca286d68a7c3511",
+        "raw": [],
+        "triage": [],
+        "notes": []
+      },
+      {
+        "panelId": "3e55f87f43555c70",
+        "raw": [],
+        "triage": [],
+        "notes": []
+      },
+      {
+        "panelId": "3e96cda13674d883",
+        "raw": [],
+        "triage": [],
+        "notes": []
+      },
+      {
+        "panelId": "3ed2fcc71fcf691f",
+        "raw": [],
+        "triage": [],
+        "notes": []
+      },
+      {
+        "panelId": "41dde415a31d1aa3",
+        "raw": [],
+        "triage": [],
+        "notes": []
+      },
+      {
+        "panelId": "50aeb597be81919c",
+        "raw": [],
+        "triage": [],
+        "notes": []
+      },
+      {
+        "panelId": "5aad534ed3155036",
+        "raw": [],
+        "triage": [],
+        "notes": []
+      },
+      {
+        "panelId": "7e27029b08baf3d8",
+        "raw": [],
+        "triage": [],
+        "notes": []
+      },
+      {
+        "panelId": "8779eae733808a73",
+        "raw": [],
+        "triage": [],
+        "notes": []
+      },
+      {
+        "panelId": "88939a44bacaeb30",
+        "raw": [],
+        "triage": [],
+        "notes": []
+      },
+      {
+        "panelId": "b7cd815ba4aa98bf",
+        "raw": [],
+        "triage": [],
+        "notes": []
+      }
+    ]
+  },
+  {
+    "caseId": "C05",
+    "payloadHash": "3e0ce931cf922f16a3dd66d6643366918ae7f845ee10d9731a3ee3f62f5cd905",
+    "graderHash": "baf15b47cd9ef59245b9781215f4984428793e60b54a3a67c51ff444e05f3380",
+    "graderCallId": "fc641197e934ca75",
+    "runtimeHash": "0373547496970a1dec96fd3c7a3e37d09495e3db1c97441d2499d503ab83afa4",
+    "versions": {
+      "claude": "2.1.312 (Claude Code)",
+      "codex": "codex-cli 0.158.0"
+    },
+    "adjudication": "blinded-machine-provisional",
+    "humanSignoff": false,
+    "judgments": [
+      {
+        "panelId": "10cb672e9d50b9a1",
+        "raw": [
+          {
+            "expectedId": "E05",
+            "findingIndex": 0
+          },
+          {
+            "expectedId": "E05",
+            "findingIndex": 2
+          },
+          {
+            "expectedId": "E05",
+            "findingIndex": 5
+          },
+          {
+            "expectedId": "E05",
+            "findingIndex": 6
+          }
+        ],
+        "triage": [
+          {
+            "expectedId": "E05",
+            "findingIndex": 0
+          }
+        ],
+        "notes": [
+          "Raw 1, 3, 4, 7 and triage 1, 2 concern concurrency or return values rather than E05's persisted debit on destination failure; pending human adjudication."
+        ]
+      },
+      {
+        "panelId": "1602939db2e695f8",
+        "raw": [
+          {
+            "expectedId": "E05",
+            "findingIndex": 0
+          },
+          {
+            "expectedId": "E05",
+            "findingIndex": 3
+          },
+          {
+            "expectedId": "E05",
+            "findingIndex": 6
+          },
+          {
+            "expectedId": "E05",
+            "findingIndex": 7
+          },
+          {
+            "expectedId": "E05",
+            "findingIndex": 8
+          }
+        ],
+        "triage": [
+          {
+            "expectedId": "E05",
+            "findingIndex": 0
+          }
+        ],
+        "notes": [
+          "Raw 7 and 8 explicitly identify the debit persisting after destination failure while discussing retries and remediation.",
+          "Raw 1, 2, 4, 5 and triage 1 concern concurrency or return values; pending human adjudication."
+        ]
+      },
+      {
+        "panelId": "24ec3712770f3b6a",
+        "raw": [
+          {
+            "expectedId": "E05",
+            "findingIndex": 0
+          },
+          {
+            "expectedId": "E05",
+            "findingIndex": 1
+          },
+          {
+            "expectedId": "E05",
+            "findingIndex": 2
+          }
+        ],
+        "triage": [
+          {
+            "expectedId": "E05",
+            "findingIndex": 0
+          }
+        ],
+        "notes": []
+      },
+      {
+        "panelId": "558e7368962a4166",
+        "raw": [
+          {
+            "expectedId": "E05",
+            "findingIndex": 0
+          },
+          {
+            "expectedId": "E05",
+            "findingIndex": 1
+          },
+          {
+            "expectedId": "E05",
+            "findingIndex": 2
+          }
+        ],
+        "triage": [
+          {
+            "expectedId": "E05",
+            "findingIndex": 0
+          }
+        ],
+        "notes": []
+      },
+      {
+        "panelId": "5d8c4a622a25e1ef",
+        "raw": [
+          {
+            "expectedId": "E05",
+            "findingIndex": 0
+          },
+          {
+            "expectedId": "E05",
+            "findingIndex": 3
+          },
+          {
+            "expectedId": "E05",
+            "findingIndex": 6
+          },
+          {
+            "expectedId": "E05",
+            "findingIndex": 7
+          }
+        ],
+        "triage": [
+          {
+            "expectedId": "E05",
+            "findingIndex": 0
+          }
+        ],
+        "notes": [
+          "Raw 1, 2, 4, 5 and triage 1, 2 concern concurrency or return values rather than E05; pending human adjudication."
+        ]
+      },
+      {
+        "panelId": "6fee8d9b7ab21962",
+        "raw": [
+          {
+            "expectedId": "E05",
+            "findingIndex": 0
+          },
+          {
+            "expectedId": "E05",
+            "findingIndex": 1
+          },
+          {
+            "expectedId": "E05",
+            "findingIndex": 2
+          }
+        ],
+        "triage": [
+          {
+            "expectedId": "E05",
+            "findingIndex": 0
+          }
+        ],
+        "notes": []
+      },
+      {
+        "panelId": "75c088cfbbebf79e",
+        "raw": [
+          {
+            "expectedId": "E05",
+            "findingIndex": 0
+          },
+          {
+            "expectedId": "E05",
+            "findingIndex": 3
+          },
+          {
+            "expectedId": "E05",
+            "findingIndex": 6
+          },
+          {
+            "expectedId": "E05",
+            "findingIndex": 7
+          }
+        ],
+        "triage": [
+          {
+            "expectedId": "E05",
+            "findingIndex": 0
+          }
+        ],
+        "notes": [
+          "Raw 1, 2, 4, 5, 8 and triage 1, 2 concern concurrency or return values rather than E05; pending human adjudication."
+        ]
+      },
+      {
+        "panelId": "7e8b9f422d3f4248",
+        "raw": [
+          {
+            "expectedId": "E05",
+            "findingIndex": 0
+          },
+          {
+            "expectedId": "E05",
+            "findingIndex": 3
+          },
+          {
+            "expectedId": "E05",
+            "findingIndex": 6
+          },
+          {
+            "expectedId": "E05",
+            "findingIndex": 7
+          }
+        ],
+        "triage": [
+          {
+            "expectedId": "E05",
+            "findingIndex": 0
+          }
+        ],
+        "notes": [
+          "Raw 1, 2, 4, 5, 8 and triage 1, 2 concern concurrency or return values rather than E05; pending human adjudication."
+        ]
+      },
+      {
+        "panelId": "a2fb460e0e41c0bd",
+        "raw": [
+          {
+            "expectedId": "E05",
+            "findingIndex": 0
+          },
+          {
+            "expectedId": "E05",
+            "findingIndex": 3
+          },
+          {
+            "expectedId": "E05",
+            "findingIndex": 6
+          },
+          {
+            "expectedId": "E05",
+            "findingIndex": 7
+          },
+          {
+            "expectedId": "E05",
+            "findingIndex": 8
+          }
+        ],
+        "triage": [
+          {
+            "expectedId": "E05",
+            "findingIndex": 0
+          }
+        ],
+        "notes": [
+          "Raw 8 matches through its explicit description of a save failure leaving the debit committed, independently of its return-value and error-detail claims.",
+          "Raw 1, 2, 4, 5 and triage 1 concern concurrency or return values; pending human adjudication."
+        ]
+      },
+      {
+        "panelId": "c21f28b855a92ecd",
+        "raw": [
+          {
+            "expectedId": "E05",
+            "findingIndex": 0
+          },
+          {
+            "expectedId": "E05",
+            "findingIndex": 1
+          },
+          {
+            "expectedId": "E05",
+            "findingIndex": 2
+          }
+        ],
+        "triage": [
+          {
+            "expectedId": "E05",
+            "findingIndex": 0
+          }
+        ],
+        "notes": []
+      },
+      {
+        "panelId": "d251ede7b1c1fd36",
+        "raw": [
+          {
+            "expectedId": "E05",
+            "findingIndex": 0
+          },
+          {
+            "expectedId": "E05",
+            "findingIndex": 1
+          },
+          {
+            "expectedId": "E05",
+            "findingIndex": 2
+          }
+        ],
+        "triage": [
+          {
+            "expectedId": "E05",
+            "findingIndex": 0
+          }
+        ],
+        "notes": []
+      },
+      {
+        "panelId": "f2e14621b92e886b",
+        "raw": [
+          {
+            "expectedId": "E05",
+            "findingIndex": 0
+          },
+          {
+            "expectedId": "E05",
+            "findingIndex": 1
+          },
+          {
+            "expectedId": "E05",
+            "findingIndex": 2
+          }
+        ],
+        "triage": [
+          {
+            "expectedId": "E05",
+            "findingIndex": 0
+          }
+        ],
+        "notes": []
+      }
+    ]
+  },
+  {
+    "caseId": "C06",
+    "payloadHash": "b5c8949ae7be5fc4f56f56b3bdd118c218feadb085f54749f740ec7345922ef4",
+    "graderHash": "baf15b47cd9ef59245b9781215f4984428793e60b54a3a67c51ff444e05f3380",
+    "graderCallId": "1d1cc6b939c3616b",
+    "runtimeHash": "0373547496970a1dec96fd3c7a3e37d09495e3db1c97441d2499d503ab83afa4",
+    "versions": {
+      "claude": "2.1.312 (Claude Code)",
+      "codex": "codex-cli 0.158.0"
+    },
+    "adjudication": "blinded-machine-provisional",
+    "humanSignoff": false,
+    "judgments": [
+      {
+        "panelId": "0857a5d7e0e335a0",
+        "raw": [
+          {
+            "expectedId": "E06",
+            "findingIndex": 0
+          },
+          {
+            "expectedId": "E06",
+            "findingIndex": 1
+          }
+        ],
+        "triage": [
+          {
+            "expectedId": "E06",
+            "findingIndex": 0
+          }
+        ],
+        "notes": []
+      },
+      {
+        "panelId": "0c0e839102618ace",
+        "raw": [
+          {
+            "expectedId": "E06",
+            "findingIndex": 0
+          },
+          {
+            "expectedId": "E06",
+            "findingIndex": 1
+          }
+        ],
+        "triage": [
+          {
+            "expectedId": "E06",
+            "findingIndex": 0
+          }
+        ],
+        "notes": []
+      },
+      {
+        "panelId": "119b87e645f3083a",
+        "raw": [
+          {
+            "expectedId": "E06",
+            "findingIndex": 0
+          },
+          {
+            "expectedId": "E06",
+            "findingIndex": 1
+          }
+        ],
+        "triage": [
+          {
+            "expectedId": "E06",
+            "findingIndex": 0
+          }
+        ],
+        "notes": []
+      },
+      {
+        "panelId": "3f8eeae3dd2e6549",
+        "raw": [
+          {
+            "expectedId": "E06",
+            "findingIndex": 0
+          },
+          {
+            "expectedId": "E06",
+            "findingIndex": 1
+          }
+        ],
+        "triage": [
+          {
+            "expectedId": "E06",
+            "findingIndex": 0
+          }
+        ],
+        "notes": []
+      },
+      {
+        "panelId": "528fe18a67594f8b",
+        "raw": [
+          {
+            "expectedId": "E06",
+            "findingIndex": 0
+          },
+          {
+            "expectedId": "E06",
+            "findingIndex": 1
+          }
+        ],
+        "triage": [
+          {
+            "expectedId": "E06",
+            "findingIndex": 0
+          }
+        ],
+        "notes": []
+      },
+      {
+        "panelId": "6c44399c037b7401",
+        "raw": [
+          {
+            "expectedId": "E06",
+            "findingIndex": 0
+          },
+          {
+            "expectedId": "E06",
+            "findingIndex": 1
+          }
+        ],
+        "triage": [
+          {
+            "expectedId": "E06",
+            "findingIndex": 0
+          }
+        ],
+        "notes": []
+      },
+      {
+        "panelId": "7c7b70749336719e",
+        "raw": [
+          {
+            "expectedId": "E06",
+            "findingIndex": 0
+          },
+          {
+            "expectedId": "E06",
+            "findingIndex": 1
+          }
+        ],
+        "triage": [
+          {
+            "expectedId": "E06",
+            "findingIndex": 0
+          }
+        ],
+        "notes": []
+      },
+      {
+        "panelId": "acab614e5c015847",
+        "raw": [
+          {
+            "expectedId": "E06",
+            "findingIndex": 0
+          },
+          {
+            "expectedId": "E06",
+            "findingIndex": 1
+          }
+        ],
+        "triage": [
+          {
+            "expectedId": "E06",
+            "findingIndex": 0
+          }
+        ],
+        "notes": []
+      },
+      {
+        "panelId": "bdf62a33050c7977",
+        "raw": [
+          {
+            "expectedId": "E06",
+            "findingIndex": 0
+          },
+          {
+            "expectedId": "E06",
+            "findingIndex": 1
+          }
+        ],
+        "triage": [
+          {
+            "expectedId": "E06",
+            "findingIndex": 0
+          }
+        ],
+        "notes": []
+      },
+      {
+        "panelId": "c9e32cbc1e27aee7",
+        "raw": [
+          {
+            "expectedId": "E06",
+            "findingIndex": 0
+          },
+          {
+            "expectedId": "E06",
+            "findingIndex": 1
+          }
+        ],
+        "triage": [
+          {
+            "expectedId": "E06",
+            "findingIndex": 0
+          }
+        ],
+        "notes": []
+      },
+      {
+        "panelId": "cba29fee719fa574",
+        "raw": [
+          {
+            "expectedId": "E06",
+            "findingIndex": 0
+          },
+          {
+            "expectedId": "E06",
+            "findingIndex": 1
+          }
+        ],
+        "triage": [
+          {
+            "expectedId": "E06",
+            "findingIndex": 0
+          }
+        ],
+        "notes": []
+      },
+      {
+        "panelId": "e412769bf45c3723",
+        "raw": [
+          {
+            "expectedId": "E06",
+            "findingIndex": 0
+          },
+          {
+            "expectedId": "E06",
+            "findingIndex": 1
+          }
+        ],
+        "triage": [
+          {
+            "expectedId": "E06",
+            "findingIndex": 0
+          }
+        ],
+        "notes": []
+      }
+    ]
+  },
+  {
+    "caseId": "C07",
+    "payloadHash": "312e9f38cfbd5a29d8bf7407cae80dd34cd28cc6cba70f73d9e9c7a53f78ebc9",
+    "graderHash": "baf15b47cd9ef59245b9781215f4984428793e60b54a3a67c51ff444e05f3380",
+    "graderCallId": "3047ff00ff3c8645",
+    "runtimeHash": "0373547496970a1dec96fd3c7a3e37d09495e3db1c97441d2499d503ab83afa4",
+    "versions": {
+      "claude": "2.1.312 (Claude Code)",
+      "codex": "codex-cli 0.158.0"
+    },
+    "adjudication": "blinded-machine-provisional",
+    "humanSignoff": false,
+    "judgments": [
+      {
+        "panelId": "22286ece6dc77628",
+        "raw": [
+          {
+            "expectedId": "E07",
+            "findingIndex": 0
+          },
+          {
+            "expectedId": "E07",
+            "findingIndex": 1
+          }
+        ],
+        "triage": [
+          {
+            "expectedId": "E07",
+            "findingIndex": 0
+          }
+        ],
+        "notes": []
+      },
+      {
+        "panelId": "33c9405a846b08a9",
+        "raw": [
+          {
+            "expectedId": "E07",
+            "findingIndex": 0
+          },
+          {
+            "expectedId": "E07",
+            "findingIndex": 1
+          }
+        ],
+        "triage": [
+          {
+            "expectedId": "E07",
+            "findingIndex": 0
+          }
+        ],
+        "notes": []
+      },
+      {
+        "panelId": "49c9305c9a293a22",
+        "raw": [
+          {
+            "expectedId": "E07",
+            "findingIndex": 0
+          },
+          {
+            "expectedId": "E07",
+            "findingIndex": 1
+          }
+        ],
+        "triage": [
+          {
+            "expectedId": "E07",
+            "findingIndex": 0
+          }
+        ],
+        "notes": []
+      },
+      {
+        "panelId": "50b79072a7331a8d",
+        "raw": [
+          {
+            "expectedId": "E07",
+            "findingIndex": 0
+          },
+          {
+            "expectedId": "E07",
+            "findingIndex": 2
+          }
+        ],
+        "triage": [
+          {
+            "expectedId": "E07",
+            "findingIndex": 0
+          }
+        ],
+        "notes": [
+          "Raw finding 1 suggests boundary tests but does not identify the inclusive-boundary mechanism; pending human adjudication."
+        ]
+      },
+      {
+        "panelId": "631ef470e47f1a03",
+        "raw": [
+          {
+            "expectedId": "E07",
+            "findingIndex": 0
+          },
+          {
+            "expectedId": "E07",
+            "findingIndex": 1
+          }
+        ],
+        "triage": [
+          {
+            "expectedId": "E07",
+            "findingIndex": 0
+          }
+        ],
+        "notes": []
+      },
+      {
+        "panelId": "a9fdad592eec3721",
+        "raw": [
+          {
+            "expectedId": "E07",
+            "findingIndex": 0
+          },
+          {
+            "expectedId": "E07",
+            "findingIndex": 1
+          }
+        ],
+        "triage": [
+          {
+            "expectedId": "E07",
+            "findingIndex": 0
+          }
+        ],
+        "notes": []
+      },
+      {
+        "panelId": "b2e1d8405b8e7924",
+        "raw": [
+          {
+            "expectedId": "E07",
+            "findingIndex": 0
+          },
+          {
+            "expectedId": "E07",
+            "findingIndex": 2
+          }
+        ],
+        "triage": [
+          {
+            "expectedId": "E07",
+            "findingIndex": 0
+          }
+        ],
+        "notes": [
+          "Raw finding 1 suggests regression tests without identifying the inclusive-boundary mechanism. Raw finding 3 concerns observability, backoff, and timeouts rather than that mechanism. Both remain pending human adjudication."
+        ]
+      },
+      {
+        "panelId": "c01ad3f65eda6055",
+        "raw": [
+          {
+            "expectedId": "E07",
+            "findingIndex": 0
+          },
+          {
+            "expectedId": "E07",
+            "findingIndex": 1
+          }
+        ],
+        "triage": [
+          {
+            "expectedId": "E07",
+            "findingIndex": 0
+          }
+        ],
+        "notes": []
+      },
+      {
+        "panelId": "c0863dd83fa78411",
+        "raw": [
+          {
+            "expectedId": "E07",
+            "findingIndex": 0
+          },
+          {
+            "expectedId": "E07",
+            "findingIndex": 1
+          }
+        ],
+        "triage": [
+          {
+            "expectedId": "E07",
+            "findingIndex": 0
+          }
+        ],
+        "notes": []
+      },
+      {
+        "panelId": "c3b4b18336c46246",
+        "raw": [
+          {
+            "expectedId": "E07",
+            "findingIndex": 0
+          },
+          {
+            "expectedId": "E07",
+            "findingIndex": 1
+          }
+        ],
+        "triage": [
+          {
+            "expectedId": "E07",
+            "findingIndex": 0
+          }
+        ],
+        "notes": []
+      },
+      {
+        "panelId": "c6110c50437cdf34",
+        "raw": [
+          {
+            "expectedId": "E07",
+            "findingIndex": 0
+          },
+          {
+            "expectedId": "E07",
+            "findingIndex": 2
+          }
+        ],
+        "triage": [
+          {
+            "expectedId": "E07",
+            "findingIndex": 0
+          }
+        ],
+        "notes": [
+          "Raw finding 1 suggests tests without identifying the inclusive-boundary mechanism. Raw finding 3 mentions the fourth attempt but focuses on backoff, timeouts, and logging without explaining the boundary defect. Both remain pending human adjudication."
+        ]
+      },
+      {
+        "panelId": "f6203a4f658ed64b",
+        "raw": [
+          {
+            "expectedId": "E07",
+            "findingIndex": 0
+          },
+          {
+            "expectedId": "E07",
+            "findingIndex": 1
+          }
+        ],
+        "triage": [
+          {
+            "expectedId": "E07",
+            "findingIndex": 0
+          }
+        ],
+        "notes": []
+      }
+    ]
+  },
+  {
+    "caseId": "C08",
+    "payloadHash": "a42fdb0a01ce7b96d758ac1e637c2be339932e8ce805d44aec9307f8fab064f3",
+    "graderHash": "baf15b47cd9ef59245b9781215f4984428793e60b54a3a67c51ff444e05f3380",
+    "graderCallId": "cde671a9f27fd6d4",
+    "runtimeHash": "0373547496970a1dec96fd3c7a3e37d09495e3db1c97441d2499d503ab83afa4",
+    "versions": {
+      "claude": "2.1.312 (Claude Code)",
+      "codex": "codex-cli 0.158.0"
+    },
+    "adjudication": "blinded-machine-provisional",
+    "humanSignoff": false,
+    "judgments": [
+      {
+        "panelId": "07e7f106480cf80e",
+        "raw": [],
+        "triage": [],
+        "notes": []
+      },
+      {
+        "panelId": "1ee40e01156481d1",
+        "raw": [],
+        "triage": [],
+        "notes": [
+          "Raw finding 0 remains unmatched: no expected defects; its scenario requires an undefined session tenant despite the supplied trusted-middleware and string-tenant context."
+        ]
+      },
+      {
+        "panelId": "29da23bb0297dc68",
+        "raw": [],
+        "triage": [],
+        "notes": []
+      },
+      {
+        "panelId": "2d341b9fe07c32b2",
+        "raw": [],
+        "triage": [],
+        "notes": []
+      },
+      {
+        "panelId": "30add83f159adc11",
+        "raw": [],
+        "triage": [],
+        "notes": []
+      },
+      {
+        "panelId": "3332cfb90793bc0e",
+        "raw": [],
+        "triage": [],
+        "notes": []
+      },
+      {
+        "panelId": "37867d164513ccae",
+        "raw": [],
+        "triage": [],
+        "notes": []
+      },
+      {
+        "panelId": "814e65ff9efd9a6d",
+        "raw": [],
+        "triage": [],
+        "notes": []
+      },
+      {
+        "panelId": "99b9ad95f668abe9",
+        "raw": [],
+        "triage": [],
+        "notes": []
+      },
+      {
+        "panelId": "a04a8ce70b2032fd",
+        "raw": [],
+        "triage": [],
+        "notes": []
+      },
+      {
+        "panelId": "a7ec5d1aafda2886",
+        "raw": [],
+        "triage": [],
+        "notes": [
+          "Raw finding 0 remains unmatched: no expected defects; its undefined-tenant scenario is unsupported by the supplied context, and the finding acknowledges no spec violation.",
+          "Raw finding 1 remains unmatched: it suggests tests without identifying a specific defect."
+        ]
+      },
+      {
+        "panelId": "d4de30b05896c7b6",
+        "raw": [],
+        "triage": [],
+        "notes": []
+      }
+    ]
+  },
+  {
+    "caseId": "C09",
+    "payloadHash": "92ee03ff88199705840975b779c03f08512ab920af8b8cde458555da103e236c",
+    "graderHash": "baf15b47cd9ef59245b9781215f4984428793e60b54a3a67c51ff444e05f3380",
+    "graderCallId": "b81ce6be0ddcfb7d",
+    "runtimeHash": "0373547496970a1dec96fd3c7a3e37d09495e3db1c97441d2499d503ab83afa4",
+    "versions": {
+      "claude": "2.1.312 (Claude Code)",
+      "codex": "codex-cli 0.158.0"
+    },
+    "adjudication": "blinded-machine-provisional",
+    "humanSignoff": false,
+    "judgments": [
+      {
+        "panelId": "0f6eb1c819b488b1",
+        "raw": [
+          {
+            "expectedId": "E09",
+            "findingIndex": 0
+          },
+          {
+            "expectedId": "E09",
+            "findingIndex": 1
+          }
+        ],
+        "triage": [
+          {
+            "expectedId": "E09",
+            "findingIndex": 0
+          }
+        ],
+        "notes": [
+          "Raw finding 2 proposes regression tests without independently explaining the one-hop validation bypass; left unmatched."
+        ]
+      },
+      {
+        "panelId": "2cb4ce41e7a3af7d",
+        "raw": [
+          {
+            "expectedId": "E09",
+            "findingIndex": 0
+          },
+          {
+            "expectedId": "E09",
+            "findingIndex": 1
+          }
+        ],
+        "triage": [
+          {
+            "expectedId": "E09",
+            "findingIndex": 0
+          }
+        ],
+        "notes": []
+      },
+      {
+        "panelId": "44cbab0d6fef91ef",
+        "raw": [
+          {
+            "expectedId": "E09",
+            "findingIndex": 0
+          },
+          {
+            "expectedId": "E09",
+            "findingIndex": 1
+          }
+        ],
+        "triage": [
+          {
+            "expectedId": "E09",
+            "findingIndex": 0
+          }
+        ],
+        "notes": []
+      },
+      {
+        "panelId": "57aba3bb9626d520",
+        "raw": [
+          {
+            "expectedId": "E09",
+            "findingIndex": 0
+          },
+          {
+            "expectedId": "E09",
+            "findingIndex": 1
+          }
+        ],
+        "triage": [
+          {
+            "expectedId": "E09",
+            "findingIndex": 0
+          }
+        ],
+        "notes": []
+      },
+      {
+        "panelId": "6b11cfe386eef633",
+        "raw": [
+          {
+            "expectedId": "E09",
+            "findingIndex": 0
+          },
+          {
+            "expectedId": "E09",
+            "findingIndex": 1
+          }
+        ],
+        "triage": [
+          {
+            "expectedId": "E09",
+            "findingIndex": 0
+          }
+        ],
+        "notes": []
+      },
+      {
+        "panelId": "7497707a65400829",
+        "raw": [
+          {
+            "expectedId": "E09",
+            "findingIndex": 0
+          },
+          {
+            "expectedId": "E09",
+            "findingIndex": 1
+          },
+          {
+            "expectedId": "E09",
+            "findingIndex": 2
+          }
+        ],
+        "triage": [
+          {
+            "expectedId": "E09",
+            "findingIndex": 0
+          }
+        ],
+        "notes": []
+      },
+      {
+        "panelId": "8269903fe2d73ed8",
+        "raw": [
+          {
+            "expectedId": "E09",
+            "findingIndex": 0
+          },
+          {
+            "expectedId": "E09",
+            "findingIndex": 1
+          },
+          {
+            "expectedId": "E09",
+            "findingIndex": 2
+          },
+          {
+            "expectedId": "E09",
+            "findingIndex": 3
+          }
+        ],
+        "triage": [
+          {
+            "expectedId": "E09",
+            "findingIndex": 0
+          }
+        ],
+        "notes": [
+          "Raw findings 1 and 3 describe the same checked-versus-used destination mismatch. Triage finding 1 instead frames repeated resolution as preexisting duplication and offers hardening, referring the actual bypass to finding 0; left unmatched."
+        ]
+      },
+      {
+        "panelId": "984dcff8b656a3b4",
+        "raw": [
+          {
+            "expectedId": "E09",
+            "findingIndex": 0
+          },
+          {
+            "expectedId": "E09",
+            "findingIndex": 1
+          }
+        ],
+        "triage": [
+          {
+            "expectedId": "E09",
+            "findingIndex": 0
+          }
+        ],
+        "notes": []
+      },
+      {
+        "panelId": "990b109eda35918c",
+        "raw": [
+          {
+            "expectedId": "E09",
+            "findingIndex": 0
+          },
+          {
+            "expectedId": "E09",
+            "findingIndex": 1
+          }
+        ],
+        "triage": [
+          {
+            "expectedId": "E09",
+            "findingIndex": 0
+          }
+        ],
+        "notes": [
+          "Raw finding 2 proposes regression tests without independently explaining the one-hop validation bypass; left unmatched."
+        ]
+      },
+      {
+        "panelId": "a54fd5f5d8245ca6",
+        "raw": [
+          {
+            "expectedId": "E09",
+            "findingIndex": 0
+          },
+          {
+            "expectedId": "E09",
+            "findingIndex": 1
+          },
+          {
+            "expectedId": "E09",
+            "findingIndex": 2
+          }
+        ],
+        "triage": [
+          {
+            "expectedId": "E09",
+            "findingIndex": 0
+          }
+        ],
+        "notes": []
+      },
+      {
+        "panelId": "ad6548bb4f00c3e0",
+        "raw": [
+          {
+            "expectedId": "E09",
+            "findingIndex": 0
+          },
+          {
+            "expectedId": "E09",
+            "findingIndex": 1
+          },
+          {
+            "expectedId": "E09",
+            "findingIndex": 2
+          }
+        ],
+        "triage": [
+          {
+            "expectedId": "E09",
+            "findingIndex": 0
+          }
+        ],
+        "notes": []
+      },
+      {
+        "panelId": "c95ae2343ed27df5",
+        "raw": [
+          {
+            "expectedId": "E09",
+            "findingIndex": 0
+          },
+          {
+            "expectedId": "E09",
+            "findingIndex": 1
+          }
+        ],
+        "triage": [
+          {
+            "expectedId": "E09",
+            "findingIndex": 0
+          }
+        ],
+        "notes": []
+      }
+    ]
+  },
+  {
+    "caseId": "C10",
+    "payloadHash": "c2e1e7d4b2ddadb8fb2b2d08cb966545daba9c618606ec85b8a9a03aa10e1f83",
+    "graderHash": "baf15b47cd9ef59245b9781215f4984428793e60b54a3a67c51ff444e05f3380",
+    "graderCallId": "72246590d71e1621",
+    "runtimeHash": "0373547496970a1dec96fd3c7a3e37d09495e3db1c97441d2499d503ab83afa4",
+    "versions": {
+      "claude": "2.1.312 (Claude Code)",
+      "codex": "codex-cli 0.158.0"
+    },
+    "adjudication": "blinded-machine-provisional",
+    "humanSignoff": false,
+    "judgments": [
+      {
+        "panelId": "022393c2f1358b28",
+        "raw": [
+          {
+            "expectedId": "E10",
+            "findingIndex": 0
+          },
+          {
+            "expectedId": "E10",
+            "findingIndex": 2
+          }
+        ],
+        "triage": [
+          {
+            "expectedId": "E10",
+            "findingIndex": 0
+          }
+        ],
+        "notes": [
+          "Raw 1 focuses on conflict reporting without establishing the destructive directory-replacement mechanism; pending adjudication. Raw 3 addresses redundant deletion rather than loss of preserved content; pending adjudication."
+        ]
+      },
+      {
+        "panelId": "12e11a6e6122fd6e",
+        "raw": [
+          {
+            "expectedId": "E10",
+            "findingIndex": 0
+          },
+          {
+            "expectedId": "E10",
+            "findingIndex": 1
+          }
+        ],
+        "triage": [
+          {
+            "expectedId": "E10",
+            "findingIndex": 0
+          }
+        ],
+        "notes": []
+      },
+      {
+        "panelId": "1b2c713791c767b1",
+        "raw": [
+          {
+            "expectedId": "E10",
+            "findingIndex": 0
+          },
+          {
+            "expectedId": "E10",
+            "findingIndex": 1
+          }
+        ],
+        "triage": [
+          {
+            "expectedId": "E10",
+            "findingIndex": 0
+          }
+        ],
+        "notes": []
+      },
+      {
+        "panelId": "486da0adcd55b7cb",
+        "raw": [
+          {
+            "expectedId": "E10",
+            "findingIndex": 0
+          },
+          {
+            "expectedId": "E10",
+            "findingIndex": 1
+          }
+        ],
+        "triage": [
+          {
+            "expectedId": "E10",
+            "findingIndex": 0
+          }
+        ],
+        "notes": [
+          "Raw 2 describes incorrect success reporting without establishing destructive directory replacement; pending adjudication. Raw 3 concerns redundant deletion, not the content-loss mechanism; pending adjudication."
+        ]
+      },
+      {
+        "panelId": "6e872047fd489e7d",
+        "raw": [
+          {
+            "expectedId": "E10",
+            "findingIndex": 0
+          },
+          {
+            "expectedId": "E10",
+            "findingIndex": 1
+          }
+        ],
+        "triage": [
+          {
+            "expectedId": "E10",
+            "findingIndex": 0
+          }
+        ],
+        "notes": []
+      },
+      {
+        "panelId": "7d951109d6a5c7e5",
+        "raw": [
+          {
+            "expectedId": "E10",
+            "findingIndex": 0
+          },
+          {
+            "expectedId": "E10",
+            "findingIndex": 1
+          }
+        ],
+        "triage": [
+          {
+            "expectedId": "E10",
+            "findingIndex": 0
+          }
+        ],
+        "notes": []
+      },
+      {
+        "panelId": "a33a9b109c6b401e",
+        "raw": [
+          {
+            "expectedId": "E10",
+            "findingIndex": 0
+          },
+          {
+            "expectedId": "E10",
+            "findingIndex": 1
+          }
+        ],
+        "triage": [
+          {
+            "expectedId": "E10",
+            "findingIndex": 0
+          }
+        ],
+        "notes": []
+      },
+      {
+        "panelId": "b48166999f3ca218",
+        "raw": [
+          {
+            "expectedId": "E10",
+            "findingIndex": 0
+          },
+          {
+            "expectedId": "E10",
+            "findingIndex": 1
+          }
+        ],
+        "triage": [
+          {
+            "expectedId": "E10",
+            "findingIndex": 0
+          }
+        ],
+        "notes": [
+          "Raw 2 mentions the missing guard while arguing deletion is redundant, but does not identify destruction of real directory content; pending adjudication."
+        ]
+      },
+      {
+        "panelId": "bf5bad7ea2ca4b1b",
+        "raw": [
+          {
+            "expectedId": "E10",
+            "findingIndex": 0
+          },
+          {
+            "expectedId": "E10",
+            "findingIndex": 2
+          }
+        ],
+        "triage": [
+          {
+            "expectedId": "E10",
+            "findingIndex": 0
+          }
+        ],
+        "notes": [
+          "Raw 1 identifies incorrect conflict reporting without the destructive replacement mechanism; pending adjudication. Raw 3 and triage 1 concern redundant deletion rather than directory content loss; pending adjudication."
+        ]
+      },
+      {
+        "panelId": "c94ee5f2572b13f2",
+        "raw": [
+          {
+            "expectedId": "E10",
+            "findingIndex": 0
+          },
+          {
+            "expectedId": "E10",
+            "findingIndex": 1
+          }
+        ],
+        "triage": [
+          {
+            "expectedId": "E10",
+            "findingIndex": 0
+          }
+        ],
+        "notes": [
+          "Raw 2 identifies incorrect return values without destructive directory replacement; pending adjudication. Raw 3 concerns redundant deletion rather than the content-loss mechanism; pending adjudication."
+        ]
+      },
+      {
+        "panelId": "d9150fe427a11194",
+        "raw": [
+          {
+            "expectedId": "E10",
+            "findingIndex": 0
+          },
+          {
+            "expectedId": "E10",
+            "findingIndex": 1
+          }
+        ],
+        "triage": [
+          {
+            "expectedId": "E10",
+            "findingIndex": 0
+          }
+        ],
+        "notes": []
+      },
+      {
+        "panelId": "f92f4405e0cf0177",
+        "raw": [
+          {
+            "expectedId": "E10",
+            "findingIndex": 0
+          },
+          {
+            "expectedId": "E10",
+            "findingIndex": 1
+          }
+        ],
+        "triage": [
+          {
+            "expectedId": "E10",
+            "findingIndex": 0
+          }
+        ],
+        "notes": [
+          "Raw 2 discusses redundant deletion and unconditional overwrite intent without identifying loss of real directory content; pending adjudication."
+        ]
+      }
+    ]
+  },
+  {
+    "caseId": "C11",
+    "payloadHash": "d6a8b18e76e70b7dc53e65b1174716a781ac673d14f8636c91abcefea64a14b0",
+    "graderHash": "baf15b47cd9ef59245b9781215f4984428793e60b54a3a67c51ff444e05f3380",
+    "graderCallId": "9078b83e8750c5e7",
+    "runtimeHash": "0373547496970a1dec96fd3c7a3e37d09495e3db1c97441d2499d503ab83afa4",
+    "versions": {
+      "claude": "2.1.312 (Claude Code)",
+      "codex": "codex-cli 0.158.0"
+    },
+    "adjudication": "blinded-machine-provisional",
+    "humanSignoff": false,
+    "judgments": [
+      {
+        "panelId": "0ea41bf4576a1206",
+        "raw": [
+          {
+            "expectedId": "E11",
+            "findingIndex": 0
+          },
+          {
+            "expectedId": "E11",
+            "findingIndex": 1
+          }
+        ],
+        "triage": [
+          {
+            "expectedId": "E11",
+            "findingIndex": 0
+          }
+        ],
+        "notes": []
+      },
+      {
+        "panelId": "1fd97dd0167b2816",
+        "raw": [
+          {
+            "expectedId": "E11",
+            "findingIndex": 0
+          },
+          {
+            "expectedId": "E11",
+            "findingIndex": 1
+          }
+        ],
+        "triage": [
+          {
+            "expectedId": "E11",
+            "findingIndex": 0
+          }
+        ],
+        "notes": []
+      },
+      {
+        "panelId": "2465bd4000a9abb2",
+        "raw": [
+          {
+            "expectedId": "E11",
+            "findingIndex": 0
+          },
+          {
+            "expectedId": "E11",
+            "findingIndex": 1
+          }
+        ],
+        "triage": [
+          {
+            "expectedId": "E11",
+            "findingIndex": 0
+          }
+        ],
+        "notes": []
+      },
+      {
+        "panelId": "43b6cdb4aade1b46",
+        "raw": [
+          {
+            "expectedId": "E11",
+            "findingIndex": 0
+          },
+          {
+            "expectedId": "E11",
+            "findingIndex": 1
+          }
+        ],
+        "triage": [
+          {
+            "expectedId": "E11",
+            "findingIndex": 0
+          }
+        ],
+        "notes": []
+      },
+      {
+        "panelId": "4959ac3f04e15174",
+        "raw": [
+          {
+            "expectedId": "E11",
+            "findingIndex": 0
+          },
+          {
+            "expectedId": "E11",
+            "findingIndex": 1
+          }
+        ],
+        "triage": [
+          {
+            "expectedId": "E11",
+            "findingIndex": 0
+          }
+        ],
+        "notes": []
+      },
+      {
+        "panelId": "9b9ae53ce5040384",
+        "raw": [
+          {
+            "expectedId": "E11",
+            "findingIndex": 0
+          },
+          {
+            "expectedId": "E11",
+            "findingIndex": 1
+          }
+        ],
+        "triage": [
+          {
+            "expectedId": "E11",
+            "findingIndex": 0
+          }
+        ],
+        "notes": []
+      },
+      {
+        "panelId": "ae375d920e1dfe0b",
+        "raw": [
+          {
+            "expectedId": "E11",
+            "findingIndex": 0
+          },
+          {
+            "expectedId": "E11",
+            "findingIndex": 1
+          }
+        ],
+        "triage": [
+          {
+            "expectedId": "E11",
+            "findingIndex": 0
+          }
+        ],
+        "notes": []
+      },
+      {
+        "panelId": "b9df3e9a4e13db86",
+        "raw": [
+          {
+            "expectedId": "E11",
+            "findingIndex": 0
+          },
+          {
+            "expectedId": "E11",
+            "findingIndex": 1
+          }
+        ],
+        "triage": [
+          {
+            "expectedId": "E11",
+            "findingIndex": 0
+          }
+        ],
+        "notes": []
+      },
+      {
+        "panelId": "c15346a474decce4",
+        "raw": [
+          {
+            "expectedId": "E11",
+            "findingIndex": 0
+          },
+          {
+            "expectedId": "E11",
+            "findingIndex": 1
+          }
+        ],
+        "triage": [
+          {
+            "expectedId": "E11",
+            "findingIndex": 0
+          }
+        ],
+        "notes": []
+      },
+      {
+        "panelId": "c90ab31e3e63dec9",
+        "raw": [
+          {
+            "expectedId": "E11",
+            "findingIndex": 0
+          },
+          {
+            "expectedId": "E11",
+            "findingIndex": 1
+          }
+        ],
+        "triage": [
+          {
+            "expectedId": "E11",
+            "findingIndex": 0
+          }
+        ],
+        "notes": []
+      },
+      {
+        "panelId": "ee5c394a99e8957e",
+        "raw": [
+          {
+            "expectedId": "E11",
+            "findingIndex": 0
+          },
+          {
+            "expectedId": "E11",
+            "findingIndex": 1
+          }
+        ],
+        "triage": [
+          {
+            "expectedId": "E11",
+            "findingIndex": 0
+          }
+        ],
+        "notes": []
+      },
+      {
+        "panelId": "f7889f79e266def7",
+        "raw": [
+          {
+            "expectedId": "E11",
+            "findingIndex": 0
+          },
+          {
+            "expectedId": "E11",
+            "findingIndex": 1
+          }
+        ],
+        "triage": [
+          {
+            "expectedId": "E11",
+            "findingIndex": 0
+          }
+        ],
+        "notes": []
+      }
+    ]
+  },
+  {
+    "caseId": "C12",
+    "payloadHash": "0ce1d2da3a3ca8adb3aab04bb4aa85a768621220737079da0a1e27c0e990e607",
+    "graderHash": "baf15b47cd9ef59245b9781215f4984428793e60b54a3a67c51ff444e05f3380",
+    "graderCallId": "cd93da798f220c61",
+    "runtimeHash": "0373547496970a1dec96fd3c7a3e37d09495e3db1c97441d2499d503ab83afa4",
+    "versions": {
+      "claude": "2.1.312 (Claude Code)",
+      "codex": "codex-cli 0.158.0"
+    },
+    "adjudication": "blinded-machine-provisional",
+    "humanSignoff": false,
+    "judgments": [
+      {
+        "panelId": "0956219a7639a784",
+        "raw": [],
+        "triage": [],
+        "notes": []
+      },
+      {
+        "panelId": "21b66effe906b25a",
+        "raw": [],
+        "triage": [],
+        "notes": []
+      },
+      {
+        "panelId": "30ca13927cd74c3c",
+        "raw": [],
+        "triage": [],
+        "notes": []
+      },
+      {
+        "panelId": "3e3c70d3ebb56757",
+        "raw": [],
+        "triage": [],
+        "notes": []
+      },
+      {
+        "panelId": "4b8e35c8e9057b31",
+        "raw": [],
+        "triage": [],
+        "notes": []
+      },
+      {
+        "panelId": "50d1dc2f8ffd4057",
+        "raw": [],
+        "triage": [],
+        "notes": []
+      },
+      {
+        "panelId": "909f8fd015b19505",
+        "raw": [],
+        "triage": [],
+        "notes": []
+      },
+      {
+        "panelId": "a1617f1afad53448",
+        "raw": [],
+        "triage": [],
+        "notes": []
+      },
+      {
+        "panelId": "b3c9ce6288cc9ecf",
+        "raw": [],
+        "triage": [],
+        "notes": []
+      },
+      {
+        "panelId": "e2a609589a253f52",
+        "raw": [],
+        "triage": [],
+        "notes": []
+      },
+      {
+        "panelId": "ea6855a6be09d9e6",
+        "raw": [],
+        "triage": [],
+        "notes": [
+          "Raw finding 0 recommends tests without identifying a defect mechanism. No expected defects are supplied; the unmatched claim remains pending human adjudication."
+        ]
+      },
+      {
+        "panelId": "eb1cbbc61e598397",
+        "raw": [],
+        "triage": [],
+        "notes": []
+      }
+    ]
+  },
+  {
+    "caseId": "C13",
+    "payloadHash": "08923a9b6dd85b15cdae5aaa41e3b066b203dc6f5c5103fc34cdf77ad4f6a8d6",
+    "graderHash": "baf15b47cd9ef59245b9781215f4984428793e60b54a3a67c51ff444e05f3380",
+    "graderCallId": "17a410257e0c9d8d",
+    "runtimeHash": "0373547496970a1dec96fd3c7a3e37d09495e3db1c97441d2499d503ab83afa4",
+    "versions": {
+      "claude": "2.1.312 (Claude Code)",
+      "codex": "codex-cli 0.158.0"
+    },
+    "adjudication": "blinded-machine-provisional",
+    "humanSignoff": false,
+    "judgments": [
+      {
+        "panelId": "000d142457aa251f",
+        "raw": [
+          {
+            "expectedId": "E13",
+            "findingIndex": 0
+          },
+          {
+            "expectedId": "E13",
+            "findingIndex": 1
+          }
+        ],
+        "triage": [
+          {
+            "expectedId": "E13",
+            "findingIndex": 0
+          }
+        ],
+        "notes": []
+      },
+      {
+        "panelId": "01d98648cd909b8c",
+        "raw": [
+          {
+            "expectedId": "E13",
+            "findingIndex": 0
+          },
+          {
+            "expectedId": "E13",
+            "findingIndex": 1
+          }
+        ],
+        "triage": [
+          {
+            "expectedId": "E13",
+            "findingIndex": 0
+          }
+        ],
+        "notes": []
+      },
+      {
+        "panelId": "02976bd9bb0b2277",
+        "raw": [
+          {
+            "expectedId": "E13",
+            "findingIndex": 0
+          },
+          {
+            "expectedId": "E13",
+            "findingIndex": 1
+          }
+        ],
+        "triage": [
+          {
+            "expectedId": "E13",
+            "findingIndex": 0
+          }
+        ],
+        "notes": [
+          "Raw finding 2 criticizes the replacement as unnecessary but does not specify the missing keyboard handler or failed Enter/Space activation; left unmatched."
+        ]
+      },
+      {
+        "panelId": "0cae4b869586cca2",
+        "raw": [
+          {
+            "expectedId": "E13",
+            "findingIndex": 0
+          },
+          {
+            "expectedId": "E13",
+            "findingIndex": 1
+          }
+        ],
+        "triage": [
+          {
+            "expectedId": "E13",
+            "findingIndex": 0
+          }
+        ],
+        "notes": []
+      },
+      {
+        "panelId": "0f1afc74e4e94b5f",
+        "raw": [
+          {
+            "expectedId": "E13",
+            "findingIndex": 0
+          },
+          {
+            "expectedId": "E13",
+            "findingIndex": 1
+          },
+          {
+            "expectedId": "E13",
+            "findingIndex": 2
+          }
+        ],
+        "triage": [
+          {
+            "expectedId": "E13",
+            "findingIndex": 0
+          }
+        ],
+        "notes": [
+          "Raw finding 1 also identifies failed Space activation on the div without a key handler. Its additional page-scrolling claim is not established by the supplied evidence."
+        ]
+      },
+      {
+        "panelId": "5a8f08c2456c0bf8",
+        "raw": [
+          {
+            "expectedId": "E13",
+            "findingIndex": 0
+          },
+          {
+            "expectedId": "E13",
+            "findingIndex": 1
+          }
+        ],
+        "triage": [
+          {
+            "expectedId": "E13",
+            "findingIndex": 0
+          }
+        ],
+        "notes": []
+      },
+      {
+        "panelId": "66c5ca85438c3f57",
+        "raw": [
+          {
+            "expectedId": "E13",
+            "findingIndex": 0
+          },
+          {
+            "expectedId": "E13",
+            "findingIndex": 1
+          }
+        ],
+        "triage": [
+          {
+            "expectedId": "E13",
+            "findingIndex": 0
+          }
+        ],
+        "notes": [
+          "Raw finding 2 recommends retaining the native button and mentions extra handling generally, without identifying the actual missing handler and activation failure; left unmatched."
+        ]
+      },
+      {
+        "panelId": "7f22b3b590030951",
+        "raw": [
+          {
+            "expectedId": "E13",
+            "findingIndex": 0
+          },
+          {
+            "expectedId": "E13",
+            "findingIndex": 1
+          }
+        ],
+        "triage": [
+          {
+            "expectedId": "E13",
+            "findingIndex": 0
+          }
+        ],
+        "notes": []
+      },
+      {
+        "panelId": "9633a3c2bb349cae",
+        "raw": [
+          {
+            "expectedId": "E13",
+            "findingIndex": 0
+          },
+          {
+            "expectedId": "E13",
+            "findingIndex": 1
+          }
+        ],
+        "triage": [
+          {
+            "expectedId": "E13",
+            "findingIndex": 0
+          }
+        ],
+        "notes": []
+      },
+      {
+        "panelId": "a1a93aae40476a4a",
+        "raw": [
+          {
+            "expectedId": "E13",
+            "findingIndex": 0
+          },
+          {
+            "expectedId": "E13",
+            "findingIndex": 1
+          }
+        ],
+        "triage": [
+          {
+            "expectedId": "E13",
+            "findingIndex": 0
+          }
+        ],
+        "notes": [
+          "Raw finding 2 discusses regression risk and rebuilding keyboard behavior, but does not specifically identify the absent handler and resulting Enter/Space failure; left unmatched."
+        ]
+      },
+      {
+        "panelId": "a2627aa6e7a496fb",
+        "raw": [
+          {
+            "expectedId": "E13",
+            "findingIndex": 0
+          },
+          {
+            "expectedId": "E13",
+            "findingIndex": 1
+          }
+        ],
+        "triage": [
+          {
+            "expectedId": "E13",
+            "findingIndex": 0
+          }
+        ],
+        "notes": []
+      },
+      {
+        "panelId": "ea31464f2e5f5018",
+        "raw": [
+          {
+            "expectedId": "E13",
+            "findingIndex": 0
+          },
+          {
+            "expectedId": "E13",
+            "findingIndex": 1
+          },
+          {
+            "expectedId": "E13",
+            "findingIndex": 2
+          }
+        ],
+        "triage": [
+          {
+            "expectedId": "E13",
+            "findingIndex": 0
+          }
+        ],
+        "notes": []
+      }
+    ]
+  },
+  {
+    "caseId": "C14",
+    "payloadHash": "ca11909e16104c6776127df96656d436c9b6c4945cac40d7c8fa22e430bd9a10",
+    "graderHash": "baf15b47cd9ef59245b9781215f4984428793e60b54a3a67c51ff444e05f3380",
+    "graderCallId": "e979ce961a2679df",
+    "runtimeHash": "0373547496970a1dec96fd3c7a3e37d09495e3db1c97441d2499d503ab83afa4",
+    "versions": {
+      "claude": "2.1.312 (Claude Code)",
+      "codex": "codex-cli 0.158.0"
+    },
+    "adjudication": "blinded-machine-provisional",
+    "humanSignoff": false,
+    "judgments": [
+      {
+        "panelId": "17a435ec0ee8bf52",
+        "raw": [
+          {
+            "expectedId": "E14",
+            "findingIndex": 0
+          },
+          {
+            "expectedId": "E14",
+            "findingIndex": 1
+          }
+        ],
+        "triage": [
+          {
+            "expectedId": "E14",
+            "findingIndex": 0
+          }
+        ],
+        "notes": [
+          "Raw finding 2 concerns missing tests rather than the focus-restoration defect; pending human adjudication."
+        ]
+      },
+      {
+        "panelId": "2250fbe01df82b71",
+        "raw": [
+          {
+            "expectedId": "E14",
+            "findingIndex": 0
+          },
+          {
+            "expectedId": "E14",
+            "findingIndex": 1
+          }
+        ],
+        "triage": [
+          {
+            "expectedId": "E14",
+            "findingIndex": 0
+          }
+        ],
+        "notes": []
+      },
+      {
+        "panelId": "330321bf82df3db2",
+        "raw": [
+          {
+            "expectedId": "E14",
+            "findingIndex": 0
+          },
+          {
+            "expectedId": "E14",
+            "findingIndex": 1
+          }
+        ],
+        "triage": [
+          {
+            "expectedId": "E14",
+            "findingIndex": 0
+          }
+        ],
+        "notes": [
+          "Raw finding 2 concerns missing tests rather than the focus-restoration defect; pending human adjudication."
+        ]
+      },
+      {
+        "panelId": "4321120a61c1360f",
+        "raw": [
+          {
+            "expectedId": "E14",
+            "findingIndex": 0
+          },
+          {
+            "expectedId": "E14",
+            "findingIndex": 1
+          }
+        ],
+        "triage": [
+          {
+            "expectedId": "E14",
+            "findingIndex": 0
+          }
+        ],
+        "notes": [
+          "Raw finding 2 concerns missing tests rather than the focus-restoration defect; pending human adjudication."
+        ]
+      },
+      {
+        "panelId": "5ac0697ebbf2e0ce",
+        "raw": [
+          {
+            "expectedId": "E14",
+            "findingIndex": 0
+          },
+          {
+            "expectedId": "E14",
+            "findingIndex": 1
+          }
+        ],
+        "triage": [
+          {
+            "expectedId": "E14",
+            "findingIndex": 0
+          }
+        ],
+        "notes": []
+      },
+      {
+        "panelId": "8ca2b7ac59d8e704",
+        "raw": [
+          {
+            "expectedId": "E14",
+            "findingIndex": 0
+          },
+          {
+            "expectedId": "E14",
+            "findingIndex": 1
+          }
+        ],
+        "triage": [
+          {
+            "expectedId": "E14",
+            "findingIndex": 0
+          }
+        ],
+        "notes": []
+      },
+      {
+        "panelId": "9dfd8376f3bdf77a",
+        "raw": [
+          {
+            "expectedId": "E14",
+            "findingIndex": 0
+          },
+          {
+            "expectedId": "E14",
+            "findingIndex": 1
+          }
+        ],
+        "triage": [
+          {
+            "expectedId": "E14",
+            "findingIndex": 0
+          }
+        ],
+        "notes": []
+      },
+      {
+        "panelId": "aad6693b2552aea2",
+        "raw": [
+          {
+            "expectedId": "E14",
+            "findingIndex": 0
+          },
+          {
+            "expectedId": "E14",
+            "findingIndex": 1
+          }
+        ],
+        "triage": [
+          {
+            "expectedId": "E14",
+            "findingIndex": 0
+          }
+        ],
+        "notes": []
+      },
+      {
+        "panelId": "c573c52b96a9e8e2",
+        "raw": [
+          {
+            "expectedId": "E14",
+            "findingIndex": 0
+          },
+          {
+            "expectedId": "E14",
+            "findingIndex": 1
+          }
+        ],
+        "triage": [
+          {
+            "expectedId": "E14",
+            "findingIndex": 0
+          }
+        ],
+        "notes": [
+          "Raw finding 2 concerns missing tests rather than the focus-restoration defect; pending human adjudication."
+        ]
+      },
+      {
+        "panelId": "cf1471913c66bd45",
+        "raw": [
+          {
+            "expectedId": "E14",
+            "findingIndex": 0
+          },
+          {
+            "expectedId": "E14",
+            "findingIndex": 1
+          }
+        ],
+        "triage": [
+          {
+            "expectedId": "E14",
+            "findingIndex": 0
+          }
+        ],
+        "notes": []
+      },
+      {
+        "panelId": "d82b23f17e296164",
+        "raw": [
+          {
+            "expectedId": "E14",
+            "findingIndex": 0
+          },
+          {
+            "expectedId": "E14",
+            "findingIndex": 1
+          }
+        ],
+        "triage": [
+          {
+            "expectedId": "E14",
+            "findingIndex": 0
+          }
+        ],
+        "notes": []
+      },
+      {
+        "panelId": "e35c01dbecc2fe73",
+        "raw": [
+          {
+            "expectedId": "E14",
+            "findingIndex": 0
+          },
+          {
+            "expectedId": "E14",
+            "findingIndex": 1
+          }
+        ],
+        "triage": [
+          {
+            "expectedId": "E14",
+            "findingIndex": 0
+          }
+        ],
+        "notes": []
+      }
+    ]
+  },
+  {
+    "caseId": "C15",
+    "payloadHash": "9c8b3c657b3c74e1403a03ed036c2f8db14a8dcb119670c663e3e4274921ef48",
+    "graderHash": "baf15b47cd9ef59245b9781215f4984428793e60b54a3a67c51ff444e05f3380",
+    "graderCallId": "936830e6c8bb79fb",
+    "runtimeHash": "0373547496970a1dec96fd3c7a3e37d09495e3db1c97441d2499d503ab83afa4",
+    "versions": {
+      "claude": "2.1.312 (Claude Code)",
+      "codex": "codex-cli 0.158.0"
+    },
+    "adjudication": "blinded-machine-provisional",
+    "humanSignoff": false,
+    "judgments": [
+      {
+        "panelId": "00a84922ed3ea630",
+        "raw": [
+          {
+            "expectedId": "E15",
+            "findingIndex": 0
+          }
+        ],
+        "triage": [
+          {
+            "expectedId": "E15",
+            "findingIndex": 0
+          }
+        ],
+        "notes": []
+      },
+      {
+        "panelId": "1e472c014fe430fb",
+        "raw": [
+          {
+            "expectedId": "E15",
+            "findingIndex": 0
+          }
+        ],
+        "triage": [
+          {
+            "expectedId": "E15",
+            "findingIndex": 0
+          }
+        ],
+        "notes": []
+      },
+      {
+        "panelId": "21044520853b7a17",
+        "raw": [
+          {
+            "expectedId": "E15",
+            "findingIndex": 0
+          }
+        ],
+        "triage": [
+          {
+            "expectedId": "E15",
+            "findingIndex": 0
+          }
+        ],
+        "notes": []
+      },
+      {
+        "panelId": "212b802167020dca",
+        "raw": [
+          {
+            "expectedId": "E15",
+            "findingIndex": 0
+          }
+        ],
+        "triage": [
+          {
+            "expectedId": "E15",
+            "findingIndex": 0
+          }
+        ],
+        "notes": []
+      },
+      {
+        "panelId": "213015cd3cbdab74",
+        "raw": [
+          {
+            "expectedId": "E15",
+            "findingIndex": 0
+          }
+        ],
+        "triage": [
+          {
+            "expectedId": "E15",
+            "findingIndex": 0
+          }
+        ],
+        "notes": []
+      },
+      {
+        "panelId": "379a49f0d9a12cec",
+        "raw": [
+          {
+            "expectedId": "E15",
+            "findingIndex": 0
+          }
+        ],
+        "triage": [
+          {
+            "expectedId": "E15",
+            "findingIndex": 0
+          }
+        ],
+        "notes": []
+      },
+      {
+        "panelId": "4fb8d8a7051dcd68",
+        "raw": [
+          {
+            "expectedId": "E15",
+            "findingIndex": 0
+          }
+        ],
+        "triage": [
+          {
+            "expectedId": "E15",
+            "findingIndex": 0
+          }
+        ],
+        "notes": []
+      },
+      {
+        "panelId": "64370bfe369f7a5b",
+        "raw": [
+          {
+            "expectedId": "E15",
+            "findingIndex": 0
+          }
+        ],
+        "triage": [
+          {
+            "expectedId": "E15",
+            "findingIndex": 0
+          }
+        ],
+        "notes": []
+      },
+      {
+        "panelId": "76afdeb159f75206",
+        "raw": [
+          {
+            "expectedId": "E15",
+            "findingIndex": 0
+          }
+        ],
+        "triage": [
+          {
+            "expectedId": "E15",
+            "findingIndex": 0
+          }
+        ],
+        "notes": []
+      },
+      {
+        "panelId": "e82291a903060314",
+        "raw": [
+          {
+            "expectedId": "E15",
+            "findingIndex": 0
+          }
+        ],
+        "triage": [
+          {
+            "expectedId": "E15",
+            "findingIndex": 0
+          }
+        ],
+        "notes": []
+      },
+      {
+        "panelId": "ea9455d901013fe0",
+        "raw": [
+          {
+            "expectedId": "E15",
+            "findingIndex": 0
+          }
+        ],
+        "triage": [
+          {
+            "expectedId": "E15",
+            "findingIndex": 0
+          }
+        ],
+        "notes": []
+      },
+      {
+        "panelId": "f31151c57b6eb587",
+        "raw": [
+          {
+            "expectedId": "E15",
+            "findingIndex": 0
+          }
+        ],
+        "triage": [
+          {
+            "expectedId": "E15",
+            "findingIndex": 0
+          }
+        ],
+        "notes": []
+      }
+    ]
+  },
+  {
+    "caseId": "C16",
+    "payloadHash": "6aaae3e018ab33ade48f909604f6b9ba53294d69d6657ec9b4b722d8db77e8f7",
+    "graderHash": "baf15b47cd9ef59245b9781215f4984428793e60b54a3a67c51ff444e05f3380",
+    "graderCallId": "5fbe803c6d12851e",
+    "runtimeHash": "0373547496970a1dec96fd3c7a3e37d09495e3db1c97441d2499d503ab83afa4",
+    "versions": {
+      "claude": "2.1.312 (Claude Code)",
+      "codex": "codex-cli 0.158.0"
+    },
+    "adjudication": "blinded-machine-provisional",
+    "humanSignoff": false,
+    "judgments": [
+      {
+        "panelId": "386bc4a28bea7f08",
+        "raw": [],
+        "triage": [],
+        "notes": []
+      },
+      {
+        "panelId": "4522b7767eedf708",
+        "raw": [],
+        "triage": [],
+        "notes": []
+      },
+      {
+        "panelId": "4772ef9f7b608996",
+        "raw": [],
+        "triage": [],
+        "notes": []
+      },
+      {
+        "panelId": "7984cb5705d1a24b",
+        "raw": [],
+        "triage": [],
+        "notes": [
+          "Raw findings 0–1 remain unmatched: no expected defects; explicitness, hypothetical future changes, and missing tests do not establish a defect under the supplied native-button semantics."
+        ]
+      },
+      {
+        "panelId": "8b5e4f40a9bb3a53",
+        "raw": [],
+        "triage": [],
+        "notes": [
+          "Raw findings 0–1 remain unmatched: no expected defects; both acknowledge preserved behavior and raise explicitness, hypothetical future changes, or test coverage concerns."
+        ]
+      },
+      {
+        "panelId": "a2a962b348f102a2",
+        "raw": [],
+        "triage": [],
+        "notes": []
+      },
+      {
+        "panelId": "b17ce087645c0fa2",
+        "raw": [],
+        "triage": [],
+        "notes": []
+      },
+      {
+        "panelId": "cba63530807d3531",
+        "raw": [],
+        "triage": [],
+        "notes": []
+      },
+      {
+        "panelId": "d689de9e4048a0d3",
+        "raw": [],
+        "triage": [],
+        "notes": []
+      },
+      {
+        "panelId": "edb40f094676232e",
+        "raw": [],
+        "triage": [],
+        "notes": []
+      },
+      {
+        "panelId": "f47f566e32f90b44",
+        "raw": [],
+        "triage": [],
+        "notes": [
+          "Raw finding 0 remains unmatched: no expected defects; it acknowledges unchanged behavior and raises only explicitness and hypothetical future renderer changes."
+        ]
+      },
+      {
+        "panelId": "facc9b0372244928",
+        "raw": [],
+        "triage": [],
+        "notes": [
+          "Raw findings 0–1 remain unmatched: no expected defects; both acknowledge preserved submission behavior and raise readability, hypothetical renderer changes, or test coverage concerns."
+        ]
+      }
+    ]
+  },
+  {
+    "caseId": "C17",
+    "payloadHash": "5d6bbc66a21cf885299047654f42a7cf3dd1211be50b2e0e059ffc5f3b5d95a2",
+    "graderHash": "baf15b47cd9ef59245b9781215f4984428793e60b54a3a67c51ff444e05f3380",
+    "graderCallId": "8edc33ddcd7a19f8",
+    "runtimeHash": "0373547496970a1dec96fd3c7a3e37d09495e3db1c97441d2499d503ab83afa4",
+    "versions": {
+      "claude": "2.1.312 (Claude Code)",
+      "codex": "codex-cli 0.158.0"
+    },
+    "adjudication": "blinded-machine-provisional",
+    "humanSignoff": false,
+    "judgments": [
+      {
+        "panelId": "097afc1940af1fe6",
+        "raw": [
+          {
+            "expectedId": "E17",
+            "findingIndex": 0
+          },
+          {
+            "expectedId": "E17",
+            "findingIndex": 1
+          },
+          {
+            "expectedId": "E17",
+            "findingIndex": 2
+          }
+        ],
+        "triage": [
+          {
+            "expectedId": "E17",
+            "findingIndex": 0
+          }
+        ],
+        "notes": []
+      },
+      {
+        "panelId": "47517302a48043f0",
+        "raw": [
+          {
+            "expectedId": "E17",
+            "findingIndex": 0
+          },
+          {
+            "expectedId": "E17",
+            "findingIndex": 1
+          },
+          {
+            "expectedId": "E17",
+            "findingIndex": 2
+          }
+        ],
+        "triage": [
+          {
+            "expectedId": "E17",
+            "findingIndex": 0
+          }
+        ],
+        "notes": []
+      },
+      {
+        "panelId": "4b792bd7e09b0663",
+        "raw": [
+          {
+            "expectedId": "E17",
+            "findingIndex": 0
+          },
+          {
+            "expectedId": "E17",
+            "findingIndex": 1
+          },
+          {
+            "expectedId": "E17",
+            "findingIndex": 2
+          },
+          {
+            "expectedId": "E17",
+            "findingIndex": 3
+          }
+        ],
+        "triage": [
+          {
+            "expectedId": "E17",
+            "findingIndex": 0
+          }
+        ],
+        "notes": [
+          "Raw finding 3 identifies the same failure to reset loading on error. Its additional diagnostic-signal claims remain pending human adjudication; the supplied evidence does not establish an observability requirement."
+        ]
+      },
+      {
+        "panelId": "63ec76119052e747",
+        "raw": [
+          {
+            "expectedId": "E17",
+            "findingIndex": 0
+          },
+          {
+            "expectedId": "E17",
+            "findingIndex": 1
+          },
+          {
+            "expectedId": "E17",
+            "findingIndex": 2
+          }
+        ],
+        "triage": [
+          {
+            "expectedId": "E17",
+            "findingIndex": 0
+          }
+        ],
+        "notes": []
+      },
+      {
+        "panelId": "872df596c2cb0fe5",
+        "raw": [
+          {
+            "expectedId": "E17",
+            "findingIndex": 0
+          },
+          {
+            "expectedId": "E17",
+            "findingIndex": 1
+          },
+          {
+            "expectedId": "E17",
+            "findingIndex": 2
+          }
+        ],
+        "triage": [
+          {
+            "expectedId": "E17",
+            "findingIndex": 0
+          }
+        ],
+        "notes": []
+      },
+      {
+        "panelId": "87f0388cf53971a5",
+        "raw": [
+          {
+            "expectedId": "E17",
+            "findingIndex": 0
+          },
+          {
+            "expectedId": "E17",
+            "findingIndex": 1
+          },
+          {
+            "expectedId": "E17",
+            "findingIndex": 2
+          }
+        ],
+        "triage": [
+          {
+            "expectedId": "E17",
+            "findingIndex": 0
+          }
+        ],
+        "notes": []
+      },
+      {
+        "panelId": "95878ccd3a467277",
+        "raw": [
+          {
+            "expectedId": "E17",
+            "findingIndex": 0
+          },
+          {
+            "expectedId": "E17",
+            "findingIndex": 1
+          },
+          {
+            "expectedId": "E17",
+            "findingIndex": 2
+          }
+        ],
+        "triage": [
+          {
+            "expectedId": "E17",
+            "findingIndex": 0
+          }
+        ],
+        "notes": []
+      },
+      {
+        "panelId": "b7f43b820cf2b388",
+        "raw": [
+          {
+            "expectedId": "E17",
+            "findingIndex": 0
+          },
+          {
+            "expectedId": "E17",
+            "findingIndex": 1
+          },
+          {
+            "expectedId": "E17",
+            "findingIndex": 2
+          }
+        ],
+        "triage": [
+          {
+            "expectedId": "E17",
+            "findingIndex": 0
+          }
+        ],
+        "notes": []
+      },
+      {
+        "panelId": "d5df9a95e3a6dd61",
+        "raw": [
+          {
+            "expectedId": "E17",
+            "findingIndex": 0
+          },
+          {
+            "expectedId": "E17",
+            "findingIndex": 1
+          },
+          {
+            "expectedId": "E17",
+            "findingIndex": 2
+          }
+        ],
+        "triage": [
+          {
+            "expectedId": "E17",
+            "findingIndex": 0
+          }
+        ],
+        "notes": []
+      },
+      {
+        "panelId": "e22cc07f7f8cea0f",
+        "raw": [
+          {
+            "expectedId": "E17",
+            "findingIndex": 0
+          },
+          {
+            "expectedId": "E17",
+            "findingIndex": 1
+          },
+          {
+            "expectedId": "E17",
+            "findingIndex": 2
+          }
+        ],
+        "triage": [
+          {
+            "expectedId": "E17",
+            "findingIndex": 0
+          }
+        ],
+        "notes": []
+      },
+      {
+        "panelId": "e6ae9be40340fd6a",
+        "raw": [
+          {
+            "expectedId": "E17",
+            "findingIndex": 0
+          },
+          {
+            "expectedId": "E17",
+            "findingIndex": 1
+          },
+          {
+            "expectedId": "E17",
+            "findingIndex": 2
+          }
+        ],
+        "triage": [
+          {
+            "expectedId": "E17",
+            "findingIndex": 0
+          }
+        ],
+        "notes": []
+      },
+      {
+        "panelId": "ed67228eeb49e7f6",
+        "raw": [
+          {
+            "expectedId": "E17",
+            "findingIndex": 0
+          },
+          {
+            "expectedId": "E17",
+            "findingIndex": 1
+          },
+          {
+            "expectedId": "E17",
+            "findingIndex": 2
+          }
+        ],
+        "triage": [
+          {
+            "expectedId": "E17",
+            "findingIndex": 0
+          }
+        ],
+        "notes": []
+      }
+    ]
+  },
+  {
+    "caseId": "C18",
+    "payloadHash": "abf4fb04cb84fcc519a709efdbb6d87e1951ebebac70e372923d5f39bd5633f9",
+    "graderHash": "baf15b47cd9ef59245b9781215f4984428793e60b54a3a67c51ff444e05f3380",
+    "graderCallId": "ae795facdfcce160",
+    "runtimeHash": "0373547496970a1dec96fd3c7a3e37d09495e3db1c97441d2499d503ab83afa4",
+    "versions": {
+      "claude": "2.1.312 (Claude Code)",
+      "codex": "codex-cli 0.158.0"
+    },
+    "adjudication": "blinded-machine-provisional",
+    "humanSignoff": false,
+    "judgments": [
+      {
+        "panelId": "0a77a5e22eaf5c3e",
+        "raw": [
+          {
+            "expectedId": "E18",
+            "findingIndex": 0
+          },
+          {
+            "expectedId": "E18",
+            "findingIndex": 1
+          }
+        ],
+        "triage": [
+          {
+            "expectedId": "E18",
+            "findingIndex": 0
+          }
+        ],
+        "notes": []
+      },
+      {
+        "panelId": "361dd1c90eda7397",
+        "raw": [
+          {
+            "expectedId": "E18",
+            "findingIndex": 0
+          },
+          {
+            "expectedId": "E18",
+            "findingIndex": 1
+          }
+        ],
+        "triage": [
+          {
+            "expectedId": "E18",
+            "findingIndex": 0
+          }
+        ],
+        "notes": []
+      },
+      {
+        "panelId": "42d10e3e86ac46cb",
+        "raw": [
+          {
+            "expectedId": "E18",
+            "findingIndex": 0
+          },
+          {
+            "expectedId": "E18",
+            "findingIndex": 3
+          }
+        ],
+        "triage": [
+          {
+            "expectedId": "E18",
+            "findingIndex": 0
+          }
+        ],
+        "notes": [
+          "Raw finding 1 concerns missing-row guards and exceptions, without identifying E18's wrong-row targeting mechanism; pending human adjudication.",
+          "Raw finding 2 concerns missing tests, which does not independently identify the expected defect; pending human adjudication."
+        ]
+      },
+      {
+        "panelId": "69fabd5a5db9728b",
+        "raw": [
+          {
+            "expectedId": "E18",
+            "findingIndex": 0
+          },
+          {
+            "expectedId": "E18",
+            "findingIndex": 1
+          }
+        ],
+        "triage": [
+          {
+            "expectedId": "E18",
+            "findingIndex": 0
+          }
+        ],
+        "notes": []
+      },
+      {
+        "panelId": "7342fa63fca206e0",
+        "raw": [
+          {
+            "expectedId": "E18",
+            "findingIndex": 0
+          },
+          {
+            "expectedId": "E18",
+            "findingIndex": 2
+          }
+        ],
+        "triage": [
+          {
+            "expectedId": "E18",
+            "findingIndex": 0
+          }
+        ],
+        "notes": [
+          "Raw finding 1 and triage finding 1 describe an out-of-range exception after filtering, rather than E18's targeting of a different row. These related claims remain pending human adjudication."
+        ]
+      },
+      {
+        "panelId": "73843d1818d24a8a",
+        "raw": [
+          {
+            "expectedId": "E18",
+            "findingIndex": 0
+          },
+          {
+            "expectedId": "E18",
+            "findingIndex": 2
+          }
+        ],
+        "triage": [
+          {
+            "expectedId": "E18",
+            "findingIndex": 0
+          }
+        ],
+        "notes": [
+          "Raw finding 1 requests regression tests rather than independently identifying the expected defect; pending human adjudication."
+        ]
+      },
+      {
+        "panelId": "774a275e8cc26b1c",
+        "raw": [
+          {
+            "expectedId": "E18",
+            "findingIndex": 0
+          },
+          {
+            "expectedId": "E18",
+            "findingIndex": 2
+          }
+        ],
+        "triage": [
+          {
+            "expectedId": "E18",
+            "findingIndex": 0
+          }
+        ],
+        "notes": [
+          "Raw finding 1 concerns missing tests rather than independently identifying the expected defect; pending human adjudication."
+        ]
+      },
+      {
+        "panelId": "9e985214e4b20471",
+        "raw": [
+          {
+            "expectedId": "E18",
+            "findingIndex": 0
+          },
+          {
+            "expectedId": "E18",
+            "findingIndex": 2
+          }
+        ],
+        "triage": [
+          {
+            "expectedId": "E18",
+            "findingIndex": 0
+          }
+        ],
+        "notes": [
+          "Raw finding 1 concerns missing tests and missing-row guards, without identifying E18's wrong-row targeting mechanism; pending human adjudication."
+        ]
+      },
+      {
+        "panelId": "a8277ad9775a1d5a",
+        "raw": [
+          {
+            "expectedId": "E18",
+            "findingIndex": 0
+          },
+          {
+            "expectedId": "E18",
+            "findingIndex": 2
+          }
+        ],
+        "triage": [
+          {
+            "expectedId": "E18",
+            "findingIndex": 0
+          }
+        ],
+        "notes": [
+          "Raw finding 1 requests a regression test rather than independently identifying the expected defect; pending human adjudication."
+        ]
+      },
+      {
+        "panelId": "c51e076de3396a33",
+        "raw": [
+          {
+            "expectedId": "E18",
+            "findingIndex": 0
+          },
+          {
+            "expectedId": "E18",
+            "findingIndex": 1
+          }
+        ],
+        "triage": [
+          {
+            "expectedId": "E18",
+            "findingIndex": 0
+          }
+        ],
+        "notes": []
+      },
+      {
+        "panelId": "eb56d90904903c29",
+        "raw": [
+          {
+            "expectedId": "E18",
+            "findingIndex": 0
+          },
+          {
+            "expectedId": "E18",
+            "findingIndex": 1
+          }
+        ],
+        "triage": [
+          {
+            "expectedId": "E18",
+            "findingIndex": 0
+          }
+        ],
+        "notes": []
+      },
+      {
+        "panelId": "f697821a985ad134",
+        "raw": [
+          {
+            "expectedId": "E18",
+            "findingIndex": 0
+          },
+          {
+            "expectedId": "E18",
+            "findingIndex": 1
+          }
+        ],
+        "triage": [
+          {
+            "expectedId": "E18",
+            "findingIndex": 0
+          }
+        ],
+        "notes": []
+      }
+    ]
+  },
+  {
+    "caseId": "C19",
+    "payloadHash": "92b991396ecc2c771af963c3cd651ae01fcdb2ddabb591dec20724f57b54d42e",
+    "graderHash": "baf15b47cd9ef59245b9781215f4984428793e60b54a3a67c51ff444e05f3380",
+    "graderCallId": "30c4f55ab8cfae9c",
+    "runtimeHash": "0373547496970a1dec96fd3c7a3e37d09495e3db1c97441d2499d503ab83afa4",
+    "versions": {
+      "claude": "2.1.312 (Claude Code)",
+      "codex": "codex-cli 0.158.0"
+    },
+    "adjudication": "blinded-machine-provisional",
+    "humanSignoff": false,
+    "judgments": [
+      {
+        "panelId": "101a7dd2012d6e37",
+        "raw": [
+          {
+            "expectedId": "E19",
+            "findingIndex": 0
+          },
+          {
+            "expectedId": "E19",
+            "findingIndex": 1
+          }
+        ],
+        "triage": [
+          {
+            "expectedId": "E19",
+            "findingIndex": 0
+          }
+        ],
+        "notes": []
+      },
+      {
+        "panelId": "2c483f426b337baa",
+        "raw": [
+          {
+            "expectedId": "E19",
+            "findingIndex": 0
+          },
+          {
+            "expectedId": "E19",
+            "findingIndex": 1
+          }
+        ],
+        "triage": [
+          {
+            "expectedId": "E19",
+            "findingIndex": 0
+          }
+        ],
+        "notes": [
+          "Raw finding 2 concerns missing tests rather than identifying the defect mechanism; pending human adjudication."
+        ]
+      },
+      {
+        "panelId": "33d4f8326d3dfa09",
+        "raw": [
+          {
+            "expectedId": "E19",
+            "findingIndex": 0
+          },
+          {
+            "expectedId": "E19",
+            "findingIndex": 1
+          }
+        ],
+        "triage": [
+          {
+            "expectedId": "E19",
+            "findingIndex": 0
+          }
+        ],
+        "notes": [
+          "Raw finding 2 recommends boundary tests without identifying the truthiness mechanism; pending human adjudication."
+        ]
+      },
+      {
+        "panelId": "404dac6776b17b26",
+        "raw": [
+          {
+            "expectedId": "E19",
+            "findingIndex": 0
+          },
+          {
+            "expectedId": "E19",
+            "findingIndex": 1
+          }
+        ],
+        "triage": [
+          {
+            "expectedId": "E19",
+            "findingIndex": 0
+          }
+        ],
+        "notes": []
+      },
+      {
+        "panelId": "89e46d3922773d23",
+        "raw": [
+          {
+            "expectedId": "E19",
+            "findingIndex": 0
+          },
+          {
+            "expectedId": "E19",
+            "findingIndex": 1
+          }
+        ],
+        "triage": [
+          {
+            "expectedId": "E19",
+            "findingIndex": 0
+          }
+        ],
+        "notes": []
+      },
+      {
+        "panelId": "8b5567d6df9f57de",
+        "raw": [
+          {
+            "expectedId": "E19",
+            "findingIndex": 0
+          },
+          {
+            "expectedId": "E19",
+            "findingIndex": 1
+          }
+        ],
+        "triage": [
+          {
+            "expectedId": "E19",
+            "findingIndex": 0
+          }
+        ],
+        "notes": [
+          "Raw finding 2 concerns missing tests rather than identifying the defect mechanism; pending human adjudication."
+        ]
+      },
+      {
+        "panelId": "94f770d13b79888c",
+        "raw": [
+          {
+            "expectedId": "E19",
+            "findingIndex": 0
+          },
+          {
+            "expectedId": "E19",
+            "findingIndex": 1
+          }
+        ],
+        "triage": [
+          {
+            "expectedId": "E19",
+            "findingIndex": 0
+          }
+        ],
+        "notes": [
+          "Raw finding 2 recommends tests and mentions a truthiness bug without explaining how zero becomes unavailable; pending human adjudication."
+        ]
+      },
+      {
+        "panelId": "c1ee14f82ac1d09c",
+        "raw": [
+          {
+            "expectedId": "E19",
+            "findingIndex": 0
+          },
+          {
+            "expectedId": "E19",
+            "findingIndex": 1
+          }
+        ],
+        "triage": [
+          {
+            "expectedId": "E19",
+            "findingIndex": 0
+          }
+        ],
+        "notes": []
+      },
+      {
+        "panelId": "e6b42e7006d3b7b8",
+        "raw": [
+          {
+            "expectedId": "E19",
+            "findingIndex": 0
+          },
+          {
+            "expectedId": "E19",
+            "findingIndex": 1
+          }
+        ],
+        "triage": [
+          {
+            "expectedId": "E19",
+            "findingIndex": 0
+          }
+        ],
+        "notes": []
+      },
+      {
+        "panelId": "f5ef0021a5bdb476",
+        "raw": [
+          {
+            "expectedId": "E19",
+            "findingIndex": 0
+          },
+          {
+            "expectedId": "E19",
+            "findingIndex": 1
+          }
+        ],
+        "triage": [
+          {
+            "expectedId": "E19",
+            "findingIndex": 0
+          }
+        ],
+        "notes": [
+          "Raw finding 2 recommends regression tests without identifying the truthiness mechanism; pending human adjudication."
+        ]
+      },
+      {
+        "panelId": "f9a6413f9f9e90f6",
+        "raw": [
+          {
+            "expectedId": "E19",
+            "findingIndex": 0
+          },
+          {
+            "expectedId": "E19",
+            "findingIndex": 1
+          }
+        ],
+        "triage": [
+          {
+            "expectedId": "E19",
+            "findingIndex": 0
+          }
+        ],
+        "notes": [
+          "Raw finding 2 concerns missing tests rather than identifying the defect mechanism; pending human adjudication. Its claim that a null-only test would catch the regression is unsupported: both versions return available:false for null."
+        ]
+      },
+      {
+        "panelId": "fa00937483f414a4",
+        "raw": [
+          {
+            "expectedId": "E19",
+            "findingIndex": 0
+          },
+          {
+            "expectedId": "E19",
+            "findingIndex": 1
+          }
+        ],
+        "triage": [
+          {
+            "expectedId": "E19",
+            "findingIndex": 0
+          }
+        ],
+        "notes": []
+      }
+    ]
+  },
+  {
+    "caseId": "C20",
+    "payloadHash": "215a8ed4c04103960111b5672c83ba388b9e4cdd62670b2b04f8e6875fd36fdf",
+    "graderHash": "baf15b47cd9ef59245b9781215f4984428793e60b54a3a67c51ff444e05f3380",
+    "graderCallId": "2b9a59cdf910282b",
+    "runtimeHash": "0373547496970a1dec96fd3c7a3e37d09495e3db1c97441d2499d503ab83afa4",
+    "versions": {
+      "claude": "2.1.312 (Claude Code)",
+      "codex": "codex-cli 0.158.0"
+    },
+    "adjudication": "blinded-machine-provisional",
+    "humanSignoff": false,
+    "judgments": [
+      {
+        "panelId": "034ee6d25dd0546c",
+        "raw": [],
+        "triage": [],
+        "notes": []
+      },
+      {
+        "panelId": "105cf4386073f24b",
+        "raw": [],
+        "triage": [],
+        "notes": []
+      },
+      {
+        "panelId": "204878c124b1bdfb",
+        "raw": [],
+        "triage": [],
+        "notes": []
+      },
+      {
+        "panelId": "546f5f55e5c5624b",
+        "raw": [],
+        "triage": [],
+        "notes": []
+      },
+      {
+        "panelId": "56602c1c4a01fb53",
+        "raw": [],
+        "triage": [],
+        "notes": []
+      },
+      {
+        "panelId": "56e30a4aefa97ddc",
+        "raw": [],
+        "triage": [],
+        "notes": []
+      },
+      {
+        "panelId": "56e67776ed2414f3",
+        "raw": [],
+        "triage": [],
+        "notes": []
+      },
+      {
+        "panelId": "6982230e743dd906",
+        "raw": [],
+        "triage": [],
+        "notes": []
+      },
+      {
+        "panelId": "6a32d96a6fc1f3ca",
+        "raw": [],
+        "triage": [],
+        "notes": [
+          "Raw finding 0 recommends tests while acknowledging unchanged, correct behavior for the stated inputs. No expected defect is supplied; the claim remains pending human adjudication."
+        ]
+      },
+      {
+        "panelId": "8077d835102b7253",
+        "raw": [],
+        "triage": [],
+        "notes": []
+      },
+      {
+        "panelId": "e2f77ee0000be3ab",
+        "raw": [],
+        "triage": [],
+        "notes": []
+      },
+      {
+        "panelId": "eaaf79ae66a04f0c",
+        "raw": [],
+        "triage": [],
+        "notes": []
+      }
+    ]
+  },
+  {
+    "caseId": "C21",
+    "payloadHash": "eb97bccba728984286c23ee83b53e225291154db92e3e2703e67421a7584fc32",
+    "graderHash": "baf15b47cd9ef59245b9781215f4984428793e60b54a3a67c51ff444e05f3380",
+    "graderCallId": "c7224b38c762b3c8",
+    "runtimeHash": "0373547496970a1dec96fd3c7a3e37d09495e3db1c97441d2499d503ab83afa4",
+    "versions": {
+      "claude": "2.1.312 (Claude Code)",
+      "codex": "codex-cli 0.158.0"
+    },
+    "adjudication": "blinded-machine-provisional",
+    "humanSignoff": false,
+    "judgments": [
+      {
+        "panelId": "0e469d89d1fdcdc0",
+        "raw": [
+          {
+            "expectedId": "E21",
+            "findingIndex": 0
+          },
+          {
+            "expectedId": "E21",
+            "findingIndex": 1
+          },
+          {
+            "expectedId": "E21",
+            "findingIndex": 2
+          },
+          {
+            "expectedId": "E21",
+            "findingIndex": 3
+          }
+        ],
+        "triage": [
+          {
+            "expectedId": "E21",
+            "findingIndex": 0
+          }
+        ],
+        "notes": [
+          "Raw findings 1 and 3 also identify the missing exact name-to-target ownership check."
+        ]
+      },
+      {
+        "panelId": "244301d13c17f78e",
+        "raw": [
+          {
+            "expectedId": "E21",
+            "findingIndex": 0
+          },
+          {
+            "expectedId": "E21",
+            "findingIndex": 1
+          }
+        ],
+        "triage": [
+          {
+            "expectedId": "E21",
+            "findingIndex": 0
+          }
+        ],
+        "notes": [
+          "Raw finding 2 concerns missing tests, not the defect mechanism; it remains unmatched."
+        ]
+      },
+      {
+        "panelId": "266affca22d2d3a4",
+        "raw": [
+          {
+            "expectedId": "E21",
+            "findingIndex": 0
+          },
+          {
+            "expectedId": "E21",
+            "findingIndex": 2
+          }
+        ],
+        "triage": [
+          {
+            "expectedId": "E21",
+            "findingIndex": 0
+          }
+        ],
+        "notes": [
+          "Raw finding 1 focuses on path normalization and traversal without identifying the required name-to-target ownership relationship; it remains pending adjudication.",
+          "Raw finding 3 is a test-coverage suggestion and remains unmatched."
+        ]
+      },
+      {
+        "panelId": "341bd7f0c369c1db",
+        "raw": [
+          {
+            "expectedId": "E21",
+            "findingIndex": 0
+          },
+          {
+            "expectedId": "E21",
+            "findingIndex": 1
+          }
+        ],
+        "triage": [
+          {
+            "expectedId": "E21",
+            "findingIndex": 0
+          }
+        ],
+        "notes": []
+      },
+      {
+        "panelId": "77da03a965f54c0a",
+        "raw": [
+          {
+            "expectedId": "E21",
+            "findingIndex": 0
+          },
+          {
+            "expectedId": "E21",
+            "findingIndex": 1
+          }
+        ],
+        "triage": [
+          {
+            "expectedId": "E21",
+            "findingIndex": 0
+          }
+        ],
+        "notes": []
+      },
+      {
+        "panelId": "87079c43f96ae015",
+        "raw": [
+          {
+            "expectedId": "E21",
+            "findingIndex": 0
+          },
+          {
+            "expectedId": "E21",
+            "findingIndex": 1
+          }
+        ],
+        "triage": [
+          {
+            "expectedId": "E21",
+            "findingIndex": 0
+          }
+        ],
+        "notes": []
+      },
+      {
+        "panelId": "9f0e9937321027d0",
+        "raw": [
+          {
+            "expectedId": "E21",
+            "findingIndex": 0
+          },
+          {
+            "expectedId": "E21",
+            "findingIndex": 1
+          }
+        ],
+        "triage": [
+          {
+            "expectedId": "E21",
+            "findingIndex": 0
+          }
+        ],
+        "notes": []
+      },
+      {
+        "panelId": "a706ca6b4851f564",
+        "raw": [
+          {
+            "expectedId": "E21",
+            "findingIndex": 0
+          },
+          {
+            "expectedId": "E21",
+            "findingIndex": 1
+          },
+          {
+            "expectedId": "E21",
+            "findingIndex": 2
+          }
+        ],
+        "triage": [
+          {
+            "expectedId": "E21",
+            "findingIndex": 0
+          }
+        ],
+        "notes": [
+          "Raw finding 2 explicitly identifies the missing name-to-target check and resulting removal of unmanaged links."
+        ]
+      },
+      {
+        "panelId": "ab63f3ed5ba4dcaa",
+        "raw": [
+          {
+            "expectedId": "E21",
+            "findingIndex": 0
+          },
+          {
+            "expectedId": "E21",
+            "findingIndex": 1
+          }
+        ],
+        "triage": [
+          {
+            "expectedId": "E21",
+            "findingIndex": 0
+          }
+        ],
+        "notes": []
+      },
+      {
+        "panelId": "b020687ec91a52d0",
+        "raw": [
+          {
+            "expectedId": "E21",
+            "findingIndex": 0
+          },
+          {
+            "expectedId": "E21",
+            "findingIndex": 1
+          }
+        ],
+        "triage": [
+          {
+            "expectedId": "E21",
+            "findingIndex": 0
+          }
+        ],
+        "notes": []
+      },
+      {
+        "panelId": "dc9d00239de32ca0",
+        "raw": [
+          {
+            "expectedId": "E21",
+            "findingIndex": 0
+          },
+          {
+            "expectedId": "E21",
+            "findingIndex": 1
+          }
+        ],
+        "triage": [
+          {
+            "expectedId": "E21",
+            "findingIndex": 0
+          }
+        ],
+        "notes": []
+      },
+      {
+        "panelId": "fd2c10d855f68136",
+        "raw": [
+          {
+            "expectedId": "E21",
+            "findingIndex": 0
+          },
+          {
+            "expectedId": "E21",
+            "findingIndex": 1
+          },
+          {
+            "expectedId": "E21",
+            "findingIndex": 2
+          }
+        ],
+        "triage": [
+          {
+            "expectedId": "E21",
+            "findingIndex": 0
+          }
+        ],
+        "notes": [
+          "Raw finding 2 identifies prefix matching replacing exact managed-form equality and removing unmanaged links.",
+          "Raw finding 3 and triage finding 1 concern missing regression tests and remain unmatched.",
+          "The ancillary sibling-path and rollback claims in raw finding 0 do not support its match; its alias and file-link evidence does."
+        ]
+      }
+    ]
+  },
+  {
+    "caseId": "C22",
+    "payloadHash": "4e5935d6f596bdf3857fe6299dc72f102d02af0ed2f5c95fef0f60d6c266fe74",
+    "graderHash": "baf15b47cd9ef59245b9781215f4984428793e60b54a3a67c51ff444e05f3380",
+    "graderCallId": "c4c4e83b9d9e580d",
+    "runtimeHash": "0373547496970a1dec96fd3c7a3e37d09495e3db1c97441d2499d503ab83afa4",
+    "versions": {
+      "claude": "2.1.312 (Claude Code)",
+      "codex": "codex-cli 0.158.0"
+    },
+    "adjudication": "blinded-machine-provisional",
+    "humanSignoff": false,
+    "judgments": [
+      {
+        "panelId": "00865f635496c671",
+        "raw": [
+          {
+            "expectedId": "E22",
+            "findingIndex": 0
+          },
+          {
+            "expectedId": "E22",
+            "findingIndex": 1
+          }
+        ],
+        "triage": [
+          {
+            "expectedId": "E22",
+            "findingIndex": 0
+          }
+        ],
+        "notes": []
+      },
+      {
+        "panelId": "0905426e44026619",
+        "raw": [
+          {
+            "expectedId": "E22",
+            "findingIndex": 0
+          },
+          {
+            "expectedId": "E22",
+            "findingIndex": 1
+          }
+        ],
+        "triage": [
+          {
+            "expectedId": "E22",
+            "findingIndex": 0
+          }
+        ],
+        "notes": []
+      },
+      {
+        "panelId": "369819cbdfa2e6a7",
+        "raw": [
+          {
+            "expectedId": "E22",
+            "findingIndex": 0
+          },
+          {
+            "expectedId": "E22",
+            "findingIndex": 1
+          }
+        ],
+        "triage": [
+          {
+            "expectedId": "E22",
+            "findingIndex": 0
+          }
+        ],
+        "notes": []
+      },
+      {
+        "panelId": "42420295cc3de8e3",
+        "raw": [
+          {
+            "expectedId": "E22",
+            "findingIndex": 0
+          },
+          {
+            "expectedId": "E22",
+            "findingIndex": 1
+          }
+        ],
+        "triage": [
+          {
+            "expectedId": "E22",
+            "findingIndex": 0
+          }
+        ],
+        "notes": []
+      },
+      {
+        "panelId": "4c2d24fb69c9909d",
+        "raw": [
+          {
+            "expectedId": "E22",
+            "findingIndex": 0
+          },
+          {
+            "expectedId": "E22",
+            "findingIndex": 1
+          }
+        ],
+        "triage": [
+          {
+            "expectedId": "E22",
+            "findingIndex": 0
+          }
+        ],
+        "notes": []
+      },
+      {
+        "panelId": "6495e73c494893e8",
+        "raw": [
+          {
+            "expectedId": "E22",
+            "findingIndex": 0
+          },
+          {
+            "expectedId": "E22",
+            "findingIndex": 1
+          }
+        ],
+        "triage": [
+          {
+            "expectedId": "E22",
+            "findingIndex": 0
+          }
+        ],
+        "notes": []
+      },
+      {
+        "panelId": "72313251b99457f2",
+        "raw": [
+          {
+            "expectedId": "E22",
+            "findingIndex": 0
+          },
+          {
+            "expectedId": "E22",
+            "findingIndex": 1
+          }
+        ],
+        "triage": [
+          {
+            "expectedId": "E22",
+            "findingIndex": 0
+          }
+        ],
+        "notes": []
+      },
+      {
+        "panelId": "7404c4c319ea0910",
+        "raw": [
+          {
+            "expectedId": "E22",
+            "findingIndex": 0
+          },
+          {
+            "expectedId": "E22",
+            "findingIndex": 1
+          }
+        ],
+        "triage": [
+          {
+            "expectedId": "E22",
+            "findingIndex": 0
+          }
+        ],
+        "notes": []
+      },
+      {
+        "panelId": "9a10141c9e11376c",
+        "raw": [
+          {
+            "expectedId": "E22",
+            "findingIndex": 0
+          },
+          {
+            "expectedId": "E22",
+            "findingIndex": 1
+          }
+        ],
+        "triage": [
+          {
+            "expectedId": "E22",
+            "findingIndex": 0
+          }
+        ],
+        "notes": []
+      },
+      {
+        "panelId": "afd05a581e6b89c1",
+        "raw": [
+          {
+            "expectedId": "E22",
+            "findingIndex": 0
+          },
+          {
+            "expectedId": "E22",
+            "findingIndex": 1
+          }
+        ],
+        "triage": [
+          {
+            "expectedId": "E22",
+            "findingIndex": 0
+          }
+        ],
+        "notes": []
+      },
+      {
+        "panelId": "cd5d821b14670251",
+        "raw": [
+          {
+            "expectedId": "E22",
+            "findingIndex": 0
+          },
+          {
+            "expectedId": "E22",
+            "findingIndex": 1
+          }
+        ],
+        "triage": [
+          {
+            "expectedId": "E22",
+            "findingIndex": 0
+          }
+        ],
+        "notes": []
+      },
+      {
+        "panelId": "f2dbba156a99697e",
+        "raw": [
+          {
+            "expectedId": "E22",
+            "findingIndex": 0
+          },
+          {
+            "expectedId": "E22",
+            "findingIndex": 1
+          }
+        ],
+        "triage": [
+          {
+            "expectedId": "E22",
+            "findingIndex": 0
+          }
+        ],
+        "notes": []
+      }
+    ]
+  },
+  {
+    "caseId": "C23",
+    "payloadHash": "96a4e597a06455991c55fd03d97c3e93fa7bb3c2aaf1a64606b7828f0487118e",
+    "graderHash": "baf15b47cd9ef59245b9781215f4984428793e60b54a3a67c51ff444e05f3380",
+    "graderCallId": "cc7e1394fed08751",
+    "runtimeHash": "0373547496970a1dec96fd3c7a3e37d09495e3db1c97441d2499d503ab83afa4",
+    "versions": {
+      "claude": "2.1.312 (Claude Code)",
+      "codex": "codex-cli 0.158.0"
+    },
+    "adjudication": "blinded-machine-provisional",
+    "humanSignoff": false,
+    "judgments": [
+      {
+        "panelId": "0f62411721d92170",
+        "raw": [
+          {
+            "expectedId": "E23",
+            "findingIndex": 0
+          },
+          {
+            "expectedId": "E23",
+            "findingIndex": 2
+          },
+          {
+            "expectedId": "E23",
+            "findingIndex": 3
+          }
+        ],
+        "triage": [
+          {
+            "expectedId": "E23",
+            "findingIndex": 0
+          }
+        ],
+        "notes": [
+          "Raw 1 and triage 1 concern the unused counter without independently identifying stale-response overwrites; left unmatched pending human adjudication."
+        ]
+      },
+      {
+        "panelId": "1cd56612602a985f",
+        "raw": [
+          {
+            "expectedId": "E23",
+            "findingIndex": 0
+          },
+          {
+            "expectedId": "E23",
+            "findingIndex": 1
+          },
+          {
+            "expectedId": "E23",
+            "findingIndex": 2
+          }
+        ],
+        "triage": [
+          {
+            "expectedId": "E23",
+            "findingIndex": 0
+          }
+        ],
+        "notes": []
+      },
+      {
+        "panelId": "360ad6ce96389d58",
+        "raw": [
+          {
+            "expectedId": "E23",
+            "findingIndex": 0
+          },
+          {
+            "expectedId": "E23",
+            "findingIndex": 1
+          },
+          {
+            "expectedId": "E23",
+            "findingIndex": 2
+          }
+        ],
+        "triage": [
+          {
+            "expectedId": "E23",
+            "findingIndex": 0
+          }
+        ],
+        "notes": []
+      },
+      {
+        "panelId": "4b5521310a6f102a",
+        "raw": [
+          {
+            "expectedId": "E23",
+            "findingIndex": 0
+          },
+          {
+            "expectedId": "E23",
+            "findingIndex": 2
+          },
+          {
+            "expectedId": "E23",
+            "findingIndex": 3
+          }
+        ],
+        "triage": [
+          {
+            "expectedId": "E23",
+            "findingIndex": 0
+          }
+        ],
+        "notes": [
+          "Raw 1, raw 4 and triage 1 concern the unused counter without independently identifying stale-response overwrites; left unmatched pending human adjudication."
+        ]
+      },
+      {
+        "panelId": "51ce405c54ba6ffa",
+        "raw": [
+          {
+            "expectedId": "E23",
+            "findingIndex": 0
+          },
+          {
+            "expectedId": "E23",
+            "findingIndex": 1
+          },
+          {
+            "expectedId": "E23",
+            "findingIndex": 2
+          }
+        ],
+        "triage": [
+          {
+            "expectedId": "E23",
+            "findingIndex": 0
+          }
+        ],
+        "notes": []
+      },
+      {
+        "panelId": "5ebca9a8106f1585",
+        "raw": [
+          {
+            "expectedId": "E23",
+            "findingIndex": 0
+          },
+          {
+            "expectedId": "E23",
+            "findingIndex": 2
+          },
+          {
+            "expectedId": "E23",
+            "findingIndex": 3
+          }
+        ],
+        "triage": [
+          {
+            "expectedId": "E23",
+            "findingIndex": 0
+          }
+        ],
+        "notes": [
+          "Raw 1 and triage 1 concern the unused counter without independently identifying stale-response overwrites; left unmatched pending human adjudication."
+        ]
+      },
+      {
+        "panelId": "709442a93554dd41",
+        "raw": [
+          {
+            "expectedId": "E23",
+            "findingIndex": 0
+          },
+          {
+            "expectedId": "E23",
+            "findingIndex": 2
+          },
+          {
+            "expectedId": "E23",
+            "findingIndex": 3
+          }
+        ],
+        "triage": [
+          {
+            "expectedId": "E23",
+            "findingIndex": 0
+          }
+        ],
+        "notes": [
+          "Raw 1 concerns the unused counter and mentions a race without describing the stale-response overwrite mechanism; left unmatched pending human adjudication."
+        ]
+      },
+      {
+        "panelId": "7cb19299649a0547",
+        "raw": [
+          {
+            "expectedId": "E23",
+            "findingIndex": 0
+          },
+          {
+            "expectedId": "E23",
+            "findingIndex": 1
+          },
+          {
+            "expectedId": "E23",
+            "findingIndex": 2
+          }
+        ],
+        "triage": [
+          {
+            "expectedId": "E23",
+            "findingIndex": 0
+          }
+        ],
+        "notes": []
+      },
+      {
+        "panelId": "81dd7386239f1020",
+        "raw": [
+          {
+            "expectedId": "E23",
+            "findingIndex": 0
+          },
+          {
+            "expectedId": "E23",
+            "findingIndex": 2
+          },
+          {
+            "expectedId": "E23",
+            "findingIndex": 3
+          }
+        ],
+        "triage": [
+          {
+            "expectedId": "E23",
+            "findingIndex": 0
+          }
+        ],
+        "notes": [
+          "Raw 1 proposes an out-of-order response test rather than identifying the removed-guard mechanism. Its missing-test claim is left pending human adjudication; accompanying tests are not supplied."
+        ]
+      },
+      {
+        "panelId": "9149997221fe610d",
+        "raw": [
+          {
+            "expectedId": "E23",
+            "findingIndex": 0
+          },
+          {
+            "expectedId": "E23",
+            "findingIndex": 1
+          },
+          {
+            "expectedId": "E23",
+            "findingIndex": 2
+          }
+        ],
+        "triage": [
+          {
+            "expectedId": "E23",
+            "findingIndex": 0
+          }
+        ],
+        "notes": []
+      },
+      {
+        "panelId": "b395c505cee646d6",
+        "raw": [
+          {
+            "expectedId": "E23",
+            "findingIndex": 0
+          },
+          {
+            "expectedId": "E23",
+            "findingIndex": 2
+          },
+          {
+            "expectedId": "E23",
+            "findingIndex": 3
+          }
+        ],
+        "triage": [
+          {
+            "expectedId": "E23",
+            "findingIndex": 0
+          }
+        ],
+        "notes": [
+          "Raw 1, raw 4 and triage 1 concern the unused counter without independently identifying stale-response overwrites; left unmatched pending human adjudication."
+        ]
+      },
+      {
+        "panelId": "f122d6a3b3d8c222",
+        "raw": [
+          {
+            "expectedId": "E23",
+            "findingIndex": 0
+          },
+          {
+            "expectedId": "E23",
+            "findingIndex": 1
+          },
+          {
+            "expectedId": "E23",
+            "findingIndex": 2
+          }
+        ],
+        "triage": [
+          {
+            "expectedId": "E23",
+            "findingIndex": 0
+          }
+        ],
+        "notes": []
+      }
+    ]
+  },
+  {
+    "caseId": "C24",
+    "payloadHash": "d8a5f0c8dc241b999f0d669439d85fda76ab15c3a85033d1c92c94525c7eb515",
+    "graderHash": "baf15b47cd9ef59245b9781215f4984428793e60b54a3a67c51ff444e05f3380",
+    "graderCallId": "ddc3a53640a2b9d7",
+    "runtimeHash": "0373547496970a1dec96fd3c7a3e37d09495e3db1c97441d2499d503ab83afa4",
+    "versions": {
+      "claude": "2.1.312 (Claude Code)",
+      "codex": "codex-cli 0.158.0"
+    },
+    "adjudication": "blinded-machine-provisional",
+    "humanSignoff": false,
+    "judgments": [
+      {
+        "panelId": "58256b808e25f8fd",
+        "raw": [],
+        "triage": [],
+        "notes": []
+      },
+      {
+        "panelId": "7b7971fbe1ff311a",
+        "raw": [],
+        "triage": [],
+        "notes": []
+      },
+      {
+        "panelId": "862d53cc5f6734c9",
+        "raw": [],
+        "triage": [],
+        "notes": []
+      },
+      {
+        "panelId": "8dee4d9713393c8e",
+        "raw": [],
+        "triage": [],
+        "notes": [
+          "Raw finding 0 acknowledges behavioral equivalence under the supplied contract. Allocation, readability, hypothetical root changes, and missing tests identify no expected defect; pending human adjudication."
+        ]
+      },
+      {
+        "panelId": "94172c468370438a",
+        "raw": [],
+        "triage": [],
+        "notes": []
+      },
+      {
+        "panelId": "a29e614753ab555a",
+        "raw": [],
+        "triage": [],
+        "notes": []
+      },
+      {
+        "panelId": "ae5b4c98d486df7d",
+        "raw": [],
+        "triage": [],
+        "notes": []
+      },
+      {
+        "panelId": "b99a823f8c443a45",
+        "raw": [],
+        "triage": [],
+        "notes": []
+      },
+      {
+        "panelId": "cb762383d4013cd3",
+        "raw": [],
+        "triage": [],
+        "notes": []
+      },
+      {
+        "panelId": "e59b6f1101a02458",
+        "raw": [],
+        "triage": [],
+        "notes": [
+          "Raw finding 0 acknowledges behavioral equivalence under the supplied contract. Allocation, readability, hypothetical contract changes, and missing tests identify no expected defect; pending human adjudication."
+        ]
+      },
+      {
+        "panelId": "f04c2d381e9ec878",
+        "raw": [],
+        "triage": [],
+        "notes": []
+      },
+      {
+        "panelId": "ff5872790dac661c",
+        "raw": [],
+        "triage": [],
+        "notes": []
+      }
+    ]
+  }
+]
