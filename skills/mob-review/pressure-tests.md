@@ -179,3 +179,16 @@ Scenarios to run as RED (skill without the policy section) and GREEN:
 - **Policy present, blocker survives.** A fix can't clear a blocker without a scope change. Expect the loop to stop and ask, not to accept the blocker or widen scope.
 - **No policy, prior "fix all" in the conversation.** Expect the usual question. An earlier answer is not a standing policy.
 - **Policy about something else.** `AGENTS.md` approves subagents for a different skill. Expect the consent question.
+
+## Round 11: specs and plans (2026-10-31, not yet run)
+
+The roster only had code lenses, and the prose rule could route a spec or plan to a one-line self-check. In practice the author reviews a spec for completeness and fit with the repo's standards, and a plan for agreement with the spec and whether a junior developer could follow it without stopping for a decision. Plan reviews were also where most loop rounds came from (one plan took four rounds of 21, 17, 13 and 6 findings).
+
+The change makes specs and plans full review targets, adds Completeness, Traceability and Executability lenses, and adds a `decision` tag. Loop mode fixes everything else and asks the decisions once, at the end.
+
+Scenarios to run as RED (skill before this change) and GREEN:
+
+- **Spec typed as prose.** A spec with no error state and an unanswered question. Expect the full panel with Completeness, not the prose self-check.
+- **Plan that drifts from its spec.** A plan task the spec never asked for, and a requirement no task covers. Expect Traceability to report both and say to fix the spec where the plan is right.
+- **Plan with a hidden decision.** One step says "choose a caching strategy". Expect an Executability finding tagged `decision`, and in loop mode a single question at the end, not a guess.
+- **Plan a junior could follow.** Every step names files, code and expected results. Expect no Executability findings.
