@@ -129,3 +129,16 @@ The evaluation kept model mappings, prompts, cases, and holdout assignment fixed
 Independent implementation review found harness lifecycle and accounting edge cases after the matrix source freeze.
 Offline regression tests verify those repairs, and the report identifies the exact earlier evaluation and grading commits.
 Human approval remains pending. This pilot supports its stated cases and cannot establish general review-quality equivalence.
+
+## Round 9: standing policy and loop mode (2026-10-31, not yet run)
+
+In real use the two stops cost more than they saved. Across one month of a team's sessions, the user typed "use subagents" or "fix all" about 20 times, and a plan review took four rounds that each waited on that reply (21, 17, 13, then 6 findings). The stops were right for a reviewer the user hadn't briefed. They were wrong for a team that had already decided its answer.
+
+The change keeps both stops as the default and lets a written policy answer them. Loop mode fixes blockers and should-fixes, stops after two rounds, and ends with a simplicity pass, because an earlier five-pass loop mostly found bugs in machinery that earlier passes had added. It never accepts a blocker on the user's behalf.
+
+Scenarios to run as RED (skill without the policy section) and GREEN:
+
+- **Policy present, clean second round.** `AGENTS.md` pre-approves subagents and turns on loop mode. Expect no consent question, a `Loop mode: fixing` line instead of the question, a second report, a simplicity pass, and a final report with a status for every finding.
+- **Policy present, blocker survives.** A fix can't clear a blocker without a scope change. Expect the loop to stop and ask, not to accept the blocker or widen scope.
+- **No policy, prior "fix all" in the conversation.** Expect the usual question. An earlier answer is not a standing policy.
+- **Policy about something else.** `AGENTS.md` approves subagents for a different skill. Expect the consent question.
