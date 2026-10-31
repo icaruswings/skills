@@ -53,13 +53,13 @@ One subagent per lens is the best way to run this: each lens gets independent co
 
 | Subagents | Do this |
 |---|---|
-| Tool exposed, and the user already sanctioned subagents for this work | Dispatch one per lens. |
+| Tool exposed, and the user already sanctioned subagents for this work, or a standing policy pre-approves them for this kind of change (see [Standing policy](#standing-policy)) | Dispatch one per lens. |
 | Tool exposed, not sanctioned | Ask, after picking the mob and before any review work: "Mob review runs best as one subagent per lens, so no lens anchors another. Can I use subagents for this review? That's <N> agents: <lenses, plus final triage if needed>. Otherwise I run each lens as a separate self-review pass." Then stop and wait for the answer. Asking is the normal path, not a failure — and mentioning the option while proceeding is not asking. |
 | No tool exposed, or the user declined | Run an explicit separate pass per lens yourself. Don't ask — there's nothing to grant. |
 
 Never spawn the mob unasked, and never start reviewing while the question is pending.
 
-A review changes no files. Read, run, and inspect all you like, but the first edit waits for the user's answer to the question at the end of the report. This holds for your own uncommitted work too: a blocker in it means the change is not done, and saying so is the review's job. Fixing it is a separate job that the user assigns.
+A review changes no files. Read, run, and inspect all you like, but the first edit waits for the user's answer to the question at the end of the report, or for a standing policy that turns on loop mode. This holds for your own uncommitted work too: a blocker in it means the change is not done, and saying so is the review's job. Fixing it is a separate job that the user assigns.
 
 ## Report
 
@@ -69,7 +69,7 @@ Produce exactly this, in this order:
 2. **Lenses selected** — one line, each with the clause that triggered it. Name the ones you considered and skipped when the change looked like it might need them. Include each lens's tier, requested model, confirmed model (or inherited/unknown), and any fallback; include final triage's model and any unresolved quality gate.
 3. **Findings, grouped by lens** — each tagged `blocker`, `should-fix`, or `optional`, and numbered in one sequence across the whole report (`#1`, `#2`, …), so the user can name them back to you. A lens with nothing to say gets one line saying so.
 4. **Verdict** — ship, ship after blockers, or needs a decision from the user.
-5. **How to proceed** — the report's last line, always a question. Offer the choices in terms of the numbers above:
+5. **How to proceed** — the report's last line, always a question unless a standing policy turns on loop mode (see [Standing policy](#standing-policy)). Offer the choices in terms of the numbers above:
 
    > How do you want to proceed? Fix all, fix the blockers only (#1, #4), fix by number, or leave it with you?
 
@@ -83,6 +83,25 @@ A blocker means the change is not done. It becomes done when someone fixes it or
 
 Do what the user picked and nothing more: all, blockers only, the numbers they named, or nothing. A fix is a change, so re-run the lenses whose surfaces it touched, and report again in the same shape, question included.
 
+## Standing policy
+
+A team can answer the two questions ahead of time in its instructions (`AGENTS.md`, `CLAUDE.md`, or equivalent), so a review doesn't stop to ask. Only a policy that names mob review and says it in so many words counts. Don't infer one from habit, from earlier answers, or from a policy about something else.
+
+**Subagents.** A policy that pre-approves subagents for this kind of change is the sanction in the first row of the table above. Its limits on agent count or models still apply.
+
+**Loop mode.** A policy that turns on loop mode answers the how-to-proceed question with "fix the blockers and should-fixes". Run it like this:
+
+1. Review and report as usual, but end the report with the line `Loop mode: fixing #… (round 1 of 2)` instead of the question.
+2. Fix the blockers and should-fixes. Leave every `optional` finding alone.
+3. Re-run the lenses whose surfaces the fixes touched, and report again in the same shape. That is round 2.
+4. Stop after round 2, or sooner when no blocker or should-fix is left.
+5. Run one simplicity pass on the whole change. A review loop tends to add machinery one fix at a time, so look for code the goal doesn't need. Delete or narrow code that the loop itself added, then run the tests. Report anything else it finds as a finding.
+6. Send one final report. Give each finding its status: fixed in round 1, fixed in round 2, open, or declined as a follow-up. List the follow-ups.
+
+Loop mode never decides that a blocker is acceptable. A blocker still open after round 2, a fix that would change scope, or lenses that disagree end the loop. Ask the user about it with the usual how-to-proceed question.
+
+When the loop ends clean, the final report's last line is the next step the policy names (for example, open the PR), or a plain question asking the user to review the change. Without a policy, or when the user asks for a single pass, ask after every report as described above.
+
 ## Scale to the change
 
 When the change is only prose, comments, or formatting, with no behavior change: skip the panel, the subagent question, and the how-to-proceed question; do one self-check and report in a line or two — no Mode line needed. Everything else gets the table above.
@@ -92,3 +111,5 @@ An unfamiliar codebase raises the bar rather than lowering it — read enough su
 ## Done when
 
 Every selected lens has reported, Strong final triage has run or its verification gap is explicit, the verdict names which of the three it is, the turn ends on the how-to-proceed question, and no file has changed. An unresolved model/triage gap requires a needs-a-decision verdict. Fixing starts only when the user answers.
+
+In loop mode, it's done when the loop has stopped, the simplicity pass has run, and the final report gives every finding a status. The turn ends on the policy's next step, or on a question to the user when a blocker, a scope change, or a disagreement is left.
