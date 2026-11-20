@@ -192,3 +192,64 @@ Scenarios to run as RED (skill before this change) and GREEN:
 - **Plan that drifts from its spec.** A plan task the spec never asked for, and a requirement no task covers. Expect Traceability to report both and say to fix the spec where the plan is right.
 - **Plan with a hidden decision.** One step says "choose a caching strategy". Expect an Executability finding tagged `decision`, and in loop mode a single question at the end, not a guess.
 - **Plan a junior could follow.** Every step names files, code and expected results. Expect no Executability findings.
+
+## Round 12: project facts file (2026-11-19)
+
+Fixture: a made-up project whose `AGENTS.md` does not mention `.agents/project.md`. That file's `## mob-review` section pre-approves subagents, turns on loop mode, and adds a **Billing** lens for `src/billing/`. Task: review your own new `src/billing/refund.ts`. Mid-tier model.
+
+- **Without the facts step:** never opened `.agents/project.md`. It picked Staff engineer, Security and Operability, missed the Billing lens, asked for subagent consent, and planned to ask before fixing.
+- **With the facts step:** read the file and added the Billing lens. It dispatched subagents without asking because the policy pre-approves them, and planned loop mode (two rounds, then a simplicity pass).
+
+## Round 13: simplification (2026-11-20)
+
+The skill had grown to 137 lines plus three reference files (267 lines in all). A two-model review council (one Claude, one GPT; a third provider was not available) read it against this file and agreed on what earned its place: the lens table, the consent table, read-only reviews, numbered findings with the how-to-proceed question, standing policy and loop mode, the typo fast path, and the project facts step. The rest was cut or folded in, and every cut was tested. The result is 97 lines plus an 11-line `model-selection.md`.
+
+Cut: `quality-evaluation.md` (its maintainer guidance moved to `evals/mob-review/README.md`), `review-handoff.md` (its scope, brief and result contract became two sentences), the tier table and promotion rules, the custom-agent examples, "Done when", the unfamiliar-codebase line, and the separate spec and plan tables (Completeness, Traceability and Executability are now rows in the lens table, which the eval parser reads unchanged).
+
+Method: fixture repos in a scratch directory, run with `claude -p --model sonnet --disable-slash-commands`. That flag turns off every installed skill, so the no-skill arm can't load the installed copy, which contaminated one earlier baseline. Subagents were real, and each reviewer's model was read from the runtime metadata in the stream, not from the agent's own report. Fixtures:
+
+- **IaC:** a Lambda with `s3:*` reaching the state bucket, no invoke permission, and no DLQ or timeout.
+- **Checkout:** staged, unstaged and untracked layers; SQL injection, a client-supplied total, charge-before-persist, and a missing module.
+- **Billing refund:** a project facts file that pre-approves subagents, turns on loop mode, and adds a Billing lens. Three variants: a frozen request shape, a pinned 200-only response contract, and an `AGENTS.md` line making `ledger.js` another team's file.
+- **Pricing:** a unit change that breaks two callers outside the diff.
+- **Saved searches:** a spec and plan with traceability drift and a hidden decision.
+- **Typo:** a one-word README fix.
+
+What the tests found, and what changed:
+
+- **The old skill halted loop mode** after round 1 on its own Strong-tier gate. The draft looped. In real runs the parent cannot observe a subagent's model, so the gate fires on every loop. The draft records the model it set, and only a model it couldn't set becomes a decision.
+- **Under "quick and cheap" the first draft put Security on Sonnet.** That is Round 7's failure again. Fixed by making the model a required field of each lens brief, with "even when the user asks for quick or cheap". After the fix, 8 of 8 later loop runs put Security and triage on the strongest model, confirmed from runtime metadata. With the strongest models forced unavailable, the agent retried once on the next top-tier model. With no top-tier model left, it fell back and made the gap the first decision.
+- **The loop's ending drifted.**
+  - A bullet list: 2 of 3 runs included every part.
+  - A fill-in block: 2 of 3, because a second "stop the loop → question" ending competed with it.
+  - One ending, with the block copied with its labels (`Status`, `Simplicity pass`, `Verify`, `Decisions`): the last two runs both kept it.
+- **Loop fixes reached beyond the change.**
+  - A required idempotency argument was added.
+  - A committed route's HTTP status was changed.
+  - Errors were turned into throws behind a never-throw contract.
+  - A dedupe was added that dropped legitimate identical refunds.
+
+  The scope rule became something an agent can check: fix only in files the change touches, and every valid call must behave the same afterwards (same arguments, responses, errors and side effects). After that, held fixes became first decisions, callers and owned files stayed byte-identical, and optional additions were allowed.
+- **Fixes made in the last round went unreviewed.** The loop is now: fix, simplicity pass, round 2 with one reviewer per affected lens on round 1's models, verify, then one final report. Round 2 findings are reported, not fixed. Agents still combined round-2 lenses or ran verify before round 2 until the block gained a `Round 2:` line with one entry per lens reviewer and `Verify: ..., run after round 2`. In both runs since, round 2 had separate lenses.
+
+Kept with evidence: the consent ask (it stopped and asked with the count and lenses, and a prior "fix all" was not treated as a policy), read-only reviews (file, index, HEAD and status hashes were unchanged in every non-loop run), the typo fast path, and the spec and plan lenses. The no-skill arm missed error and empty states and the `decision` tag, and gave unnumbered findings ending on an open offer.
+
+Tried and reverted: widening Product's trigger to "what an existing caller now shows its users". It changed nothing in two runs, so it didn't earn its line. Lens choice stays a judgment call.
+
+Two runs on the last version both ended on the block. One of them couldn't read two round-2 reviewers' full output. It said so in the report but didn't raise it as a decision. The verdict was already "needs a decision", so nothing was lost.
+
+## Round 14: a cheaper round 2 (2026-11-20)
+
+Round 2 in loop mode re-reviewed the whole change with every matching lens on round 1's models. It reported problems that were there before the fixes, which became decisions nobody had asked for, and it cost close to a second full review. The change: round 2 checks the edits. Only lenses with a fixed finding take part. Each answers resolved, not resolved, or "the edit introduced a problem" for each of its fixed findings, and reports nothing that was there before the edits. Security keeps the strongest model, and every other lens uses mid-tier, payments included.
+
+Tested against the previous version, with the same fixtures, `claude -p --model sonnet --disable-slash-commands`, and real subagents:
+
+| Test | Previous | New |
+|---|---|---|
+| Round-2 precision: fixes already made, with two planted fix bugs (the cap allows one cent over; a reused key with a different amount reports success) and pre-existing issues nearby. 2 runs each. | Both bugs caught 2/2. Round 2 reported pre-existing issues (a null charge throws, the cap trusts the client). $1.10 and $1.13 (Opus $0.60, $0.74). | Both bugs caught 2/2, plus a fix-caused `null`-key edge case. Nothing pre-existing reported. $0.63 and $0.57 (Opus $0.15, $0.09). |
+| Full loop, pinned response contract. | $2.15 and $2.08. All four planted blockers found. Side-effect probe passes, and the route and ledger are untouched. | $1.40, $1.81 and $1.80. The same on every check. |
+| Full loop, "quick and cheap". | $1.64. It made the idempotency key required, which breaks existing calls. | $1.59. The key stays optional, and existing calls are unchanged. |
+
+Result: round 2 costs about half as much, Opus spend in round 2 falls by about 80%, and a full loop costs about 20% less. The planted fix bugs and the original blockers were caught every time.
+
+Tried and dropped: limiting each reviewer's finding to one line per field. Over two runs of the native-panel test per version, the planted defects were found either way, the dispatches were the same, and Opus output was no smaller (7.9k and 5.4k tokens against 8.7k and 4.3k). A reviewer's output is mostly its thinking and tool calls, so terser findings save nothing.

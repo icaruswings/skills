@@ -1,19 +1,17 @@
 ---
 name: mob-review
-description: Use when finishing a meaningful change and before calling it done, merging, or opening a PR — feature work, backend or API changes, schema and migration changes, infrastructure changes, UI work, or security-sensitive changes. Also use when asked to review a diff, a PR, or someone else's work.
+description: Use when finishing a meaningful change and before calling it done, merging, or opening a PR — feature work, backend or API changes, schema and migration changes, infrastructure changes, UI work, or security-sensitive changes. Also use when asked to review a diff, a PR, a spec, a plan, or someone else's work.
 ---
 
 # Mob Review
 
-Pressure-test evidence: [pressure-tests.md](./pressure-tests.md).
+Assemble a mob of the lenses that match what changed, run each as its own pass, and let each rank its own findings.
 
-Review-quality evaluation and limitations: [quality-evaluation.md](./quality-evaluation.md). Model-routing checks alone do not establish equivalent defect detection.
-
-One reviewer finds one reviewer's bugs. A generic pass reports findings in the order it happened to notice them, which buries the blocker under the nitpick. Assemble a mob — the lenses that match what changed — run each as its own pass, and let each one rank its own findings.
+Before you pick lenses, read `.agents/project.md` in the repo root if it exists. Its `## mob-review` section, like a mob-review rule in `AGENTS.md`, can add lenses (a domain expert, for example) and set a [standing policy](#standing-policy). Its `verify` key is the command a change must pass.
 
 ## Pick the mob
 
-Select every lens whose trigger matches the change. Most changes need two or three. Running all of them on everything is as wrong as running one.
+Select every lens whose trigger matches the change. Most changes need two or three.
 
 | Lens | Select when the change touches | It checks |
 |---|---|---|
@@ -24,112 +22,76 @@ Select every lens whose trigger matches the change. Most changes need two or thr
 | **Data & contracts** | schema, migrations, API responses, event payloads, persisted shapes | backwards compatibility, migration safety and reversibility, query cost and indexes, retention and deletion |
 | **Infrastructure** | IaC, CI/CD, networking, runtime config, deploys | least privilege, blast radius, rollout and rollback path, cost, secret storage, drift from what's committed |
 | **Operability** | background jobs, integrations, payments, retries, anything that can fail silently | retry and timeout behavior, idempotency, partial failure; whether on-call can detect it, get enough context to triage, and remediate without reproducing it from scratch |
+| **Completeness** | a spec | the problem and who has it; scope and non-goals; behaviour in every state, including errors, empty and offline; acceptance criteria someone could test; open questions answered or listed as decisions |
+| **Traceability** | a plan, read against its spec | every spec requirement maps to a task, and every task to a requirement. Where the plan is right and the spec is not, fix the spec: it outlives the plan |
+| **Executability** | a plan | each task names the files, the code or command, and the result that shows it worked. Flag steps that leave a choice open ("choose", "TBD", "if needed"), names the plan never defines, and steps that depend on later ones. Read the plan; don't run it |
 
-Add project-specific lenses to this roster in the project's `AGENTS.md` — a domain-expert lens (clinical, legal, financial, pedagogical) belongs wherever users would judge the domain rules, not just the code.
+A spec or plan is never a prose edit: judge the design it describes, not its wording. A spec also gets the lenses for the surfaces it will change. A plan gets Staff engineer when it makes design choices the spec left open.
 
-### Specs and plans
+## Choose models
 
-A spec or a plan is a review target, not a prose edit. Run the lenses in the table below as a panel, never the prose-only self-check. Judge the design it describes, not its wording.
-
-| Reviewing | Lenses |
-|---|---|
-| **Spec** | **Completeness**, plus the lenses above whose surfaces the spec will change, and any standards lens the project's `AGENTS.md` adds |
-| **Plan** | **Traceability** and **Executability**, plus Staff engineer when the plan makes design choices the spec left open |
-
-| Lens | It checks |
-|---|---|
-| **Completeness** | the problem and who has it; scope and non-goals; behaviour in every state, including errors, empty and offline; acceptance criteria someone could test; open questions answered or listed as decisions |
-| **Traceability** | every spec requirement maps to a task, and every task traces back to the spec. A plan that disagrees with the spec is a finding against the spec as well: the spec outlives the plan, so fix the spec |
-| **Executability** | read each task as a junior developer would. It names the files, the code or command, and the result that shows it worked. Flag steps that leave a choice open ("choose", "TBD", "if needed", "as appropriate"), use names the plan never defines, or depend on a step that comes later. Read the plan; don't run it |
-
-A finding that only a person can settle, such as a product choice, a trade-off, or a gap in the spec, gets the tag `decision` as well as its severity. Don't settle it by guessing, and don't let a reviewer settle it either.
-
-## Choose model tiers
-
-Keep every selected lens; tier its task by risk and ambiguity, not by diff size alone. These are skill policy names, not model IDs.
-
-| Tier | Use for |
-|---|---|
-| **Economy** | bounded evidence gathering or checks with explicit criteria: copy against a spec, semantic markup, keyboard checklists, locating tests; no architectural or complex correctness judgment |
-| **Balanced** | routine Staff engineer, Product, Frontend & accessibility, Data & contracts, Infrastructure, or Operability work with clear behavior and local context |
-| **Strong** | every Security pass; architecture, complex correctness, concurrency, payments, migration safety, privilege/blast-radius decisions, and final triage across all findings |
-
-The highest-risk responsibility sets the tier for the whole lens. Promote when evidence is missing, reasoning crosses boundaries, or reviewers disagree about correctness or risk; rerun the affected lower-tier lens at Strong. Final triage can resolve duplicate findings or factual misunderstandings directly from evidence. A cheaper evidence-gathering task does not replace a required review pass. Cost pressure never removes a lens or weakens a blocker.
-
-After resolving subagent consent below, read [model-selection.md](./model-selection.md) for the active client's supported controls and fallbacks. Respect explicit user/project model constraints. Resolve actual models from the exposed tool schema and available model catalog; use only supported reasoning settings.
-
-Run final triage on Strong: reconcile evidence, duplicates, conflicts, and severity without dropping lens attribution. The parent can do this only when its model meets Strong; otherwise delegate triage within the existing subagent consent. A weak or unknown fallback leaves a verification gap and cannot clear that gate.
-
-Include any needed triage agent in the consent count. Respect explicit limits on agent count/models; seek expanded consent before exceeding those limits, or report the resulting gap.
+Run Security, final triage, and any high-risk judgment (payments, migrations, authorization, concurrency) on the strongest model available, even when the user asks for quick or cheap. Cost pressure only moves the other lenses to a mid-tier model, or checklist work with explicit criteria (copy against a spec, markup) to a cheap one. It never removes a lens or weakens a blocker. [model-selection.md](./model-selection.md) says how to set the model in each harness.
 
 ## Run them
 
-One subagent per lens is the best way to run this: each lens gets independent context and can't be anchored by another lens's findings.
-
-"Available" is a fact, not a judgment: a subagent tool (Task, spawn_agent, or equivalent) is exposed in this session. Check the tool list; don't infer from the harness name.
+One subagent per lens is best: each gets independent context, so no lens anchors another. "Available" is a fact, not a judgment: a subagent tool (Agent, Task, spawn_agent, or equivalent) is in your tool list.
 
 | Subagents | Do this |
 |---|---|
-| Tool exposed, and the user already sanctioned subagents for this work, or a standing policy pre-approves them for this kind of change (see [Standing policy](#standing-policy)) | Dispatch one per lens. |
-| Tool exposed, not sanctioned | Ask, after picking the mob and before any review work: "Mob review runs best as one subagent per lens, so no lens anchors another. Can I use subagents for this review? That's <N> agents: <lenses, plus final triage if needed>. Otherwise I run each lens as a separate self-review pass." Then stop and wait for the answer. Asking is the normal path, not a failure — and mentioning the option while proceeding is not asking. |
-| No tool exposed, or the user declined | Run an explicit separate pass per lens yourself. Don't ask — there's nothing to grant. |
+| Available, and the user or a standing policy sanctioned them | Dispatch one per lens, plus a triage agent if your own model isn't the strongest. |
+| Available, not sanctioned | After picking the mob and before any review work, ask: "Mob review runs best as one subagent per lens, so no lens anchors another. Can I use subagents for this review? That's <N> agents: <lenses, plus triage>. Otherwise I run each lens as a separate self-review pass." Then stop and wait. Mentioning the option while carrying on is not asking. |
+| Not available, or the user declined | Run a separate pass per lens yourself. Don't ask. |
 
-Never spawn the mob unasked, and never start reviewing while the question is pending.
+The scope is the whole change against its base branch: committed, staged, unstaged, and untracked. Each lens brief names its lens and its model, gives that scope and the requirements the change is judged against, and says: change no files, spawn no helpers, return `Status: complete | incomplete`, the findings, and any gaps. Keep other lenses' conclusions out of it.
 
-A review changes no project files, index, or refs. The coordinator may keep review evidence in temporary storage outside the checkout. Reviewers may write only designated temporary reports. Project edits wait for the user's answer at the end of the report, or for a standing policy that turns on loop mode. This holds for your own uncommitted work too. A blocker means the change is not done; fixing it is a separate job that the user assigns.
+A review changes no project files, index, or refs, your own uncommitted work included. Fixes wait for the user's answer, or for a standing policy that turns on loop mode.
 
-After consent, read [review-handoff.md](./review-handoff.md) before substantive review, in dispatched and self-review modes. Prepare one package for the exact scope. Give each lens independent context and collect its completion status, checks, findings, and gaps. Keep the same evidence standard when temporary storage is unavailable.
+Final triage merges duplicates, checks disputed claims against the code, and keeps each finding's lens.
 
 ## Report
 
-Produce exactly this, in this order:
+In this order:
 
-1. **Mode** — the report's first line, always: `Mode: dispatched (<N> subagents)`, `Mode: self-review passes (<reason: user declined / no subagent tool exposed / dispatch failed>)`, or `Mode: mixed (<N> subagents; <M> self-review passes; <dispatch failure>)`. Count triage subagents too. A report without a Mode line is an incomplete run; this line is what makes a quiet downgrade impossible.
-2. **Lenses selected** — one line, each with the clause that triggered it. Name the ones you considered and skipped when the change looked like it might need them. Include each lens's tier, requested model, confirmed model (or inherited/unknown), and any fallback; include final triage's model and any unresolved quality gate.
-3. **Findings, grouped by lens.** Tag each `blocker`, `should-fix`, or `optional`, and add `decision` when only a person can settle it. Number findings in one sequence across the report (`#1`, `#2`, `...`) so the user can name them back to you. Include location, failure condition, consequence, and evidence. For each lens, state completion, checks performed or reused, and gaps. A completed lens with no findings gets one line saying so. Include the evidence-based disposition of each proposed blocker that triage dropped or downgraded.
-4. **Verdict** — ship, ship after blockers, or needs a decision from the user.
-5. **How to proceed** — the report's last line, always a question unless a standing policy turns on loop mode (see [Standing policy](#standing-policy)). Offer the choices in terms of the numbers above:
+1. **Mode**, the first line: `Mode: dispatched (<N> subagents)`, `Mode: self-review passes (<reason>)`, or `Mode: mixed (<N> subagents; <M> self-review passes; <why>)`.
+2. **Lenses**, one line: each selected lens with the clause that triggered it, and the ones you considered and skipped. Say if a lens ran on a weaker model than this skill asks for, or one you couldn't set.
+3. **Findings by lens**, numbered in one sequence (`#1`, `#2`, …) so the user can name them back. Tag each `blocker`, `should-fix`, or `optional`, and add `decision` when only a person can settle it: a product choice, a trade-off, a gap in the spec. Give location, what fails, the consequence, and the evidence. A lens with no findings gets one line. Name any incomplete lens or gap, and any blocker triage dropped, with the reason.
+4. **Verdict**: ship, ship after blockers, or needs a decision. An incomplete lens means needs a decision.
+5. **How to proceed**, the last line unless loop mode is on:
 
    > How do you want to proceed? Fix all, fix the blockers only (#1, #4), fix by number, or leave it with you?
 
-   Then stop. The report is the deliverable; the answer decides what happens next. A report that ends on the verdict, or on a fix you already made, is an incomplete run.
+   Then stop. The report is the deliverable.
 
-`blocker` means data loss, a security hole, a broken contract, or a user-facing break. Everything a lens raises that isn't one of those is `should-fix` or `optional` — say which.
-
-A blocker means the change is not done. It becomes done when someone fixes it or the user accepts it in so many words, and the verdict says which is still owed. Judging a blocker acceptable is the user's call, not yours.
+`blocker` means data loss, a security hole, a broken contract, or a user-facing break. Everything else is `should-fix` or `optional`. Only the user can accept a blocker.
 
 ## After the answer
 
-Do what the user picked and nothing more: all, blockers only, the numbers they named, or nothing. Re-review the fix delta and affected dependencies with every affected lens, following review-handoff.md. Report again in the same shape, question included.
+Do what the user picked and nothing more. Re-review the fix delta, and the callers and contracts it touches, with every affected lens. Report again in the same shape.
 
 ## Standing policy
 
-A team can answer the two questions ahead of time in its instructions (`AGENTS.md`, `CLAUDE.md`, or equivalent), so a review doesn't stop to ask. Only a policy that names mob review and says it in so many words counts. Don't infer one from habit, from earlier answers, or from a policy about something else.
+A team can answer both questions ahead of time in its instructions: `AGENTS.md`, `CLAUDE.md`, the `## mob-review` section of `.agents/project.md`, or a workflow skill it uses. Only a written policy that names mob review counts. Habit, earlier answers in this conversation, and a policy about something else don't. The policy's limits on agents or models still apply. What the user says for this review overrides any policy, and a project's `## mob-review` section overrides a workflow skill's defaults.
 
-**Subagents.** A policy that pre-approves subagents for this kind of change is the sanction in the first row of the table above. Its limits on agent count or models still apply.
+**Loop mode** answers the how-to-proceed question with "fix the blockers and should-fixes":
 
-**Loop mode.** A policy that turns on loop mode answers the how-to-proceed question with "fix the blockers and should-fixes". Run it like this:
+1. End the report with `Loop mode: fixing #… (round 1 of 2)` instead of the question.
+2. Fix the blockers and should-fixes. Leave `optional` findings alone. Hold `decision` findings for the end. Fix only inside the files the change already touches. A valid call that works against the code under review must behave the same after the fix, from this repo or not: same arguments, responses, errors, and side effects. A fix that needs anything else is a scope change: don't make it.
+3. Run one simplicity pass: delete or narrow code the loop added that the goal doesn't need.
+4. Round 2 checks the edits, not the whole change again. Each lens with a fixed finding gets its own reviewer, given the fix delta and the callers it touches. For each of that lens's fixed findings it answers: resolved, not resolved, or the edit introduced a problem (what, with evidence). It reports nothing that was already there before the edits. Security keeps the strongest model; every other lens uses a mid-tier one, payments included, because checking a fix against its finding has explicit criteria. Don't fix what round 2 finds; it goes in the final report. Skip round 2 only when nothing was edited.
+5. Run `verify` once, after every round-2 reviewer has finished (or round 2 was skipped). With no `verify`, run the tests.
+6. Send one final report that ends with this block, copied with its labels and filled in. Nothing follows it.
 
-1. Review and report as usual, but end the report with the line `Loop mode: fixing #… (round 1 of 2)` instead of the question.
-2. Fix the blockers and should-fixes. Leave every `optional` finding alone. Don't fix a `decision` finding: hold it for the final report.
-3. Re-review the fix delta and affected dependencies with every affected lens, following review-handoff.md, and report again in the same shape. That is round 2.
-4. Stop after round 2, or sooner when no blocker or should-fix is left.
-5. Run one simplicity pass on the whole change. A review loop tends to add machinery one fix at a time, so look for code the goal doesn't need. Delete or narrow code that the loop itself added, then run the tests. Report anything else it finds as a finding.
-6. Send one final report. Give each finding its status: fixed in round 1, fixed in round 2, open, needs a decision, or declined as a follow-up. List the follow-ups.
-7. If any finding needs a decision, end with all of them as one numbered list of questions, each with the options and your recommendation. Ask once, not per round.
+   ```text
+   Status: #1 fixed, #2 fixed, #3 needs a decision, #4 follow-up, …
+   Simplicity pass: <what it removed, or "nothing removed">
+   Round 2: <one entry per lens reviewer: lens, model, each fixed finding resolved / not resolved / problem introduced; or "skipped: nothing edited">
+   Verify: <command and result, run once after round 2>
+   Decisions:
+   1. <question> Options: <a>, <b>. I recommend <a> because <reason>.
+   ```
 
-Loop mode never decides that a blocker is acceptable. A blocker still open after round 2, a fix that would change scope, or lenses that disagree end the loop. Ask the user about it with the usual how-to-proceed question.
-
-When the loop ends clean, the final report's last line is the next step the policy names (for example, open the PR), or a plain question asking the user to review the change. Without a policy, or when the user asks for a single pass, ask after every report as described above.
+   The first decisions are any blocker still open after round 2, any scope-changing fix you didn't make, and any disagreement triage can't settle. Security or triage on a weaker model, or on one you couldn't set through the model field, is a decision too, and so are a lens that reported itself incomplete and a step 5 run that failed or couldn't run. With none, write `Decisions: none` followed by the policy's next step, or a request to review the change.
 
 ## Scale to the change
 
-When the change is only prose, comments, or formatting, with no behavior change, and isn't a spec or a plan: skip the panel, the subagent question, and the how-to-proceed question; do one self-check and report in a line or two — no Mode line needed. Everything else gets the table above.
-
-An unfamiliar codebase raises the bar rather than lowering it — read enough surrounding code to judge the change in context before reporting, and say plainly which findings you couldn't verify.
-
-## Done when
-
-Every selected lens has a result bound to the reviewed scope. Strong final triage has run or its verification gap is explicit. The report names a verdict and ends on the how-to-proceed question. Project files, index, and refs remain unchanged. An incomplete lens or unresolved coverage, model, or triage gap requires a needs-a-decision verdict. Start fixes only when the user answers.
-
-In loop mode, it's done when the loop has stopped, the simplicity pass has run, and the final report gives every finding a status. The turn ends on the policy's next step, or on a question to the user when a blocker, a scope change, a disagreement, or a `decision` finding is left.
+When the change is only prose, comments, or formatting, with no behaviour change, and isn't a spec or plan: do one self-check and report in a line or two. No panel, no Mode line, no questions.
