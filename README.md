@@ -22,6 +22,12 @@ To take one skill only, copy its folder:
 cp -R skills/mob-review ~/.claude/skills/
 ```
 
+`writing-for-humans` runs `unslop` for its first pass, so take both. With the `skills` CLI:
+
+```bash
+npx skills add icaruswings/skills --skill writing-for-humans unslop
+```
+
 ## The skills
 
 The agent can select any of these on its own. You can also type the name of one.

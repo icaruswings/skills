@@ -11,7 +11,7 @@ Run two passes on any text a person will read, whether or not anyone asks: cut t
 
 Run the `/unslop` skill.
 
-If unslop is not available, run pass two anyway and tell the user that pass one did not run.
+If unslop is not available, run pass two anyway. Tell the user that pass one did not run, and that `npx skills add icaruswings/skills --skill unslop` installs it.
 
 ## Pass two: limits from ASD-STE100
 

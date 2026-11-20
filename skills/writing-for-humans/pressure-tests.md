@@ -150,6 +150,8 @@ A recount showed that the plain sentences already worked. With unslop missing, t
 
 The old install block never ran. With unslop missing, no run asked to install anything. The new skill drops the install, which also removes a stop-and-wait step that a subagent cannot finish.
 
+Instead, the skill names the install command, `npx skills add icaruswings/skills --skill unslop`, and the user decides. With unslop missing, 5 of 5 runs gave the user that command, and none ran it. With unslop present, 0 of 3 runs mentioned it. A trial in an empty project showed that the command installs unslop with its licence.
+
 ### Cut without a failing test
 
 These parts had no failure behind them, or the new unslop states them:
