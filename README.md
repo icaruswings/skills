@@ -32,7 +32,7 @@ The agent can select any of these on its own. You can also type the name of one.
 - **[mob-review](./skills/mob-review/SKILL.md)**. Selects the review passes that match the change. Each pass runs on its own. The findings come back in order of risk, not in the order of discovery. A team policy can turn on loop mode, which fixes and reviews again without stopping to ask.
 - **[react-native-architecture](./skills/react-native-architecture/SKILL.md)**. A feature-first layered architecture for React Native apps. It includes a decision table that shows where new code belongs.
 - **[unslop](./skills/unslop/SKILL.md)**. Cuts the AI tells from any draft. `writing-for-humans` runs it first, so the copy here saves a download. By Lauren Tan: a copy of [PStack](https://github.com/cursor/plugins/tree/2f87c854fe3e/pstack/skills/unslop) at `2f87c854fe3e`, under the MIT licence (`LICENSE` in the folder). One line differs. Upstream sets `disable-model-invocation: true`, which would stop `writing-for-humans` and other agents from running it, so this copy leaves it out. Fixes go to PStack first.
-- **[writing-for-humans](./skills/writing-for-humans/SKILL.md)**. Cuts the AI tells from any text that a person reads, then holds seven Simplified Technical English limits. It includes a checker script that reports each breach with a line number.
+- **[writing-for-humans](./skills/writing-for-humans/SKILL.md)**. Runs `unslop` on any text that a person reads. Then it holds three limits from Simplified Technical English: 25 words per sentence, active voice with a named actor, and no -ing subjects. A checker script reports each breach with a line number.
 
 ## Using mob-review
 
