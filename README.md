@@ -32,6 +32,63 @@ The agent can select any of these on its own. You can also type the name of one.
 - **[unslop](./skills/unslop/SKILL.md)**. Cuts the AI tells from any draft. This repo carries a copy from PStack under the MIT licence, so `writing-for-humans` runs its first pass with no download.
 - **[writing-for-humans](./skills/writing-for-humans/SKILL.md)**. Cuts the AI tells from any text that a person reads, then holds seven Simplified Technical English limits. It includes a checker script that reports each breach with a line number.
 
+## Using mob-review
+
+Ask for a review in your own words. The agent also starts one when it finishes a change.
+
+```text
+mob review this before I push
+review PR 42
+review the plan in docs/plans/checkout.md
+```
+
+The agent picks the lenses that match the change and tells you which ones it skipped. A lens is one review pass with one focus, such as Security or Operability. A one-word typo fix gets a quick check and no panel.
+
+### The two questions
+
+By default the review stops twice to ask you:
+
+1. Before it starts, if it can use subagents. One subagent per lens gives each lens its own context, so no lens copies another.
+2. After the report, what to fix. The report numbers each finding, so you can answer by number:
+
+   ```text
+   How do you want to proceed? Fix all, fix the blockers only (#1, #4), fix by number, or leave it with you?
+   ```
+
+The review changes no files until you answer.
+
+### Answer the questions ahead of time
+
+Write a standing policy in `AGENTS.md`, `CLAUDE.md`, or the `## mob-review` section of `.agents/project.md`. The policy must name mob review:
+
+```markdown
+## mob-review
+Use subagents for mob review without asking, and run it in loop mode.
+```
+
+What you say in the conversation overrides the policy. "Ask before you fix anything" turns loop mode off for that review.
+
+### Loop mode
+
+Loop mode fixes the blockers and should-fixes, then runs a second round. That round checks only the fixes. Each lens reports, for each of its findings, whether the fix worked or caused a new problem. The loop never changes a call that other code relies on, and it never accepts a blocker for you. The report ends with this block:
+
+```text
+Status: #1 fixed, #2 fixed, #3 needs a decision
+Simplicity pass: nothing removed
+Round 2: Security (opus): #1 resolved. Billing (sonnet): #2 resolved
+Verify: npm test, 12 of 12 pass, run once after round 2
+Decisions:
+1. Should the support tool send an idempotency key? Options: a, b. I recommend a because ...
+```
+
+### Add a lens for your project
+
+Add a lens in the same `## mob-review` section:
+
+```markdown
+Add a **Billing** lens for any change under `src/billing/`: money is integer cents, and refunds never exceed the captured amount.
+```
+
 ## Layout
 
 ```
