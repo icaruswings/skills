@@ -26,7 +26,9 @@ cp -R skills/mob-review ~/.claude/skills/
 
 The agent can select any of these on its own. You can also type the name of one.
 
+- **[babysit-pr](./skills/babysit-pr/SKILL.md)**. Watches a pull request through CI and review with one watcher (`watch_pull_request` in T3 Code, `pr-wait` elsewhere). It fixes what fails and merges only when you ask. By Theo Browne: an unchanged copy of [t3dotgg/tstack](https://github.com/t3dotgg/tstack/tree/6efae364/skills/babysit-pr) at `6efae364`, under his MIT licence (`LICENSE` in the folder). Fixes go to his repo first.
 - **[code-standards](./skills/code-standards/SKILL.md)**. Design rules from SOLID and Sandi Metz, ports and adapters patterns, security defaults, and wire changes that stay backwards compatible.
+- **[leaving-pr-comments](./skills/leaving-pr-comments/SKILL.md)**. Marks every GitHub comment an agent posts for you with a short note that names the model. It keeps the comment itself short and backed by evidence. By Theo Browne: an unchanged copy of [t3dotgg/tstack](https://github.com/t3dotgg/tstack/tree/6efae364/skills/leaving-pr-comments) at `6efae364`, under his MIT licence (`LICENSE` in the folder). Fixes go to his repo first.
 - **[mob-review](./skills/mob-review/SKILL.md)**. Selects the review passes that match the change. Each pass runs on its own. The findings come back in order of risk, not in the order of discovery. A team policy can turn on loop mode, which fixes and reviews again without stopping to ask.
 - **[react-native-architecture](./skills/react-native-architecture/SKILL.md)**. A feature-first layered architecture for React Native apps. It includes a decision table that shows where new code belongs.
 - **[unslop](./skills/unslop/SKILL.md)**. Cuts the AI tells from any draft. This repo carries a copy from PStack under the MIT licence, so `writing-for-humans` runs its first pass with no download.
