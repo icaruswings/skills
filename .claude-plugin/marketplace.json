@@ -1,0 +1,8 @@
+{
+  "name": "icaruswings",
+  "owner": { "name": "icaruswings" },
+  "metadata": { "description": "Workflow skills for coding agents: babysit a PR, mob review, PR comments, and a shared delivery workflow that reads per-project facts." },
+  "plugins": [
+    { "name": "icaruswings", "source": "./", "description": "Workflow skills for coding agents: babysit a PR, mob review, PR comments, and a shared delivery workflow that reads per-project facts." }
+  ]
+}

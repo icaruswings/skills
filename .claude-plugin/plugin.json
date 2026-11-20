@@ -1,0 +1,9 @@
+{
+  "name": "icaruswings",
+  "version": "0.7.0",
+  "description": "Workflow skills for coding agents: babysit a PR, mob review, PR comments, and a shared delivery workflow that reads per-project facts.",
+  "author": { "name": "icaruswings", "url": "https://github.com/icaruswings" },
+  "homepage": "https://github.com/icaruswings/skills",
+  "repository": "https://github.com/icaruswings/skills",
+  "license": "MIT"
+}

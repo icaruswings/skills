@@ -7,6 +7,8 @@ description: Use when writing, reviewing, or refactoring application code — fe
 
 Pressure-test evidence: [pressure-tests.md](./pressure-tests.md).
 
+Read `.agents/project.md` in the repo root if it exists, before you write code. Its `## code-standards` section overrides this file.
+
 ## Priorities
 
 KISS and YAGNI outrank every pattern below. Default to the simplest design that solves the problem in front of you. Add a pattern only once duplication, a second variant, or a real change need proves it's necessary — not because the codebase might need it someday.

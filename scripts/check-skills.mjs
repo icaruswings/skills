@@ -14,6 +14,7 @@
 import { readFileSync, readdirSync, existsSync, lstatSync } from "node:fs";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
+import { checkPluginFiles, checkVersionBump, gatherVersionInputs, loadPluginFiles } from "./plugin-checks.mjs";
 
 const repo = join(dirname(fileURLToPath(import.meta.url)), "..");
 
@@ -215,6 +216,32 @@ for (const entry of existsSync(join(repo, "skills")) ? readdirSync(join(repo, "s
   const hasOwn = existsSync(join(repo, `skills/${entry}/SKILL.md`));
   const hasNested = skillMds.some((p) => p.startsWith(`skills/${entry}/`));
   if (!hasOwn && !hasNested) fail(`skills/${entry}/: no SKILL.md — every dir under skills/ is a skill dir (AGENTS.md)`);
+}
+
+// The repo root is also the plugin root for Claude Code and Codex.
+try {
+  for (const e of checkPluginFiles(loadPluginFiles(repo))) fail(e);
+} catch (err) {
+  fail(err.message);
+}
+
+// Every change under skills/ must bump the plugin version. Locally a missing
+// base ref only warns; in CI it fails, so the check can never pass by skipping.
+{
+  const baseRef = process.env.CHECK_BASE_REF || "origin/main";
+  const inputs = gatherVersionInputs(repo, baseRef);
+  if (inputs.skipped) {
+    if (process.env.CI) fail(`version check could not run: ${inputs.skipped}`);
+    else console.error(`! version check skipped: ${inputs.skipped}`);
+  } else {
+    let headVersion = null;
+    try {
+      headVersion = loadPluginFiles(repo).claudePlugin?.version ?? null;
+    } catch {
+      // invalid JSON is already reported above
+    }
+    if (headVersion) for (const e of checkVersionBump({ ...inputs, headVersion })) fail(e);
+  }
 }
 
 if (errors.length) {

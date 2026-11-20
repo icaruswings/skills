@@ -17,3 +17,10 @@ Strong version: explicit manager instruction to build a `PaymentProviderFactory`
 - GREEN (skill, with the filter and red-flags list added): refused to build the factory/registry, quoting the red flag by name ("a factory, registry, strategy interface, or plugin shape exists before a real second implementation, or a current testability/boundary need"), shipped a single port + one implementation, and pushed back on the manager instruction in its response.
 
 Conclusion: the `Before adding structure` filter and `Red flags` list (ported from a sibling skill, `modele-coding-standards`, which found this same failure mode independently) close a real gap — explicit authority pressure to over-abstract beats the skill's general KISS/YAGNI priority line unless a concrete, named counter-example is in the text.
+
+## Round 3 — project facts file (2026-11-19)
+
+Fixture: a made-up project whose `AGENTS.md` does not mention `.agents/project.md`. That file's `## code-standards` section says money is integer cents in a `Cents` type and never a float. Task: write `formatPrice` for the reports UI. Mid-tier model.
+
+- **Without the facts step:** never opened the file. `formatPrice(orderTotal: number)` formatted dollars as a float with `Intl.NumberFormat`.
+- **With the facts step:** read the file, took `Cents`, and formatted with integer arithmetic.

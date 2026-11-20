@@ -13,11 +13,21 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+        with:
+          # The version check diffs against the base branch, so it needs history.
+          fetch-depth: 0
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: 22
 
-      - name: Check skill wiring
+      - name: Test the check scripts
+        run: node --test 'scripts/*.test.mjs'
+
+      - name: Check skill and plugin wiring
+        env:
+          # PR: the branch it merges into. Push: the commit main pointed at
+          # before this push, so a multi-commit push is checked as a whole.
+          CHECK_BASE_REF: ${{ github.event_name == 'pull_request' && format('origin/{0}', github.base_ref) || (github.event.before != '0000000000000000000000000000000000000000' && github.event.before || 'HEAD~1') }}
         run: node scripts/check-skills.mjs

@@ -62,6 +62,7 @@ interface:
 - `name` matches the directory; `description` routes correctly for the invocation mode.
 - `agents/openai.yaml` exists and agrees with the invocation mode.
 - Linked from the top-level `README.md`.
+- `version` bumped in `.claude-plugin/plugin.json` and `.codex-plugin/plugin.json` (minor for a new skill or behaviour, patch for a fix).
 - `node scripts/check-skills.mjs` passes.
 - `scripts/link-skills.sh` re-run, so the installed copy matches.
 - You have run the skill at least once, end to end, on real work — and it changed what the agent did.
