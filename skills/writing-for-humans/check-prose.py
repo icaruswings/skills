@@ -3,8 +3,9 @@
 
 Usage: check-prose.py FILE [FILE...]      (or pipe text on stdin)
 Exit 1 if any violation is found.
-Every match still needs a human read: quoted counter-examples and
-adjectival participles trip the passive check.
+Every match still needs a human read, and a clean run can still miss a
+passive or a gerund subject. A short list label can read as a gerund
+subject. Text inside double quotes and backticks is ignored.
 """
 import re, sys
 

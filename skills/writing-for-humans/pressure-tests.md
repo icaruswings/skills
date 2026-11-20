@@ -104,3 +104,81 @@ This round changed the wording on request rather than on evidence from a failing
 ## Dogfood
 
 The skill and its README entry both run clean through `check-prose.py`.
+
+## Round 5: simplification after the unslop update (2026-11-20)
+
+Unslop moved to PStack `2f87c854fe3e`. The new unslop states several rules this skill also stated, so each section had to show a failure without it. The skill went from 151 lines to 38.
+
+Every run used headless Claude Code with Sonnet and all installed skills turned off. Each arm got the skill text in its system prompt. Scores come from `check-prose.py`, and I read the flagged lines by hand. There were eight tasks, with no style hints:
+
+- a PR body with a 10-minute deadline
+- a commit message
+- a design spec
+- a Jira ticket with a 15-minute deadline
+- a code comment block
+- a README section
+- a PR body that lists five files, with a 5-minute deadline
+- a chat question
+
+### Does the skill still earn its place?
+
+| Arm | Runs | Breaches | Ran the checker |
+|---|---|---|---|
+| No skill | 18 | 97 | 0 |
+| Unslop only | 18 | 64 | 0 |
+| Unslop and the old skill | 18 | 2 | 18 |
+
+The two breaches with the old skill were false positives. A list label, "Engineering", read as a gerund subject.
+
+### What each part is worth
+
+| Part | Test | With it | Without it |
+|---|---|---|---|
+| The three limits | Design spec | 7 breaches in 16 runs | 19 breaches in 8 runs |
+| The dash section | Five-file PR, 5 runs per arm | 0 dashes | 0 dashes, so it was cut |
+| "A chat reply gets pass one only" | Chat question, 5 runs per arm | Checker ran 0 times | Checker ran 5 times |
+
+Most of the 7 breaches with the limits were the "Engineering" false positive, and the agent read and kept them.
+
+The dash rule now sits in unslop, rule 13. Without the dash section, every run separated a filename from its note with a colon.
+
+### The report
+
+One version replaced the closing sentences with a fixed report line. It worked on artifacts, but it leaked into 2 to 4 of 5 chat replies until the chat rule named it.
+
+A recount showed that the plain sentences already worked. With unslop missing, the old skill and the first draft told the user in 6 of 6 runs. So the final skill keeps the plain sentences. With them, the agent told the user in 5 of 5 runs and stated the checker result in 6 of 6 artifact runs. It added nothing to 5 of 5 chat replies.
+
+The old install block never ran. With unslop missing, no run asked to install anything. The new skill drops the install, which also removes a stop-and-wait step that a subagent cannot finish.
+
+Instead, the skill names the install command, `npx skills add icaruswings/skills --skill unslop`, and the user decides. With unslop missing, 5 of 5 runs gave the user that command, and none ran it. With unslop present, 0 of 3 runs mentioned it. A trial in an empty project showed that the command installs unslop with its licence.
+
+### Cut without a failing test
+
+These parts had no failure behind them, or the new unslop states them:
+
+- the scope table
+- four of the seven limits
+- the "keep these" list
+- the excuse table and the red flags
+- the long-artifact header line
+- the evidence link
+
+The excuse table and red flags came in round 3 together with the em dash section. Round 5 found no dash failure without any of them.
+
+### The checker step
+
+The checker passes some breaches. It exempts "is deleted" and "is unchanged", and it missed "Reprovisioning the same subject re-enables the link". The old skill named "is unchanged" as a false positive, which was wrong. So the skill now says to read the draft against the three limits and to review every checker match.
+
+With that wording, 9 artifact runs produced 1 checker match, the "Engineering" false positive. The checker ran in 0 of 3 chat replies, and 2 of 2 runs without unslop told the user. On the design spec, passives that the checker exempts fell from 2 in 3 runs to 1 in 5 runs.
+
+### A real Skill tool call
+
+The test script told the agent to apply unslop from the system prompt. So three more runs used real Claude Code skills instead, renamed `w4hx` and `unslopx` to keep the installed copies out. The PR body task named `w4hx`. In 3 of 3 runs, the agent called `unslopx` through the Skill tool and then ran the checker. All 3 PR bodies were clean. These runs used the checker wording from before the change above, so they test the call to unslop, not that wording.
+
+### Not tested
+
+No run tested when Claude Code loads the skill on its own. Every prompt named the skill, or the system prompt held its text. The description is unchanged.
+
+With unslop missing, all 5 runs told the user that pass one did not run. Only 3 of the 5 also said what the checker found. All 5 drafts were clean.
+
+The last edit cut one sentence that said where unslop ships. None of the 5 runs with unslop missing passed it on to the user.
