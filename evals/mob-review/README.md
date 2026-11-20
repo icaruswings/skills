@@ -114,3 +114,7 @@ Human adjudication remains pending. An unmatched claim may identify a real defec
 Machine matches, zero added missed blockers, and a passing machine gate do not establish human approval or quality parity.
 Read the [completed pilot report](results/2026-10-29/REPORT.md) for actual results and limits.
 Separate [native launch evidence](native-launch-validation.json) records the Claude and Codex app subagent checks.
+
+## Changing the routing policy
+
+Run the harness and scoring tests before you change fixtures, routing, prompts, or metrics. Keep the scoring key out of reviewer prompts. Count incomplete runs and unknown models explicitly, and report unique cases separately from repetitions. Measure cost rather than assuming a smaller model makes the whole review cheaper. When a cheaper role misses a blocker, promote it; freeze the candidate policy before you use the held-out cases.
