@@ -3,16 +3,6 @@ name: unslop
 description: Cut AI tells from any writing. Must always apply.
 ---
 
-<!--
-Vendored from cursor/plugins, path pstack/skills/unslop/SKILL.md, at commit
-99559f2f5204 (2026-08-02). MIT licensed, copyright (c) 2026 Lauren Tan. The
-licence sits beside this file in LICENSE, and it must stay there.
-
-The body below is upstream text, unedited. Keep it that way, so a refresh stays
-a straight copy. To refresh:
-  curl -fsSL https://raw.githubusercontent.com/cursor/plugins/main/pstack/skills/unslop/SKILL.md
--->
-
 # Unslop
 
 Edit text to remove AI patterns and add human voice.
