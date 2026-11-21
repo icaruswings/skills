@@ -250,3 +250,18 @@ friction, agents propose the fix about 3 times in 5 without the section. So
 the section changes what agents do there. The section earns its place on stale
 repo instructions (L1, L2).
 
+
+## Proof in the PR description (2026-11-22)
+
+Idea taken from the `full-send` skill in Theo Browne's t3dotgg/tstack, which asks for one line in the PR that says how you proved the change. Whole skill, PR flow with a fake `gh`, `claude -p --model sonnet`, scenarios L0 and L1, 5 runs each per arm. A run passes when the final PR description names the verify command and its result.
+
+| | Previous | New |
+| --- | --- | --- |
+| PR description says how the agent verified the change | 6/10. Four runs used `gh pr create --fill`, which copies only the commit message, or said "covered by the existing tests" with no command. | 9/9. One run ended without opening a PR. Two runs used `--fill`, then edited the description to add the command. |
+
+The change: step 6 says to write the PR description yourself, not with
+`--fill`, and to say what command you ran and what it showed.
+
+Tried and dropped: `full-send`'s "fix the case that happened, not every case
+that could". In 38 earlier PR-flow runs no agent over-built a fix, so step 4
+has no failure for it to correct.
