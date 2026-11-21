@@ -74,17 +74,19 @@ A team can answer both questions ahead of time in its instructions: `AGENTS.md`,
 
 **Loop mode** answers the how-to-proceed question with "fix the blockers and should-fixes":
 
+**Budget:** two rounds. Round 1 reviews the whole change. Round 2 checks only the edits, and its findings go in the final report, not into a third round. Skip round 2 when you edited nothing, or when every edit touched only comments, docs, or formatting.
+
 1. End the report with `Loop mode: fixing #… (round 1 of 2)` instead of the question.
 2. Fix the blockers and should-fixes. Leave `optional` findings alone. Hold `decision` findings for the end. Fix only inside the files the change already touches. A valid call that works against the code under review must behave the same after the fix, from this repo or not: same arguments, responses, errors, and side effects. A fix that needs anything else is a scope change: don't make it.
 3. Run one simplicity pass: delete or narrow code the loop added that the goal doesn't need.
-4. Round 2 checks the edits, not the whole change again. Each lens with a fixed finding gets its own reviewer, given the fix delta and the callers it touches. For each of that lens's fixed findings it answers: resolved, not resolved, or the edit introduced a problem (what, with evidence). It reports nothing that was already there before the edits. Security keeps the strongest model; every other lens uses a mid-tier one, payments included, because checking a fix against its finding has explicit criteria. Don't fix what round 2 finds; it goes in the final report. Skip round 2 only when nothing was edited.
+4. Round 2 checks the edits, not the whole change again. Each lens with a fixed finding gets its own reviewer, given the fix delta and the callers it touches. For each of that lens's fixed findings it answers: resolved, not resolved, or the edit introduced a problem (what, with evidence). It reports nothing that was already there before the edits. Security keeps the strongest model; every other lens uses a mid-tier one, payments included, because checking a fix against its finding has explicit criteria.
 5. Run `verify` once, after every round-2 reviewer has finished (or round 2 was skipped). With no `verify`, run the tests.
 6. Send one final report that ends with this block, copied with its labels and filled in. Nothing follows it.
 
    ```text
    Status: #1 fixed, #2 fixed, #3 needs a decision, #4 follow-up, …
    Simplicity pass: <what it removed, or "nothing removed">
-   Round 2: <one entry per lens reviewer: lens, model, each fixed finding resolved / not resolved / problem introduced; or "skipped: nothing edited">
+   Round 2: <one entry per lens reviewer: lens, model, each fixed finding resolved / not resolved / problem introduced; or "skipped: <nothing edited | comments, docs, or formatting only>">
    Verify: <command and result, run once after round 2>
    Decisions:
    1. <question> Options: <a>, <b>. I recommend <a> because <reason>.

@@ -253,3 +253,18 @@ Tested against the previous version, with the same fixtures, `claude -p --model 
 Result: round 2 costs about half as much, Opus spend in round 2 falls by about 80%, and a full loop costs about 20% less. The planted fix bugs and the original blockers were caught every time.
 
 Tried and dropped: limiting each reviewer's finding to one line per field. Over two runs of the native-panel test per version, the planted defects were found either way, the dispatches were the same, and Opus output was no smaller (7.9k and 5.4k tokens against 8.7k and 4.3k). A reviewer's output is mostly its thinking and tool calls, so terser findings save nothing.
+
+## Round 15: a budget for loop mode (2026-11-22)
+
+Ideas taken from the loop budget in Theo Browne's `sol-loop` skill (t3dotgg/tstack). Each run starts in loop mode after round 1, with the round-1 report given in the prompt. The repo is a small Node checkout with a discount-code change. `claude -p --model sonnet`, 5 runs per arm.
+
+| Test | Previous | New |
+|---|---|---|
+| MR2: the only fix is a one-line comment. Subagents available. | 0/5 skipped round 2: every run sent a subagent to re-check the comment. | 4/5 skipped round 2 and said why. One run still sent a subagent. |
+| MR1: four findings to fix. One is a real blocker, one is false, one is over-built, and one is a comment fix. | #1 fixed 5/5. #2 and #3 declined with evidence 5/5. | The same, 5/5. |
+
+The change: a **Budget** line opens loop mode. It says two rounds, no third, and skip round 2 when the edits touched only comments, docs, or formatting.
+
+In MR1 the false finding says the code changes the caller's order, but the code already returns a new object. The over-built one asks for a retry and a cache on an in-memory map.
+
+Tried and dropped: `sol-loop`'s rule to check each finding against the code before you fix it. Its rule to delete or narrow code before you add a lock, cache, or helper went too. Without them, MR1 already declined the false and the over-built findings in 5/5 runs, so the rules would change nothing.

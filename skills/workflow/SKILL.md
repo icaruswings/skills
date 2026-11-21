@@ -86,6 +86,8 @@ turns either part off in the `## mob-review` section of `.agents/project.md`.
   branch. Write it as that commit.
 - Keep a PR small enough to review in one sitting. Split when it touches more
   than about ten files for separable reasons.
+- Write the PR description yourself, not with `--fill`. Say how you verified
+  the change: the command you ran and what it showed.
 - Push and open the PR, ready for review.
 
 ## 7. Get it merged
