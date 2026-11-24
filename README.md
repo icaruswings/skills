@@ -109,7 +109,7 @@ review PR 42
 review the plan in docs/plans/checkout.md
 ```
 
-The agent picks the lenses that match the change and tells you which ones it skipped. A lens is one review pass with one focus, such as Security or Operability. A one-word typo fix gets a quick check and no panel.
+The agent picks the lenses that match the change and tells you which ones it skipped. A lens is one review pass with one focus, such as Security or Operability. The depth follows what the change touches, not its size. A typo fix gets a quick check. A small change that only matches Staff engineer, Product, or Frontend & accessibility gets one reviewer. Anything that matches another lens, such as Security or Infrastructure, gets the full panel.
 
 ### The two questions
 

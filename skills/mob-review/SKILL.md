@@ -9,9 +9,21 @@ Assemble a mob of the lenses that match what changed, run each as its own pass, 
 
 Before you pick lenses, read `.agents/project.md` in the repo root if it exists. Its `## mob-review` section, like a mob-review rule in `AGENTS.md`, can add lenses (a domain expert, for example) and set a [standing policy](#standing-policy). Its `verify` key is the command a change must pass.
 
+## Pick the depth
+
+Pick the depth from what the change touches, before you dispatch anything. The same change always gets the same depth: don't scale it to the size of the diff or to how busy anyone is.
+
+| Depth | When | Run |
+|---|---|---|
+| **Self-check** | only prose, comments, or formatting, with no behaviour change, and not a spec or plan | One self-check, reported in a line or two. No panel, no Mode line, no questions. |
+| **Single pass** | code where the only lenses that match are Staff engineer, Product, and Frontend & accessibility | One subagent with the Staff engineer brief, which also works through the checks of the other matching lenses. The subagent rules under [Run them](#run-them) apply, and a small diff is no reason to review it yourself instead. You triage its findings. |
+| **Panel** | any other lens matches, including a project's own lens, or the change is a spec or plan | One reviewer per matching lens, as below. |
+
+When you can't tell whether a lens matches, it matches. A project's `## mob-review` section can move a surface to Panel, such as paths a domain lens owns.
+
 ## Pick the mob
 
-Select every lens whose trigger matches the change. Most changes need two or three.
+Select every lens whose trigger matches the change. Most panels need two or three.
 
 | Lens | Select when the change touches | It checks |
 |---|---|---|
@@ -42,19 +54,19 @@ One subagent per lens is best: each gets independent context, so no lens anchors
 | Available, not sanctioned | After picking the mob and before any review work, ask: "Mob review runs best as one subagent per lens, so no lens anchors another. Can I use subagents for this review? That's <N> agents: <lenses, plus triage>. Otherwise I run each lens as a separate self-review pass." Then stop and wait. Mentioning the option while carrying on is not asking. |
 | Not available, or the user declined | Run a separate pass per lens yourself. Don't ask. |
 
-The scope is the whole change against its base branch: committed, staged, unstaged, and untracked. Each lens brief names its lens and its model, gives that scope and the requirements the change is judged against, and says: change no files, spawn no helpers, return `Status: complete | incomplete`, the findings, and any gaps. Keep other lenses' conclusions out of it.
+The scope is the whole change against its base branch: committed, staged, unstaged, and untracked. Each lens brief names its lens and its model, gives that scope and the requirements the change is judged against, and says: change no files, spawn no helpers, return `Status: complete | incomplete`, the findings, and any gaps. It also says: report only what someone should change, each finding naming a failure that can happen and its evidence; a risk the change's code, tests, or docs already handle is not a finding. Keep other lenses' conclusions out of it.
 
 A review changes no project files, index, or refs, your own uncommitted work included. Fixes wait for the user's answer, or for a standing policy that turns on loop mode.
 
-Final triage merges duplicates, checks disputed claims against the code, and keeps each finding's lens.
+Final triage merges duplicates, checks disputed claims against the code, and keeps each finding's lens. It also drops every finding, at any severity, that the code, tests, or docs already answer. Two lenses raising the same finding is not evidence that it is real.
 
 ## Report
 
 In this order:
 
 1. **Mode**, the first line: `Mode: dispatched (<N> subagents)`, `Mode: self-review passes (<reason>)`, or `Mode: mixed (<N> subagents; <M> self-review passes; <why>)`.
-2. **Lenses**, one line: each selected lens with the clause that triggered it, and the ones you considered and skipped. Say if a lens ran on a weaker model than this skill asks for, or one you couldn't set.
-3. **Findings by lens**, numbered in one sequence (`#1`, `#2`, …) so the user can name them back. Tag each `blocker`, `should-fix`, or `optional`, and add `decision` when only a person can settle it: a product choice, a trade-off, a gap in the spec. Give location, what fails, the consequence, and the evidence. A lens with no findings gets one line. Name any incomplete lens or gap, and any blocker triage dropped, with the reason.
+2. **Lenses**, one line: the depth and the lens that set it, each selected lens with the clause that triggered it, and the ones you considered and skipped. Say if a lens ran on a weaker model than this skill asks for, or one you couldn't set.
+3. **Findings by lens**, numbered in one sequence (`#1`, `#2`, …) so the user can name them back. Tag each `blocker`, `should-fix`, or `optional`, and add `decision` when only a person can settle it: a product choice, a trade-off, a gap in the spec. Give location, what fails, the consequence, and the evidence. Give each `optional` finding one line, after the others. A lens with no findings gets one line. Name any incomplete lens or gap, and any blocker triage dropped, with the reason. Count the other findings triage dropped.
 4. **Verdict**: ship, ship after blockers, or needs a decision. An incomplete lens means needs a decision.
 5. **How to proceed**, the last line unless loop mode is on:
 
@@ -93,7 +105,3 @@ A team can answer both questions ahead of time in its instructions: `AGENTS.md`,
    ```
 
    The first decisions are any blocker still open after round 2, any scope-changing fix you didn't make, and any disagreement triage can't settle. Security or triage on a weaker model, or on one you couldn't set through the model field, is a decision too, and so are a lens that reported itself incomplete and a step 5 run that failed or couldn't run. With none, write `Decisions: none` followed by the policy's next step, or a request to review the change.
-
-## Scale to the change
-
-When the change is only prose, comments, or formatting, with no behaviour change, and isn't a spec or plan: do one self-check and report in a line or two. No panel, no Mode line, no questions.
