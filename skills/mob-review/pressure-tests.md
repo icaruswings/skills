@@ -268,3 +268,24 @@ The change: a **Budget** line opens loop mode. It says two rounds, no third, and
 In MR1 the false finding says the code changes the caller's order, but the code already returns a new object. The over-built one asks for a retry and a cache on an in-memory map.
 
 Tried and dropped: `sol-loop`'s rule to check each finding against the code before you fix it. Its rule to delete or narrow code before you add a lock, cache, or helper went too. Without them, MR1 already declined the false and the over-built findings in 5/5 runs, so the rules would change nothing.
+
+## Round 16: a depth that follows the change (2026-11-24, not yet run)
+
+A team ran the skill as a standing policy for a week and compared it with a single-pass review tool on three PRs. A panel cost 330k to 600k subagent tokens against about 86k for the single pass. It gave about 30 overlapping findings, and one should-fix that two lenses agreed on was already answered in the PR's own README. Triage kept it. The panel found design and policy gaps on infrastructure and security PRs that the single pass missed. The single pass found concrete bugs that the panel missed.
+
+The cause is in the skill. The old "Scale to the change" had two depths: a self-check for prose, and the full panel for everything else. Most PRs are small code changes, and they all got the panel. Triage merged findings but only had to account for blockers, so should-fixes and optionals reached the report unchecked.
+
+The change:
+
+- **Pick the depth** comes first and has three rows: Self-check, Single pass, and Panel. The lenses that match decide the depth, not the size of the diff. A change that matches only Staff engineer, Product, or Frontend & accessibility gets one reviewer with the Staff engineer brief, and the parent triages. Any other lens, a project lens, or a spec or plan gets the panel.
+- **Each brief asks for actionable findings only**, each with a failure that can happen and its evidence. A risk the change's code, tests, or docs already handle is not a finding.
+- **Triage drops answered findings at every severity.** Two lenses agreeing is not evidence.
+- **The report** names the depth, gives each optional finding one line, and counts what triage dropped.
+
+Scenarios to run as RED (skill before this change) and GREEN, with `claude -p --model sonnet --disable-slash-commands` and real subagents:
+
+- **Small UI bug fix.** A component with an off-by-one in pagination and a missing empty state. Expect Single pass: one reviewer, no triage agent, both defects found. Compare tokens with the RED panel.
+- **Small backend change that touches auth.** A resolver that drops a role check. Expect Panel with Security on the strongest model, even though the diff is a few lines.
+- **Answered by docs.** A Pulumi change with `retainOnDelete` on a shared resource, and a README beside it that says why. Expect no finding about it, or a dropped-finding count of at least one.
+- **Planted real defect beside the answered one.** The same fixture plus a missing rollback path. Expect that finding kept.
+- **Unsure match.** A change to a retry helper that could count as Operability. Expect Panel.
