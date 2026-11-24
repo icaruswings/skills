@@ -16,7 +16,7 @@ Pick the depth from what the change touches, before you dispatch anything. The s
 | Depth | When | Run |
 |---|---|---|
 | **Self-check** | only prose, comments, or formatting, with no behaviour change, and not a spec or plan | One self-check, reported in a line or two. No panel, no Mode line, no questions. |
-| **Single pass** | code where the only lenses that match are Staff engineer, Product, and Frontend & accessibility | One reviewer with the Staff engineer brief, which also works through the checks of the other matching lenses. You triage its findings yourself. |
+| **Single pass** | code where the only lenses that match are Staff engineer, Product, and Frontend & accessibility | One subagent with the Staff engineer brief, which also works through the checks of the other matching lenses. The subagent rules under [Run them](#run-them) apply, and a small diff is no reason to review it yourself instead. You triage its findings. |
 | **Panel** | any other lens matches, including a project's own lens, or the change is a spec or plan | One reviewer per matching lens, as below. |
 
 When you can't tell whether a lens matches, it matches. A project's `## mob-review` section can move a surface to Panel, such as paths a domain lens owns.

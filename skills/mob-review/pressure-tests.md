@@ -269,7 +269,7 @@ In MR1 the false finding says the code changes the caller's order, but the code 
 
 Tried and dropped: `sol-loop`'s rule to check each finding against the code before you fix it. Its rule to delete or narrow code before you add a lock, cache, or helper went too. Without them, MR1 already declined the false and the over-built findings in 5/5 runs, so the rules would change nothing.
 
-## Round 16: a depth that follows the change (2026-11-24, not yet run)
+## Round 16: a depth that follows the change (2026-11-24)
 
 A team ran the skill as a standing policy for a week and compared it with a single-pass review tool on three PRs. A panel cost 330k to 600k subagent tokens against about 86k for the single pass. It gave about 30 overlapping findings, and one should-fix that two lenses agreed on was already answered in the PR's own README. Triage kept it. The panel found design and policy gaps on infrastructure and security PRs that the single pass missed. The single pass found concrete bugs that the panel missed.
 
@@ -277,15 +277,24 @@ The cause is in the skill. The old "Scale to the change" had two depths: a self-
 
 The change:
 
-- **Pick the depth** comes first and has three rows: Self-check, Single pass, and Panel. The lenses that match decide the depth, not the size of the diff. A change that matches only Staff engineer, Product, or Frontend & accessibility gets one reviewer with the Staff engineer brief, and the parent triages. Any other lens, a project lens, or a spec or plan gets the panel.
+- **Pick the depth** comes first and has three rows: Self-check, Single pass, and Panel. The lenses that match decide the depth, not the size of the diff. A change that matches only Staff engineer, Product, or Frontend & accessibility gets one subagent with the Staff engineer brief, and the parent triages. Any other lens, a project lens, or a spec or plan gets the panel.
 - **Each brief asks for actionable findings only**, each with a failure that can happen and its evidence. A risk the change's code, tests, or docs already handle is not a finding.
 - **Triage drops answered findings at every severity.** Two lenses agreeing is not evidence.
 - **The report** names the depth, gives each optional finding one line, and counts what triage dropped.
 
-Scenarios to run as RED (skill before this change) and GREEN, with `claude -p --model sonnet --disable-slash-commands` and real subagents:
+Method: fixture repos in a scratch directory, `claude -p --model sonnet --disable-slash-commands --setting-sources project`, the skill text in the appended system prompt, subagents sanctioned in the prompt, no loop mode. RED is the skill before this change. Cost is the run's total, and subagent models were read from the stream.
 
-- **Small UI bug fix.** A component with an off-by-one in pagination and a missing empty state. Expect Single pass: one reviewer, no triage agent, both defects found. Compare tokens with the RED panel.
-- **Small backend change that touches auth.** A resolver that drops a role check. Expect Panel with Security on the strongest model, even though the diff is a few lines.
-- **Answered by docs.** A Pulumi change with `retainOnDelete` on a shared resource, and a README beside it that says why. Expect no finding about it, or a dropped-finding count of at least one.
-- **Planted real defect beside the answered one.** The same fixture plus a missing rollback path. Expect that finding kept.
-- **Unsure match.** A change to a retry helper that could count as Operability. Expect Panel.
+| Fixture | RED | GREEN |
+|---|---|---|
+| **UI:** pagination with an off-by-one and no empty state. 2 runs each. | Panel of 2 (Staff engineer, Frontend). $0.21, $0.28. 9 findings each. Both defects found. | Single pass, 1 subagent. $0.17, $0.17. 6 and 8 findings. Both defects found, plus the focus loss RED found. |
+| **Auth:** a 3-line change that drops a role check. 1 run each. | No subagents: "the diff is 3 lines". Security on Sonnet. $0.10. Blocker found. | Panel. Security on the strongest model. $0.36. Blocker found. |
+| **Infra:** `s3:*` on `*`, beside a `retainOnDelete` bucket that the README justifies. 2 runs each. | $0.24, $0.42. 6 and 13 findings. `s3:*` found 2/2. One run raised three things the README or code already answered (preview lookup order, the 30-day margin, no tests) as should-fixes. | $0.89, $0.68. 5 and 4 findings. `s3:*` found 2/2. Triage dropped 8 and 3 findings, the answered ones among them. |
+| **Retry helper:** backoff that also sleeps after the last attempt. 1 run. | not run | Panel, set by Operability. Trailing sleep found. Triage dropped 4 findings that were there before the change. |
+
+What the tests found:
+
+- **The first draft said "one reviewer", and the parent reviewed inline** in 2 of 2 UI runs ($0.09), with no subagent. That loses the author-independent read the skill exists for. The row now says "one subagent", and that a small diff is no reason to review it yourself. After the fix, 2 of 2 runs dispatched one subagent.
+- **No run raised the justified `retainOnDelete` itself.** Every run did find a real gap the fixture had not planned: the lifecycle rule and public access block are not retained with the bucket. A first infra fixture was dropped because its "shared" bucket was auto-named per stack, which made the README wrong and the findings fair.
+- **A panel now costs more than RED.** Both versions say to dispatch a triage agent when the parent isn't the strongest model. GREEN did so in 3 of 4 infra runs, RED in 0 of 4, and RED ran Security on Sonnet in one run. The higher cost is the old rule being followed, not new work.
+
+Limits: one or two runs per arm, Sonnet as the parent, small fixtures. These runs show the depth routing and the triage filter working, not equal defect detection on real PRs.
